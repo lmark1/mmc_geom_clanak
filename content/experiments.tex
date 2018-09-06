@@ -37,14 +37,6 @@ $KI_{VPC}$ & $0$ & $0$ & $0$ & $0$ & $0$ & $0$\\
 \end{tabular}
 \end{table}
 
-\begin{figure}
-  \centering
-  \subfloat[]{\includegraphics[width=0.5\textwidth]{./pictures/pitch_kut_let}\label{fig:roll_pitch_kut_let}}
-  \hfill
-  \subfloat[]{\includegraphics[width=0.5\textwidth]{./pictures/rc_out_motor_ref_let}\label{fig:rc_out_let}}
-  \caption{Experimental results of $\mu$MORUS UAS in stabilization flight. Roll and pitch measurements are depicted in a). b) shows reference for rotors 1-4. MMC-VPC takes higher bandwidth out of rotor 3 and 4 control, which results with smoother rotors' reference when compared to classically controlled rotors 1 and 2.}
-\end{figure}
-
 \subsection{Trajectory following}
 
 The second experiment was conduced in order to test MMC-VPC algorithm with higher level control. We implemented position control in the standard cascade control form with PID controller. To tune our position controller we started with parameters from simulation and with some fine tuning we reached parameters shown in Table \ref{table:position_control_params}. 
@@ -68,37 +60,4 @@ $KD$ & $0$ & $0$ & $0$ & $0$ & $0$ & $0$\\
 
 We can divide second experiment in to a two parts. The part a) of the experiment was to hover (maintain the constant position) with the $\mu$MORUS UAS and the part b) was to follow trajectory. On Fig. \ref{fig:position_hover} is shown position setpoint and feedback of the UAS while hovering. The UAS was able to maintain constant position with RMS error for position in x-axis $RMS_X = 0.0739 m$ and y-axis $RMS_Y = 0.0424 m$. The low level controller states for roll axis are shown on Fig. \ref{fig:roll_hover}, while pitch axis is almost identical. Here we can point out RMS error for roll angle $RMS_\phi = 2.091^{\circ}$ and RMS error for pitch angle $RMS_\theta = 2.354^{\circ}$.
 
-\begin{figure}[h!]
-\centering
-\includegraphics[width=\columnwidth]{./pictures/arducopter_y_hover}
-\caption{Results of the hovering experiment. Figure shows position setpoint and measurement for y-axis. Similar results are obtained for x-axis.}
-\label{fig:position_hover}
-\end{figure} 
-
-\begin{figure}[h!]
-  \centering
-  \subfloat[]{\includegraphics[width=0.5\textwidth]{./pictures/arducopter_roll_hover}\label{fig:roll_hover}}
-  \hfill
-  \subfloat[]{\includegraphics[width=0.5\textwidth]{./pictures/arducopter_roll_rate_hover}\label{fig:rollrate_hover}}
-  \caption{The experimental results of the $\mu$MORUS UAS during hovering experiment. a) shows a setpoints and the corresponding measurements for angle $\phi$. b) shows a setpoints and the corresponding measurements for angular velocity $\dot{\phi}$. The results for $\theta$ angle are similar.}
-  \label{fig:roll_hover}
-\end{figure}
-
 The b) part of the experiment (following a trajectory) give us a position results that are shown on Fig. \ref{fig:experiment_position}. The UAS was able to follow trajectory with RMS error $RMS = 0.3139 m$. The roll angle and roll rate during the trajectory execution are shown on Fig. \ref{fig:experiment_roll}. The video showing both experiments can be found in \cite{uMORUS2017video}. The Github repository with source code for both simulation can bi found in \cite{letaci2017} and experiments in \cite{letaciPixhawk2017}.
-
-\begin{figure}[h!]
-\centering
-\includegraphics[width=\columnwidth]{./pictures/arducopter_y}
-\caption{Results of the trajectory following. Figure shows position setpoint and measurement for y-axis. Similar results are obtained for x-axis.}
-\label{fig:experiment_position}
-\end{figure}
-
-
-\begin{figure}[h!]
-  \centering
-  \subfloat[]{\includegraphics[width=0.5\textwidth]{./pictures/arducopter_roll}\label{fig:experiment_roll_angle}}
-  \hfill
-  \subfloat[]{\includegraphics[width=0.5\textwidth]{./pictures/arducopter_roll_rate}\label{fig:experiment_roll_rate}}
-  \caption{The experimental results of the $\mu$MORUS UAS during the trajectory following experiment. a) shows a setpoints and the corresponding measurements for angle $\phi$. b) shows a setpoints and the corresponding measurements for angular velocity $\dot{\phi}$. The results for $\theta$ angle are similar.}
-  \label{fig:experiment_roll}
-\end{figure}

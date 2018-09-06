@@ -2,13 +2,6 @@
 Throughout the paper, all the vectors are expressed in the moving reference frame, i.e. the quadrotor body frame denoted as $L_o$ in Fig. \ref{fig:BothAR_closeup}, with an exception of the gravity force vector which is conveniently express in the inertial frame $L_I$. Attached to the aerial robot's centorid (i.e. Center of Gravity CoG) is the coordinate frame $L_{CoG}$ which is aligned with $L_o$. Careful reader should note that both angular momentum and angular velocities are obtained w.r.t. the vehicle's CoG, i.e. $L_{CoG}$ frame. We use the following notation for radius and velocity vectors:  $\mb{r}_{i,j}$ denotes radius vector from the $L_i$ frame to the $L_{j}$ and similar applies to the velocity $\mb{v}_{i,j}$ of the $L_j$ frame w.r.t. the $L_{i}$ frame.
 
 
-\begin{figure}
-	\centering
-	\includegraphics[width=0.5\textwidth]{./pictures/BothAR_closeup.pdf}
-	\caption{We are considering two types of joints, prismatic and revolute. In both situations, the mass of the link is considered to be concentrated in the motor of the joint. This simplification is justified through the actual construction of the aerial robot, which tends to limit the payload of the manipulator, and thus uses lightweight link construction.}
-	\label{fig:BothAR_closeup}
-\end{figure}
-
 We start the derivation with the CoG of the vehicle observed in the body frame which is given by:
 \begin{equation}
 \mb{r}_{0,c} = \frac{m_{b}\mb{r}_{0,b} + \sum_{i=1}^n m_{i}\mb{r}_{0,i}}{m_{b} + \sum_{i=1}^n m_{i}} = \frac{\sum_{i=1}^n m_{i}\mb{r}_{0,i}}{M},
@@ -39,12 +32,7 @@ Applying basic Newton laws of motion allows one to combine the change of linear 
 \frac{\partial ^{\omega_i} }{\partial t }\textbf{H}_i = (1 - \xi_i)\underset{\textup{motor\; torque}}{\underbrace{ K_{m_i} U_i \hat{\textbf{z}}_i}}.
 \end{gather}
 In previous equations we used $\frac{\partial ^{\omega_i} }{\partial t }$ to denote the time derivative w.r.t. a moving (i.e. rotating) frame. Unit vectors $\hat{\textbf{z}}$ and $\hat{\textbf{z}}_i$ denote the z axis of the inertial and $i$-th frame, respectively. Furthermore, $g$ denotes the gravity constant, $U_i$ is the voltage applied to $i$-th motor and $K_{m_i}$ denotes the $i$-th motor constant. Finally, we use $\xi_i=1$ to denote if the joint is prismatic, or revolute $\xi_i=0$. 
-\begin{figure}
-	\centering
-	\includegraphics[width=0.5\textwidth]{./pictures/prisAndRevJoint.pdf}
-	\caption{We are considering two types of joints, prismatic and revolute. In both situations, the mass of the link is considered to be concentrated in the motor of the joint. This simplification is justified through the actual construction of the aerial robot, which tends to limit the payload of the manipulator, and thus uses lightweight link construction.}
-	\label{fig:prisAndRevJoint}
-\end{figure}
+
 
 It can easily be shown that, since we observe the forces w.r.t. the CoG of the system and each body part respectively, the moment due to gravity is equal to zero. So far we have observed each moving part of the aerial manipulator separately. Next we proceed to observe the system as a whole, and continue to derive the linear momentum of the whole system $\textbf{L}_s$:
 \begin{equation}

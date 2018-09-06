@@ -5,13 +5,3 @@ To validate the VPC concept with PID-based position controller on an arbitrary a
 To control the COG, moving mass is attached to each arm of the UAV with mass $m=0.2kg$, while the central body of the UAV is considered to be a single rigid body. Standard PID control is utilized to move the masses along the arms of the UAV while restricting the workspace to $\Delta x \in [-0.08m, 0.08m]$. The aforementioned MMC-VPC concept is utilized to control attitude and cascade PID controller is used to control position. Two simulation experiments were conducted to validate the performance of the controller: hovering and trajectory following. The RMS measure is used to compare results.
 
 While hovering for $t_h = 180s$, the UAS achieved position score $RMS_h = 0.00076m$. For the trajectory tracking, a square trajectory of side length $a=1m$ was chosen as the example. A set of $10$ identical trajectories were performed by the UAS, each lasting for $t=20.89s$. Figure \ref{fig:simulation_x_trajectory} depicts the trajectory tracking. The average position score over $10$ trajectories was $RMS_{pos} = 0.2946m$. Figure \ref{fig:simulation_pitch_trajectory} depicts pitch angle tracking performance. One can notice a very small delay while achieving great tracking of the reference, which can be backed up with $RMS_{\theta} = 0.0021^\circ$. Similar result is obtained for roll angle with $RMS_{\phi} = 0.0019^\circ$.  
-
-\begin{figure}[h!]
-  \centering
-  \subfloat[Results obtained for $x$-axis while tracking square trajectory. Similar results were obtained for $y$-axis.]{\includegraphics[width=0.5\textwidth]{./pictures/simulation_x_trajectory} 
-  \label{fig:simulation_x_trajectory}}
-  \hfill
-  \subfloat[Results obtained for pitch angle $\theta$ while tracking square trajectory. Similar results are obtained for roll angle.]{\includegraphics[width=0.5\textwidth]{./pictures/simulation_pitch_trajectory}\label{fig:simulation_pitch_trajectory}}
-  \caption{}
-  \label{fig:simulation_results}
-\end{figure}
