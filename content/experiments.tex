@@ -1,0 +1,104 @@
+\section{Experiments}
+To demonstrate the proposed MMC-VPC control algorithm in action, we present the results of several experiments conducted on a real physical platform $\mu$MORUS, shown in Fig. \ref{fig:FlyingSCARA}. Our aerial robot is a 3D Robotics quadrotor equipped with four moving masses (NEMA 14 stepper motors) with a rack and pinion mechanism that transform rotational motion into linear motion. Masses are placed on each arm of the $\mu$MORUS platform. At the same time rotors are symmetrically placed around the central body in a pattern known as plus (+) configuration. We use a custom designed printed circuit board to command stepper motors and Pixhawk PX4 as the flight controller. For out first experiment we wanted to compare MMC-VPC control algorithm and classical rotor speed control in stabilization flight. We implemented MMC-VPC for pitch angle control while classical algorithm was controlling the roll angle. The second experiment was conducted to test the controller performance on simple trajectory. For that case, the MMC-VPC algorithm is implemented for both axis together with position controller. All control algorithms are implemented on the Pixhawk PX4 flight controller and the off-board computer is used for data logging. For testing purposes $\mu$MORUS is powered over electric cables and connected to the off-board computer through a USB cable.
+
+
+%\subsection{Constrained 2DOF motion}
+
+%First experiment was to test and tune control algorithm until satisfactory flight performance was achieved. To do so, we constrained $\mu$MORUS by mounting it on 2DOF gimbal. The sequence of commanded references and the response of vehicle’s pitch angle is presented in Fig. \ref{fig:pitch_kut_klackalica}. The MMC-VPC algorithm output is given in Fig. \ref{fig:polozaj_masa_klackalica}. Measured attitude data shows satisfying command tracking performance with RMS error of $0.038rad$, average overshoot of $27.5\%$ and average rise time $t_{r} = 0.32s$. The noise in moving masses motion is caused by rotor vibrations and unmodeled dynamics. Since we have shown that the moving masses are operating in higher bandwidth, they are responsible for initial, transient response, which one can observe in Fig. \ref{fig:pitch_kut_klackalica}. After certain amount of time, the MMC-VPC controller adjusts rotors' speed and the masses return to the center point of their operating range. This is identical to the results shown and discussed in Section \ref{sec:simulation}, and derived in Section \ref{sec:control}.
+
+%\begin{figure}[h!]
+%  \centering
+%  \subfloat[]{\includegraphics[width=0.48\textwidth]{./pictures/%pitch_kut_klackalica}\label{fig:pitch_kut_klackalica}}
+%  \hfill
+%  \subfloat[]{\includegraphics[width=0.48\textwidth]{./pictures/polozaj_masa_klackalica}\label{fig:polozaj_masa_klackalica}}
+%  \caption{Experimental results of $\mu$MORUS UAS on gimbal. a) shows a sequence of pitch references and the corresponding responses. b) shows a position setpoint of the moving masses and MMC-VPC control algorithm output for rotors.}
+%\end{figure}
+
+\subsection{Manual stabilization flight}
+
+Our first experiment was manual stabilization flight with $\mu$MORUS. Pilot took-off with the vehicle, hovered for few minutes and then landed. Fig. \ref{fig:roll_pitch_kut_let} represents pitch and roll measurements during experiment. Considering attitude measurements in Fig. \ref{fig:roll_pitch_kut_let}, the results show that there is no significant difference between the two control paradigms. Results shows a stable flight, where both roll and pitch angles are within a few degrees. One has to be aware that the pilot was manually trying to keep the vehicle steady during the whole experiment, and that our goal was to show the proposed concept can stabilize the UAS in flight. The reference for MMC-VPC algorithm outputs, rotors 3 and 4, are given in Fig. \ref{fig:rc_out_let} alongside rotor 1 and rotor 2 which are controlled using the standard attitude controller. One can notice that the rotors commanded with MMC-VPC operate in lower bandwith. This is in line with the expected results, since the moving masses control attitude during the transient period which requires faster motion. This results with smother rotors' references, when compared to rotors 1 and 2. Nevertheless, the response of the UAV remains the same, as shown in Fig. \ref{fig:roll_pitch_kut_let}. The parameter used for attitude control loop are given in Table \ref{table:attitude_control_params}.
+
+\begin{table}[h!]
+\centering
+\caption{MMC-VPC controller gains for attitude control loop where.}
+\label{table:attitude_control_params}
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+ & $\phi$ & $\dot{\phi}$ & $\theta$ & $\dot{\theta}$ & $\psi$ & $\dot{\psi}$\\
+\hline
+$KP$ & $0$ & $0$ & $0$ & $0$ & $0$ & $0$\\
+\hline
+$KI$ & $0$ & $0$ & $0$ & $0$ & $0$ & $0$\\
+\hline
+$KD$ & $0$ & $0$ & $0$ & $0$ & $0$ & $0$\\
+\hline
+$KI_{VPC}$ & $0$ & $0$ & $0$ & $0$ & $0$ & $0$\\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{figure}
+  \centering
+  \subfloat[]{\includegraphics[width=0.5\textwidth]{./pictures/pitch_kut_let}\label{fig:roll_pitch_kut_let}}
+  \hfill
+  \subfloat[]{\includegraphics[width=0.5\textwidth]{./pictures/rc_out_motor_ref_let}\label{fig:rc_out_let}}
+  \caption{Experimental results of $\mu$MORUS UAS in stabilization flight. Roll and pitch measurements are depicted in a). b) shows reference for rotors 1-4. MMC-VPC takes higher bandwidth out of rotor 3 and 4 control, which results with smoother rotors' reference when compared to classically controlled rotors 1 and 2.}
+\end{figure}
+
+\subsection{Trajectory following}
+
+The second experiment was conduced in order to test MMC-VPC algorithm with higher level control. We implemented position control in the standard cascade control form with PID controller. To tune our position controller we started with parameters from simulation and with some fine tuning we reached parameters shown in Table \ref{table:position_control_params}. 
+
+\begin{table}[h!]
+\centering
+\caption{PID controller gains for cascade position control where $x$, $y$ and $z$ denotes outer control loop (position) and $vx$, $vy$ and $vz$ denotes inner control loop (velocity).}
+\label{table:position_control_params}
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+ & $x$ & $vx$ & $y$ & $vy$ & $z$ & $vz$\\
+\hline
+$KP$ & $0$ & $0$ & $0$ & $0$ & $0$ & $0$\\
+\hline
+$KI$ & $0$ & $0$ & $0$ & $0$ & $0$ & $0$\\
+\hline
+$KD$ & $0$ & $0$ & $0$ & $0$ & $0$ & $0$\\
+\hline
+\end{tabular}
+\end{table}
+
+We can divide second experiment in to a two parts. The part a) of the experiment was to hover (maintain the constant position) with the $\mu$MORUS UAS and the part b) was to follow trajectory. On Fig. \ref{fig:position_hover} is shown position setpoint and feedback of the UAS while hovering. The UAS was able to maintain constant position with RMS error for position in x-axis $RMS_X = 0.0739 m$ and y-axis $RMS_Y = 0.0424 m$. The low level controller states for roll axis are shown on Fig. \ref{fig:roll_hover}, while pitch axis is almost identical. Here we can point out RMS error for roll angle $RMS_\phi = 2.091^{\circ}$ and RMS error for pitch angle $RMS_\theta = 2.354^{\circ}$.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=\columnwidth]{./pictures/arducopter_y_hover}
+\caption{Results of the hovering experiment. Figure shows position setpoint and measurement for y-axis. Similar results are obtained for x-axis.}
+\label{fig:position_hover}
+\end{figure} 
+
+\begin{figure}[h!]
+  \centering
+  \subfloat[]{\includegraphics[width=0.5\textwidth]{./pictures/arducopter_roll_hover}\label{fig:roll_hover}}
+  \hfill
+  \subfloat[]{\includegraphics[width=0.5\textwidth]{./pictures/arducopter_roll_rate_hover}\label{fig:rollrate_hover}}
+  \caption{The experimental results of the $\mu$MORUS UAS during hovering experiment. a) shows a setpoints and the corresponding measurements for angle $\phi$. b) shows a setpoints and the corresponding measurements for angular velocity $\dot{\phi}$. The results for $\theta$ angle are similar.}
+  \label{fig:roll_hover}
+\end{figure}
+
+The b) part of the experiment (following a trajectory) give us a position results that are shown on Fig. \ref{fig:experiment_position}. The UAS was able to follow trajectory with RMS error $RMS = 0.3139 m$. The roll angle and roll rate during the trajectory execution are shown on Fig. \ref{fig:experiment_roll}. The video showing both experiments can be found in \cite{uMORUS2017video}. The Github repository with source code for both simulation can bi found in \cite{letaci2017} and experiments in \cite{letaciPixhawk2017}.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=\columnwidth]{./pictures/arducopter_y}
+\caption{Results of the trajectory following. Figure shows position setpoint and measurement for y-axis. Similar results are obtained for x-axis.}
+\label{fig:experiment_position}
+\end{figure}
+
+
+\begin{figure}[h!]
+  \centering
+  \subfloat[]{\includegraphics[width=0.5\textwidth]{./pictures/arducopter_roll}\label{fig:experiment_roll_angle}}
+  \hfill
+  \subfloat[]{\includegraphics[width=0.5\textwidth]{./pictures/arducopter_roll_rate}\label{fig:experiment_roll_rate}}
+  \caption{The experimental results of the $\mu$MORUS UAS during the trajectory following experiment. a) shows a setpoints and the corresponding measurements for angle $\phi$. b) shows a setpoints and the corresponding measurements for angular velocity $\dot{\phi}$. The results for $\theta$ angle are similar.}
+  \label{fig:experiment_roll}
+\end{figure}

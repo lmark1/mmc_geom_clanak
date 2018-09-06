@@ -1,0 +1,85 @@
+\section{Mathematical model}
+Throughout the paper, all the vectors are expressed in the moving reference frame, i.e. the quadrotor body frame denoted as $L_o$ in Fig. \ref{fig:BothAR_closeup}, with an exception of the gravity force vector which is conveniently express in the inertial frame $L_I$. Attached to the aerial robot's centorid (i.e. Center of Gravity CoG) is the coordinate frame $L_{CoG}$ which is aligned with $L_o$. Careful reader should note that both angular momentum and angular velocities are obtained w.r.t. the vehicle's CoG, i.e. $L_{CoG}$ frame. We use the following notation for radius and velocity vectors:  $\mb{r}_{i,j}$ denotes radius vector from the $L_i$ frame to the $L_{j}$ and similar applies to the velocity $\mb{v}_{i,j}$ of the $L_j$ frame w.r.t. the $L_{i}$ frame.
+
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.5\textwidth]{./pictures/BothAR_closeup.pdf}
+	\caption{We are considering two types of joints, prismatic and revolute. In both situations, the mass of the link is considered to be concentrated in the motor of the joint. This simplification is justified through the actual construction of the aerial robot, which tends to limit the payload of the manipulator, and thus uses lightweight link construction.}
+	\label{fig:BothAR_closeup}
+\end{figure}
+
+We start the derivation with the CoG of the vehicle observed in the body frame which is given by:
+\begin{equation}
+\mb{r}_{0,c} = \frac{m_{b}\mb{r}_{0,b} + \sum_{i=1}^n m_{i}\mb{r}_{0,i}}{m_{b} + \sum_{i=1}^n m_{i}} = \frac{\sum_{i=1}^n m_{i}\mb{r}_{0,i}}{M},
+\label{equ:cog}
+\end{equation}
+where $m_b$ is the mass of the quadrotor rigid body (without moving masses), $m_i$ denotes the mass of each manipulator link, $M$ is the total mass of the vehicle, $\mb{r}_{0,i}$ represents the position of the i-th link's mass expressed in the body frame and $n$ stands for the number of moving body parts (i.e. manipulator links). Note that by design the origin of the body frame $L_0$ coincides with the CoG of the quadrotor rigid body (i.e. the frame without the manipulator), which yields $\mb{r}_{0,b} = 0$.
+
+In this analysis the links' masses are considered to be concentrated in the DC motor driven joints of the manipulator, as shown in Fig. \ref{fig:prisAndRevJoint}. This is due to the nauture of constructing an aerial manipulator with limited payload capabilities. Each link of the aerial robot is observed having its own linear momentum $\textbf{L}_{i}$:
+\begin{align}
+\textbf{L}_{i}=& m_i \left ( \textbf{V}_0+\textbf{v}_{0,i} + \mb{\omega}_i \times \textbf{r}_{0,i}\right) \\ \nonumber
+=&m_i \left ( \textbf{V}_c - \textbf{v}_{0,c}+\textbf{v}_{0,i}  + (\mb{\Omega} + \mb{\omega}_{0,i}) \times \textbf{r}_{c,i}\right),
+\end{align}  
+where $\textbf{V}_0$, $\textbf{V}_c$, $\mb{\omega}_i$ and $\mb{\Omega}$ represent linear velocity of the $i$-th frame, linear velocity of CoG, angular velocity of the body part and angular velocity of body, respectively. Furthermore, $\mb{\omega}_{0,i}(q_1, ..., q_{i-1})$ is a function of manipulator joints that affect the rotation of the $i$-th body part.  
+
+Similarly, one can write the equations for the angular momentum of the $i$-th body part $\textbf{H}_i$:
+\begin{align}
+\textbf{H}_i = \textbf{I}_i^c \mb{\omega}_i+\textbf{r}_{c,i} \times m_i \textbf{v}_{c,i},
+\end{align}
+with $\textbf{I}_i^c$ denoting the moment of inertia of the $i$-th link w.r.t. the CoG. To compute these moments of inertia we apply the Parallel axis theorem:
+\begin{equation}
+\textbf{I}_i^c=\textbf{I}_i+m_i\left( r_{c,i}^T\cdot r_{c,i} \textbf{E}_{3 \times 3} - r_{c,i}\cdot r_{c,i}^T \right)
+\end{equation}
+using $\textbf{E}_{3 \times 3}$ to denote a $3 \times 3$ identity matrix.
+
+Applying basic Newton laws of motion allows one to combine the change of linear and angular momentum w.r.t. the forces and torques applied on each object $i$:
+\begin{gather}
+\frac{\partial ^{\omega_i} }{\partial t }\textbf{L}_i = -\underset{\textup{gravity}}{\underbrace{m_i g \hat{\textbf{z}}}} + \xi_i \underset{\textup{motor\; force}}{\underbrace{K_{m_i} U_i \hat{\textbf{z}}_i}} +\underset{\textup{friction}}{\underbrace{ c_{d_i} \textbf{v}_{0,i}}} \\ \nonumber
+\frac{\partial ^{\omega_i} }{\partial t }\textbf{H}_i = (1 - \xi_i)\underset{\textup{motor\; torque}}{\underbrace{ K_{m_i} U_i \hat{\textbf{z}}_i}}.
+\end{gather}
+In previous equations we used $\frac{\partial ^{\omega_i} }{\partial t }$ to denote the time derivative w.r.t. a moving (i.e. rotating) frame. Unit vectors $\hat{\textbf{z}}$ and $\hat{\textbf{z}}_i$ denote the z axis of the inertial and $i$-th frame, respectively. Furthermore, $g$ denotes the gravity constant, $U_i$ is the voltage applied to $i$-th motor and $K_{m_i}$ denotes the $i$-th motor constant. Finally, we use $\xi_i=1$ to denote if the joint is prismatic, or revolute $\xi_i=0$. 
+\begin{figure}
+	\centering
+	\includegraphics[width=0.5\textwidth]{./pictures/prisAndRevJoint.pdf}
+	\caption{We are considering two types of joints, prismatic and revolute. In both situations, the mass of the link is considered to be concentrated in the motor of the joint. This simplification is justified through the actual construction of the aerial robot, which tends to limit the payload of the manipulator, and thus uses lightweight link construction.}
+	\label{fig:prisAndRevJoint}
+\end{figure}
+
+It can easily be shown that, since we observe the forces w.r.t. the CoG of the system and each body part respectively, the moment due to gravity is equal to zero. So far we have observed each moving part of the aerial manipulator separately. Next we proceed to observe the system as a whole, and continue to derive the linear momentum of the whole system $\textbf{L}_s$:
+\begin{equation}
+\textbf{L}_s = \textbf{L}_{b} + \sum_{i=1}^n \textbf{L}_{i}= M \left( \textbf{V}_{0} + \mb{\Omega} \times \textbf{r}_{0,c}  \right) + \sum_{i=1}^n \textbf{L}_{0,i},
+\end{equation} 
+where $\textbf{L}_{b}$ denotes the linear momentum of the quadrotor body. The same can, of course, be derived for the angular momentum of the system $\textbf{H}_s$:
+\begin{equation}
+\textbf{H}_s = \textbf{H}_b +  \sum_{i=1}^n\textbf{H}_i = \textbf{I}_s^{c} \mb{\Omega} + \sum_{i=0}^n  \textbf{r}_{c,i} \times m_i \textbf{v}_{c,i}+\sum_{i=1}^n\textbf{I}_i^c\omega_{0,i} ,
+\end{equation}
+with $\textbf{H}_b$ denoting the angular momentum of the quadrotor rigid body and $\textbf{I}_s^{c}$ is the total moment of inertia of the system w.r.t. CoG, obtained while taking into account the parallel axis theorem. Next it is straightforward to use the 2nd Newton law to derive the equations of motion, and model how gravity and propeller thrust intertwine to exert forces and torques on the system as a whole: 
+\begin{gather}
+\frac{d^{\Omega} \textbf{L}_s}{dt} = \sum_{j=1}^4 \textbf{F}_{r_j} + \textbf{F}_g = \sum_{j=1}^4 \underset{\textup{thrust}}{\underbrace{ b_f \Omega_{j}^2 \hat{\textbf{z}_0}}} - \underset{\textup{gravity}}{\underbrace{M g \hat{\textbf{z}}}} \\ \nonumber
+\frac{d^{\Omega} \textbf{H}_s}{dt} =  \sum_{j=1}^4 \mb{\tau}_{r_j}=\sum_{j=1}^4 (\underset{\textup{thrust \: displacement}}{\underbrace{\textbf{r}_{c,j} \times \textbf{F}_{r_j}}} + \underset{\textup{induced \: drag }}{\underbrace{ \zeta_j b_m b_f \Omega_j^2 \hat{\textbf{z}}_0}}).
+\end{gather}
+As one can observe in previous equations, we use standard nonlinear quadratic equation to derive the relationship between the rotor speed $\Omega_j$ and the thrust applied to the quadrotor. Symbols $b_f$ and $b_m$ denote the aerodynamic coefficients, while $\zeta_j=1$ denotes clockwise rotating blades and $\zeta_j=-1$ denotes counterclockwise rotation.
+
+In this paper we concentrate our efforts on the problem of attitude control. In order to hover one is required to maintain $\frac{d^{\Omega} \textbf{H}_s}{dt} = 0$. To derive the necessary equations, we adopt the standard hovering assumption and neglect the second order dynamics. Furthemore, we introduce a $3 \times n$ Jacobian matrix $\textbf{J}_{0,i}$ that relates the linear motion of each body $\dot{\textbf{r}}_{0,i}$ with the motion of the joints $\dot{\textbf{q}}$. With these notations and simplifications in mind and through Laplace tansform, we write the final nonlinear vector equation:
+
+%\subsection{Dual arm planar manipulator}
+\begin{equation}\label{eq:final_ctrl_model}
+\textbf{I}_s^c{\boldsymbol{\Theta}}s^2=\textbf{g}_1(s,\textbf{r}_{0,c}(\textbf{q}))+\textbf{g}_2(s,\sum_{j=1}^4 \mb{\tau}_{r_j}) 
+ %+\sum_{i=0}^n m_i {\textbf{r}_{c,i}}\left ( \textbf{q}\right) \times \textbf{J}_i(\textbf{q}) \ddot{\textbf{q}}  = \underset{\textup{CoG \: control }}{\underbrace{M {\textbf{r}_{0,c}}(\textbf{q}) \times \textbf{g}}} + \underset{\textup{Rotor}}{\underbrace{\sum_{j=1}^4 \mb{\tau}_{r_j}}}. \label{eq:final_ctrl_model}
+\end{equation}
+
+In \eqref{eq:final_ctrl_model} we introduced ${\boldsymbol{\Theta}}$, as the attitude vector, which through the aforementioned hover assumptions can be considered equal to Euler angles of the system. We have separated both classical rotor control $\textbf{g}_2$ and moving mass CoG control $\textbf{g}_1$ dependent on the motion of the manipulator $\textbf{r}_{0,c}(\textbf{q})$. Since there is no qualitative distinction between $\textbf{g}_2$ and standard quadrotor control, it will not be considered further in the text. However, careful reader should note non minimum phase dynamics caused through the motion of the arms $\ddot{\textbf{q}}$ in $\textbf{g}_1$:
+\begin{equation}
+\textbf{g}_1=M {\textbf{r}_{0,c}}(\textbf{q}) \times \textbf{g}-\sum_{i=0}^n m_i {\textbf{r}_{c,i}}\left ( \textbf{q}\right) \times \textbf{J}_{0,i}(\textbf{q}) {\textbf{q}}s^2.
+\end{equation}
+The non minimum phase dynamics can be clearly observed in a linearized model of the equation. For more details we refer the reader to \cite{Haus2017}. In the remaining sections of the paper we will consider scalar transfer functions $G_1$ and $G_2$ linearized with an assumption of near hover conditions, observing only pitch angle for clarity:
+\begin{align}
+\Theta(s) = & G_1(s)x_c+G_2(s)\Delta \Omega_{\sum}\\ \nonumber
+ =&\frac{\widehat{\textbf{g}_1(s,\textbf{r}_{0,c}(\textbf{q}))}}{{I_s^c}_{yy}s^2}x_c+\frac{\widehat{\textbf{g}_2(s,\sum_{j=1}^4 \mb{\tau}_{r_j})}}{{I_s^c}_{yy}s^2}\Delta \Omega_{\sum},
+\end{align}
+where we used $\widehat{(\cdot)}$ to denote the linearization, $x_c$ as $x$-axis component of $\textbf{r}_{0,c}$ and $\Delta \Omega_{\sum}$ as the rotor speed control inputs.
+%\subsection{Moving mass control system}
+%\begin{equation}
+%\frac{ d^{\Omega} }{dt}\left[I_{yy}\Omega + m {\textbf{r}_{cm}}^T \hat{\textbf{z}_0} {\dot{\textbf{r}_{cm}}}^T \hat{\textbf{x}}_0 \right]= m {\textbf{r}_{cm}}^T \hat{\textbf{x}}_0 g.
+%\end{equation}
