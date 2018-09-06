@@ -52,12 +52,12 @@
 \graphicspath{{./figures/}}
 
 \title{\LARGE \bf
-Multirotor attitude control based on dexterous manipulator motion
+Geometric Tracking Control of an Unmanned Aerial Vehicle based on the Moving Mass Concept on SE(3)
 }
-\author{Antun Ivanovic, Marko Car, Tomislav Haus, Matko Orsag and Stjepan Bogdan
+\author{\todo[inline]{TODO: Authors}
 	\thanks{Authors are with Faculty of Electrical and Computer Engineering,
         University of Zagreb, 10000 Zagreb, Croatia
-        {\tt\small (antun.ivanovic, marko.car, tomislav.haus, matko.orsag, stjepan.bogdan) at fer.hr}}}%
+        {\tt\small (\todo[inline]{TODO: Authors}) at fer.hr}}}%
 
 \makeatletter
 \newcommand{\removelatexerror}{\let\@latex@error\@gobble}
@@ -74,7 +74,7 @@ Multirotor attitude control based on dexterous manipulator motion
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{abstract}
 
-This paper addresses the issues of aerial manipulation concerning dynamic center of mass variations by deriving a control principle capable of exploiting disturbance as a means to stabilize the UAV. A complete mathematical model of an aerial robot consisting of rotorcraft UAV body and a generic multiple degree of freedom manipulator is provided. A coupled control scheme utilizing both rotor speed control and mass distribution using the mid-ranging approach is disseminated. We present the extensive simulation result using an example use case aerial robot. Finally, we present the experimental results for an aerial robot consisting of two moving masses distributed in a standard plus configuration in order to compare our proposed control paradigm with standard multirotor attitude control.
+This paper is focused on presenting the concept of geometric tracking control for a specific unmanned aerial vehicle (UAV) based on the moving mass concept. It has the ability to exploit its dynamic center of mass as a means of stabilization and control. A mathematical model of such system will be given as grounds for developing the nonlinear geometric tracking controller on the special Euclidean group SE(3). It will be shown that the chosen control terms have desirable properties. Finally, Gazebo simulation results for a selected trajectory tracking problem will be presented using a model of an aerial robot consisting of two moving masses distributed in a standard plus configuration.
 
 \end{abstract}
 \input{content/introduction.tex}
