@@ -1,109 +1,39 @@
-\begin{thebibliography}{10}
+\begin{thebibliography}{1}
 
-\bibitem{Alexis2016}
-K.~Alexis, G.~Darivianakis, M.~Burri, and R.~Siegwart, ``{Aerial robotic
-  contact-based inspection: planning and control},'' {\em Autonomous Robots},
-  vol.~40, no.~4, pp.~631--655, 2016.
+\bibitem{LeeModel}
+T.~Lee, M.~Leok, and N.~H. McClamroch, {\em Global formulations of Lagrangian
+  and Hamiltonian dynamics on manifolds : a geometric approach to modeling and
+  analysis}.
+\newblock Interaction of mechanics and mathematics series, Springer, 2018.
 
-\bibitem{Jimenez-Cano2013}
-A.~E. Jimenez-Cano, J.~Martin, G.~Heredia, A.~Ollero, and R.~Cano, ``{Control
-  of an aerial robot with multi-link arm for assembly tasks},'' in {\em
-  Proceedings - IEEE International Conference on Robotics and Automation},
-  pp.~4916--4921, IEEE, 5 2013.
+\bibitem{book:9291}
+A.~D.~L. Francesco~Bullo, {\em Geometric control of mechanical systems:
+  modeling, analysis, and design for simple mechanical control systems}.
+\newblock Texts in applied mathematics 49, Springer, 1~ed., 2005.
 
-\bibitem{Tsukagoshi2015}
-H.~Tsukagoshi, M.~Watanabe, T.~Hamada, D.~Ashlih, and R.~Iizuka, ``{Aerial
-  manipulator with perching and door-opening capability},'' in {\em 2015 IEEE
-  International Conference on Robotics and Automation (ICRA)}, pp.~4663--4668,
-  2015.
+\bibitem{geoSchuller}
+F.~P. Schuller, {\em Lectures on the Geometric Anatomy of Theoretical Physics}.
+\newblock Friedrich-Alexander-Universität Erlangen-Nürnberg, Institut für
+  Theoretische Physik III, 2017.
 
-\bibitem{Korpela2014a}
-C.~Korpela, M.~Orsag, and P.~Oh, ``{Towards valve turning using a dual-arm
-  aerial manipulator},'' in {\em Intelligent Robots and Systems (IROS 2014),
-  2014 IEEE/RSJ International Conference on}, pp.~3411--3416, 2014.
+\bibitem{2010arXiv1003.2005L}
+T.~{Lee}, M.~{Leok}, and N.~{Harris McClamroch}, ``{Control of Complex
+  Maneuvers for a Quadrotor UAV using Geometric Methods on SE(3)},'' {\em ArXiv
+  e-prints}, Mar. 2010.
 
-\bibitem{Pounds2012}
-P.~E. Pounds, D.~R. Bersak, and A.~M. Dollar, ``{Stability of small-scale UAV
-  helicopters and quadrotors with added payload mass under PID control},'' {\em
-  Autonomous Robots}, vol.~33, no.~1-2, pp.~129--142, 2012.
+\bibitem{6161306}
+T.~Fernando, J.~Chandiramani, T.~Lee, and H.~Gutierrez, ``Robust adaptive
+  geometric tracking controls on so(3) with an application to the attitude
+  dynamics of a quadrotor uav,'' in {\em 2011 50th IEEE Conference on Decision
+  and Control and European Control Conference}, pp.~7380--7385, Dec 2011.
 
-\bibitem{PalunkoIFAC2011}
-I.~Palunko and R.~Fierro, ``{Adaptive control of a quadrotor with dynamic
-  changes in the center of gravity},'' in {\em Proceedings 18th IFAC World
-  Congress}, vol.~18, pp.~2626--2631, 2011.
+\bibitem{2011arXiv1109.4457L}
+T.~{Lee}, M.~{Leok}, and N.~{Harris McClamroch}, ``{Nonlinear Robust Tracking
+  Control of a Quadrotor UAV on SE(3)},'' {\em ArXiv e-prints}, Sept. 2011.
 
-\bibitem{Korpela2012}
-C.~Korpela, M.~Orsag, T.~Danko, B.~Kobe, C.~McNeil, R.~Pisch, and P.~Oh,
-  ``{Flight stability in aerial redundant manipulators},'' in {\em 2012 IEEE
-  International Conference on Robotics and Automation}, pp.~3529--3530, IEEE, 5
-  2012.
-
-\bibitem{MORUSweb}
-``Morus project.'' \url{http://www.fer.unizg.hr/morus}.
-\newblock Accessed: 2017-09-08.
-
-\bibitem{Haus2017}
-T.~Haus, M.~Orsag, and S.~Bogdan, ``{Mathematical Modelling and Control of an
-  Unmanned Aerial Vehicle with Moving Mass Control Concept},'' {\em Journal of
-  Intelligent and Robotic Systems: Theory and Applications}, 2017.
-
-\bibitem{bermes2008new}
-C.~Bermes, S.~Leutenegger, S.~Bouabdallah, D.~Schafroth, and R.~Siegwart,
-  ``{New design of the steering mechanism for a mini coaxial helicopter},'' in
-  {\em Intelligent Robots and Systems, 2008. IROS 2008. IEEE/RSJ International
-  Conference on}, pp.~1236--1241, IEEE, 2008.
-
-\bibitem{Allison1997MidRanging}
-B.~J. Allison and A.~J. Isaksson, ``{Design and Performance of Mid-Ranging
-  Controllers},'' {\em IFAC Proceedings Volumes}, vol.~30, no.~9, pp.~523--528,
-  1997.
-
-\bibitem{Allison2003MidRanging}
-B.~J. Allison and S.~Ogawa, ``{Design and tuning of valve position controllers
-  with industrial applications},'' {\em Transactions of the Institute of
-  Measurement and Control}, vol.~25, no.~1, pp.~3--16, 2003.
-
-\bibitem{Sornmo2013AdaptiveImc}
-O.~Sornmo, B.~Olofsson, A.~Robertsson, and R.~Johansson, ``{Adaptive internal
-  model control for mid-ranging of closed-loop systems with internal
-  saturation},'' {\em IEEE International Conference on Intelligent Robots and
-  Systems}, pp.~4893--4899, 2013.
-
-\bibitem{Ma2015MidRanging}
-Z.~Ma, G.~S. Hong, M.~H. Ang, and A.~N. Poo, ``Mid-ranging control of a
-  macro/mini manipulator,'' in {\em 2015 IEEE International Conference on
-  Advanced Intelligent Mechatronics (AIM)}, pp.~755--760, July 2015.
-
-\bibitem{haus2018med}
-T.~Haus, A.~Ivanovic, M.~Car, M.~Orsag, and S.~Bogdan, ``Mid-ranging control
-  concept for a multirotor uav with moving masses,'' in {\em 2018 26th
-  Mediterranean Conference on Control and Automation (MED)}, June 2018.
-
-\bibitem{Morus2017Icuas}
-T.~Haus, M.~Orsag, and S.~Bogdan, ``A concept of a non-tilting multirotor-uav
-  based on moving mass control,'' in {\em 2017 International Conference on
-  Unmanned Aircraft Systems (ICUAS)}, pp.~1618--1624, June 2017.
-
-\bibitem{Furrer2016}
-F.~Furrer, M.~Burri, M.~Achtelik, and R.~Siegwart, {\em Robot Operating System
-  (ROS): The Complete Reference (Volume 1)}, ch.~RotorS---A Modular Gazebo MAV
-  Simulator Framework, pp.~595--625.
-\newblock Cham: Springer International Publishing, 2016.
-
-\bibitem{2012simpar_meyer}
-J.~Meyer, A.~Sendobry, S.~Kohlbrecher, U.~Klingauf, and O.~von Stryk,
-  ``Comprehensive simulation of quadrotor uavs using ros and gazebo,'' in {\em
-  3rd Int. Conf. on Simulation, Modeling and Programming for Autonomous Robots
-  (SIMPAR)}, p.~to appear, 2012.
-
-\bibitem{uMORUS2017video}
-``Laboratory for robotics and intelligent control systems youtube channel.''
-  \url{https://goo.gl/1PWUJ2}.
-
-\bibitem{letaci2017}
-``mmuav gazebo.'' \url{https://github.com/larics/mmuav_gazebo}, 2018.
-
-\bibitem{letaciPixhawk2017}
-``px4-firmware.'' \url{https://github.com/larics/px4-firmware}, 2018.
+\bibitem{5717652}
+T.~Lee, M.~Leok, and N.~H. McClamroch, ``Geometric tracking control of a
+  quadrotor uav on se(3),'' in {\em 49th IEEE Conference on Decision and
+  Control (CDC)}, pp.~5420--5425, Dec 2010.
 
 \end{thebibliography}
