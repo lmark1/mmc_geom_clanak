@@ -2,9 +2,8 @@
 
 First of all, it is necessary to introduce a fixed inertial reference frame $\{ \vec{e}_1, \vec{e}_2, \vec{e}_3  \}$ and a body-fixed frame $ \{ \vec{b}_1, \vec{b}_2, \vec{b}_3 \}$. As it was previously stated, $\mu$MORUS UAV will exploit its shifting center of gravity (CoG) due to the moving masses in order to maneuver and stabilize itself. Therefore, a CoG vector from the origin of the body-fixed frame will be defined as follows:
 
-\todo[inline]{Change symbol M for total mass - it's used for moments!}
 \begin{equation}
-	\vec{r}_{cm} = \frac{m_{b}\vec{r}_{0,b} + \sum_{i=1}^n m_{i}\vec{r}_{i}}{m_{b} + \sum_{i=1}^4 m_{i}} = \frac{\sum_{i=1}^4 m_{i}\vec{r}_{i}}{M},
+	\vec{r}_{cm} = \frac{m_{b}\vec{r}_{0,b} + \sum_{i=1}^n m_{i}\vec{r}_{i}}{m_{b} + \sum_{i=1}^4 m_{i}} = \frac{\sum_{i=1}^4 m_{i}\vec{r}_{i}}{m_t},
 	\label{equ:cog}
 \end{equation}
 
@@ -20,38 +19,61 @@ The following terms are defined as:
 	
 	\item $m_i \in \mathbb{R}$ - Mass of the i-th moving mass attached to the UAV link
 	
-	\item $M \in \mathbb{R}$ - Mass of the whole UAV
+	\item $m_t \in \mathbb{R}$ - Mass of the whole UAV
 \end{itemize}
 
 The equations of motion expressed in the inertial frame while taking in consideration that the CoG is located outside the origin of the body-fixed frame are as follows: 
 \begin{gather}
 	\dot{x} = v \\
-	m\dot{v} - mge_3 - mR \vec{r}_{cm} \times \dot{\Omega} - mR\hat{\Omega}\hat{\vec{r}}_{cm}\Omega = -fRe_3 \\
+	m_t\dot{v} - m_tge_3 - m_TR \vec{r}_{cm} \times \dot{\Omega} - m_tR\hat{\Omega}\hat{\vec{r}}_{cm}\Omega = -fRe_3 \\
 	\dot{R} = R\hat{\Omega} \\
-	J \dot{\Omega} + \Omega \times J \Omega + m \vec{r}_{cm} \times R^T \dot{v} = M
+	J \dot{\Omega} + \Omega \times J \Omega + m_t \vec{r}_{cm} \times R^T \dot{v} = M
 \end{gather}
 
 \noindent The following terms are defined as:
 
 \begin{itemize}
-	\item $J \in \mathbb{R}^{3x3}$ - moment of inertia matrix w.r.t. the body-fixed frame \todo[inline]{Napisati nesto o momentu inercije - onaj steinerov tm za matricu.}
+	\item $J \in \mathbb{R}^{3x3}$ - Moment of inertia matrix w.r.t. the body-fixed frame
 	
-	\item $R \in SO(3)$ - rotation matrix from the body fixed frame to the inertial frame
+	\item $R \in SO(3)$ - Rotation matrix from the body fixed frame to the inertial frame
 	
-	\item $\Omega \in \mathbb{R}^3$ - angular velocity in the body-fixed frame
+	\item $\Omega \in \mathbb{R}^3$ - Angular velocity in the body-fixed frame
 	
-	\item $x \in \mathbb{R}^3$ - location of the body-fixed frame in the inertial frame
+	\item $x \in \mathbb{R}^3$ - Location of the body-fixed frame in the inertial frame
 	
-	\item $v \in \mathbb{R}^3$ - velocity of the body-fixed frame in the inertial frame
+	\item $v \in \mathbb{R}^3$ - Velocity of the body-fixed frame in the inertial frame
 	
-	\item $f \in \mathbb{R}$ - total thrust produced by the UAV
+	\item $f \in \mathbb{R}$ - Total thrust produced by the UAV
 	
-	\item $M \in \mathbb{R}^3$ - total moments acting in the body-fixed frame
+	\item $M \in \mathbb{R}^3$ - Total moments acting in the body-fixed frame
 \end{itemize}
 
 \noindent The \textit{hat map} is an operator equivalent to the expression $\hat{x}y = x \times y$. It maps elements of $\mathbb{R}^3$ to the so(3) Lie algebra. \\
-\indent These equations describe the dynamical flow of a rotating and translating rigid body in terms of evolution of $(R,x,\Omega,\dot{x})\in \text{TSE}(3)$ on the tangent bundle of SE(3). \\
-\indent Height and yaw of the UAV is controlled by variations in rotor velocity, whereas roll and pitch by moving the masses along the UAV links placed in plus configuration. Actuator dynamics will not be considered. The relation between moments, thrust and rotor velocity is the following:
+Moment of inertia matrix is defined as follows:
+\begin{equation}
+	J = J_b + \sum_{i=1}^{4}J_i
+\end{equation}
 
-\todo[inline]{Napisati jednadzbe za 4-5 4-6 iz dipl.}
+\indent These equations describe the dynamical flow of a rotating and translating rigid body in terms of evolution of $(R,x,\Omega,\dot{x})\in \text{TSE}(3)$ on the tangent bundle of SE(3). \\
+\indent Height and yaw of the UAV is controlled by variations in rotor velocity, whereas roll and pitch by moving the masses along UAV links placed in plus configuration. It is assumed that first and third propeller rotate clockwise, while second and fourth rotate counter-clockwise. The relation between moments, thrust and rotor velocity is the following:
+\begin{gather}
+f_i = b_f \omega_{i}^2 \\
+\tau_i = (-1)^i b_m f_i
+\end{gather}
+
+\noindent Where the following terms are defined as:
+
+\begin{itemize}
+	\item $f_i \in \mathbb{R}$ - Thrust of the i-th motor
+	
+	\item $\tau_i \in \mathbb{R}$ - Moment i-th motor produces
+	
+	\item $b_f \in \mathbb{R}$ - Motor thrust constant
+	
+	\item $b_m \in \mathbb{R}$ - Motor moment constant
+	
+	\item $\omega_i \in \mathbb{R}$ - Rotation velocity of the i-th rotor
+\end{itemize}
+
+
 \todo[inline]{Napisat cemu je jedanaka ukupna sila i momenti, napisati onu matricu}
