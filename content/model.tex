@@ -22,12 +22,12 @@ The following terms are defined as:
 	\item $m_t \in \mathbb{R}$ - Mass of the whole UAV
 \end{itemize}
 
-The equations of motion expressed in the inertial frame while taking in consideration that the CoG is located outside the origin of the body-fixed frame are as follows: 
+The equations of motion expressed in the inertial frame while taking in consideration that the CoG is located outside the origin of the body-fixed frame\cite{LeeModel} are as follows: 
 \begin{gather}
-	\dot{x} = v \\
-	m_t\dot{v} - m_tge_3 - m_TR \vec{r}_{cm} \times \dot{\Omega} - m_tR\hat{\Omega}\hat{\vec{r}}_{cm}\Omega = -fRe_3 \\
-	\dot{R} = R\hat{\Omega} \\
-	J \dot{\Omega} + \Omega \times J \Omega + m_t \vec{r}_{cm} \times R^T \dot{v} = M
+	\dot{x} = v \label{model1}\\
+	m_t\dot{v} - m_tge_3 - m_TR \vec{r}_{cm} \times \dot{\Omega} - m_tR\hat{\Omega}\hat{\vec{r}}_{cm}\Omega = -fRe_3 \label{model2} \\
+	\dot{R} = R\hat{\Omega} \label{model3} \\
+	J \dot{\Omega} + \Omega \times J \Omega + m_t \vec{r}_{cm} \times R^T \dot{v} = M \label{model4}
 \end{gather}
 
 \noindent The following terms are defined as:
@@ -49,16 +49,20 @@ The equations of motion expressed in the inertial frame while taking in consider
 \end{itemize}
 
 \noindent The \textit{hat map} is an operator equivalent to the expression $\hat{x}y = x \times y$. It maps elements of $\mathbb{R}^3$ to the so(3) Lie algebra. \\
-Moment of inertia matrix is defined as follows:
+Moment of inertia matrix expressed in the body-fixed frame is defined as follows:
 \begin{equation}
 	J = J_b + \sum_{i=1}^{4}J_i
 \end{equation}
+where $J_b$ is body and $J_i$ is i-th mass moment of inertia. Using the parallel axis theorem, one is able to calculate $J_i$ while knowing moment of inertia around its CoG:
+\begin{equation}
+	J_i = J_{i,CoG} + m_i(\vec{r}_i^T \cdot \vec{r}_i I_{3x3} - \vec{r}_i \cdot \vec{r}_i^T)
+\end{equation}
 
-\indent These equations describe the dynamical flow of a rotating and translating rigid body in terms of evolution of $(R,x,\Omega,\dot{x})\in \text{TSE}(3)$ on the tangent bundle of SE(3). \\
+\indent Equations \ref{model1}, \ref{model2}, \ref{model3} and \ref{model4} describe the dynamical flow of a rotating and translating rigid body in terms of evolution of $(R,x,\Omega,\dot{x})\in \text{TSE}(3)$ on the tangent bundle of SE(3). \\
 \indent Height and yaw of the UAV is controlled by variations in rotor velocity, whereas roll and pitch by moving the masses along UAV links placed in plus configuration. It is assumed that first and third propeller rotate clockwise, while second and fourth rotate counter-clockwise. The relation between moments, thrust and rotor velocity is the following:
 \begin{gather}
-f_i = b_f \omega_{i}^2 \\
-\tau_i = (-1)^i b_m f_i
+	f_i = b_f \omega_{i}^2 \label{force}\\
+	\tau_i = (-1)^i b_m f_i
 \end{gather}
 
 \noindent Where the following terms are defined as:
@@ -75,5 +79,13 @@ f_i = b_f \omega_{i}^2 \\
 	\item $\omega_i \in \mathbb{R}$ - Rotation velocity of the i-th rotor
 \end{itemize}
 
-
-\todo[inline]{Napisat cemu je jedanaka ukupna sila i momenti, napisati onu matricu}
+Total thrust can be expressed as:
+\begin{equation}
+	f = \sum_{1}^{4}f_i
+\end{equation}
+and total moment acting in the body-fixed frame as:
+\begin{equation}
+	M = [m_{1}gd_x ,m_{2}gd_y,b_m(-f_1 + f_2 - f_3 + f_4)]
+\end{equation}
+Using f and M as control inputs of the system one is able to obtain the desired force of each rotor and the desired offset of each moving mass $d_x$ and $d_y$. Note that the offset of masses on the same axis is equal. \\
+Actuator dynamics for the moving masses are not considered in this paper. It is also assumed that the change in desired rotor force is instantaneous. 
