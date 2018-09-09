@@ -1,3 +1,55 @@
-\section{Mid-ranging control concept}
+\section{Geometric control on SE(3)}
 
-\todo[inline]{TODO: Control...}
+In this section a nonlinear tracking controller will be developed. The main focus will be put on position tracking, therefore the trajectory will consist of a desired position $x_d(t)$ and desired heading $\vec{b}_{1,d}$ of the body-fixed frame. Since the given position is known ahead of time, one is able to calculate both desired linear velocity $v_d(t)$ and acceleration $a_d(t)$ which will also inherently be included as inputs. \\
+The controller will be developed on the nonlinear Lie group SE(3) whose subgroups are the rotation group SO(3) and translation group T(3). The main advantage of using the SO(3) rotation group is to avoid any singularities or ambiguities that may arise when representing rotations with Euler angles or quaternions. \\
+Firstly, chosen position and orientation errors will be presented which will also lie on the SE(3) manifold and its tangent space. Using previously defined errors, nonlinear control terms can be chosen. Finally, the stability conditions of the tracking errors will be presented.
+
+\subsection{Tracking errors}
+
+Attitude error function on SO(3) is chosen as:
+\begin{equation}
+	\Psi(R, R_d) = \frac{1}{2}tr[I - R_d^TR]
+\end{equation}
+
+Linear position and velocity tracking errors are defined as follows:
+\begin{gather}
+	e_x = x - x_d \\
+	e_v = v - v_d
+\end{gather}
+
+Attitude and velocity tracking errors are defined as follows:
+\begin{gather}
+	e_R = \frac{1}{2}(R_d^TR - R^TR_d)^\text{V} \\
+	e_\Omega = \Omega - R^TR_d\Omega_d
+\end{gather}
+
+\todo[inline]{Napisati mozda jos nesto o pogreskama...}
+\subsection{Control terms}
+
+Force and moment control terms are chosen as follows:
+\begin{align}
+	\begin{split}
+		A = (-& k_x e_x - k_v e_v \\
+		+& mge_3 + m\ddot{x}_d \\
+		+& mR\vec{r}_{cm}  \times \dot{\Omega} + mR\hat{\Omega}\hat{\vec{r}}_{cm}\Omega ) \\
+		f =& A \cdot Re_3 \label{force_control}
+	\end{split}
+\end{align}
+
+\begin{align}
+	\begin{split}
+		M = -& k_R e_R - k_\Omega e_\Omega \\
+			+& \Omega \times J\Omega - J(\hat{\Omega}R^TR_d\Omega_d - R^TR_d\dot{\Omega}_d) \\
+			+& m\vec{r}_{cm} \times R^T \ddot{x}_d
+	\end{split}
+\end{align}
+
+Desired rotation matrix is constructed as 
+$R_d = [\vec{b}_{1,c}, \vec{b}_{3,d} \times \vec{b}_{1,c}, \vec{b}_{1,c}]$ where component vectors of $R_d$ are calculated in the following way:
+
+\begin{gather}
+	\vec{b}_{3,d} = \frac{A}{|| A ||} \\
+	\vec{b}_{1,c} = -\frac{1}{||\vec{b}_{3,d} \times \vec{b}_{1,d}||}(\vec{b}_{3,d} \times (\vec{b}_{3,d} \times \vec{b}_{1,d}))
+\end{gather}
+
+
