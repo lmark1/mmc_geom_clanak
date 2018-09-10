@@ -43,13 +43,44 @@ Force and moment control terms are chosen as follows:
 			+& m\vec{r}_{cm} \times R^T \ddot{x}_d
 	\end{split}
 \end{align}
+\todo[inline]{Razmotrit koji omege u ovim dodanim clanovima su zeljene a koje obicne. Takodjer nemam mjerenu akceleraciju - koristim racunatu svugdje.}
 
 Desired rotation matrix is constructed as 
-$R_d = [\vec{b}_{1,c}, \vec{b}_{3,d} \times \vec{b}_{1,c}, \vec{b}_{1,c}]$ where component vectors of $R_d$ are calculated in the following way:
-
+$R_d = [\vec{b}_{1,c}, \vec{b}_{3,d} \times \vec{b}_{1,c}, \vec{b}_{3,d}]$ where component vectors of $R_d$ are calculated in the following way:
 \begin{gather}
-	\vec{b}_{3,d} = \frac{A}{|| A ||} \\
-	\vec{b}_{1,c} = -\frac{1}{||\vec{b}_{3,d} \times \vec{b}_{1,d}||}(\vec{b}_{3,d} \times (\vec{b}_{3,d} \times \vec{b}_{1,d}))
+	\vec{b}_{3,d} = \frac{A}{|| A ||}
 \end{gather}
+\noindent It is assumed that:
+\begin{equation}
+	|| A || \neq 0
+\end{equation}
+and for a given trajectory tracking problem the following holds:
+\begin{equation}
+	|| mge_3 + m\ddot{x}_d 
+	+ mR\vec{r}_{cm}  \times \dot{\Omega} + mR\hat{\Omega}\hat{\vec{r}}_{cm}\Omega|| < B
+\end{equation}
+for a positive constant B.
+
+Due to the fact that desired heading $\vec{b}_{1,d}$ will not always lie in the plane which has the desired thrust vector $\vec{b}_{3,d}$ as its normal, it needs to be adjusted accordingly:
+\begin{equation}
+	\vec{b}_{1,c} = -\frac{1}{||\vec{b}_{3,d} \times \vec{b}_{1,d}||}(\vec{b}_{3,d} \times (\vec{b}_{3,d} \times \vec{b}_{1,d}))
+\end{equation}
+
+Desired angular velocity and acceleration also need to be considered in this trajectory tracking problem. One is able to calculate the desired angular velocity and acceleration using $R_d$ and its derivatives in the following way:
+\begin{gather}
+	\hat{\Omega}_d = R_d^T \dot{R}_d \\
+	\dot{\hat{\Omega}}_d = - \hat{\Omega}_d\hat{\Omega}_d + R_d^T \ddot{R}_d
+\end{gather}
+
+Derivatives of $R_d$ are simply calculated by using the backwards differentiation method. It has to be noted that due to stability issues, computation rate of desired angular velocity and acceleration has to be lesser than the overall simulation rate. For further implementation details, please refer to \cite{gitLink}.
+
+\subsection{Error dynamics and stability discussion}
+
+In this section linear and angular errior dynamics will be presented.
+
+\todo[inline]{Napisi jednadzbe dinamike pogreške}
+\todo[inline]{Uvrsti upravljacki zakon unutra}
+\todo[inline]{Pokazi da je problem stabilnosti jednak kao i prije}
+\todo[inline]{Napisi konacni rezultat za eksponencijalnu stabilnost}
 
 
