@@ -14,13 +14,13 @@ Attitude error function on SO(3) is chosen as:
 Linear position and velocity tracking errors are defined as follows:
 \begin{gather}
 	e_x = x - x_d \\
-	e_v = v - v_d
+	e_v = v - v_d \label{linear_error}
 \end{gather}
 
 Attitude and velocity tracking errors are defined as follows:
 \begin{gather}
 	e_R = \frac{1}{2}(R_d^TR - R^TR_d)^\text{V} \\
-	e_\Omega = \Omega - R^TR_d\Omega_d
+	e_\Omega = \Omega - R^TR_d\Omega_d \label{angular_error}
 \end{gather}
 
 \todo[inline]{Napisati mozda jos nesto o pogreskama...}
@@ -40,10 +40,9 @@ Force and moment control terms are chosen as follows:
 	\begin{split}
 		M = -& k_R e_R - k_\Omega e_\Omega \\
 			+& \Omega \times J\Omega - J(\hat{\Omega}R^TR_d\Omega_d - R^TR_d\dot{\Omega}_d) \\
-			+& m\vec{r}_{cm} \times R^T \ddot{x}_d
+			+& m\vec{r}_{cm} \times R^T \ddot{x}  \label{moment_control}
 	\end{split}
 \end{align}
-\todo[inline]{Razmotrit koji omege u ovim dodanim clanovima su zeljene a koje obicne. Takodjer nemam mjerenu akceleraciju - koristim racunatu svugdje.}
 
 Desired rotation matrix is constructed as 
 $R_d = [\vec{b}_{1,c}, \vec{b}_{3,d} \times \vec{b}_{1,c}, \vec{b}_{3,d}]$ where component vectors of $R_d$ are calculated in the following way:
@@ -52,12 +51,12 @@ $R_d = [\vec{b}_{1,c}, \vec{b}_{3,d} \times \vec{b}_{1,c}, \vec{b}_{3,d}]$ where
 \end{gather}
 \noindent It is assumed that:
 \begin{equation}
-	|| A || \neq 0
+	|| A || \neq 0 \label{condition1}
 \end{equation}
 and for a given trajectory tracking problem the following holds:
 \begin{equation}
 	|| mge_3 + m\ddot{x}_d 
-	+ mR\vec{r}_{cm}  \times \dot{\Omega} + mR\hat{\Omega}\hat{\vec{r}}_{cm}\Omega|| < B
+	+ mR\vec{r}_{cm}  \times \dot{\Omega} + mR\hat{\Omega}\hat{\vec{r}}_{cm}\Omega|| < B \label{condition2}
 \end{equation}
 for a positive constant B.
 
@@ -76,11 +75,39 @@ Derivatives of $R_d$ are simply calculated by using the backwards differentiatio
 
 \subsection{Error dynamics and stability discussion}
 
-In this section linear and angular errior dynamics will be presented.
+In this section linear and angular error dynamics will be presented. First of all, derivatives over time need to be calculated for linear \ref{linear_error} and angular \ref{angular_error} tracking errors:
+\begin{gather}
+	\dot{e}_v = \ddot{x} - \ddot{x}_d \label{linear_error_dynamics}\\
+	\dot{e}_\Omega = \dot{\Omega} + \hat{\Omega}R^TR_d\Omega_d - R^TR_d\dot{\Omega}_d \label{angular_error_dynamics}
+\end{gather}
 
-\todo[inline]{Napisi jednadzbe dinamike pogreške}
-\todo[inline]{Uvrsti upravljacki zakon unutra}
-\todo[inline]{Pokazi da je problem stabilnosti jednak kao i prije}
+\noindent After including \ref{model2} and \ref{model4} in \ref{linear_error_dynamics} and \ref{angular_error_dynamics} respectively, the following equations are obtained:
+\begin{align}
+	\label{lin_dynamics_full}
+	\begin{split}
+		m\dot{e}_v = & - mge_3 - m\ddot{x}_d \\
+			&+ mR\vec{r}_{cm}  \times \dot{\Omega} + mR\hat{\Omega}\hat{\vec{r}}_{cm}\Omega \\
+			&+ A + X	
+	\end{split} \\
+	\label{ang_dynamics_full}
+	\begin{split}
+		J\dot{e}_\Omega = &M - \Omega \times J\Omega \\
+			&+ J(\hat{\Omega}R^TR_d\Omega_d - R^TR_d\dot{\Omega}_d) \\
+			&+ m\vec{r}_{cm} \times R^T \ddot{x}
+	\end{split}
+\end{align}
+
+Note that in \ref{lin_dynamics_full} $A\in \mathbb{R}^3$ is regarded as a control force for the translational dynamics, mentioned in \ref{force_control}, while $X\in\mathbb{R}^3$ is a bounded term that arises when deriving this equation which equals:
+\begin{equation}
+	X = \frac{f}{(R_de_d)^TRe_3}(R_d e_3 - ((R_de_d)^TRe_3)Re_3)
+\end{equation}
+
+After substituting control force from \ref{force_control} and \ref{moment_control} in \ref{lin_dynamics_full} and \ref{ang_dynamics_full} respectively the final form of error dynamics is obtained:
+\begin{gather}
+	m\dot{e}_v = -k_x e_x - k_v e_v + X \\
+	J\dot{e}_\Omega = -k_R e_r - k_\Omega e_\Omega
+\end{gather}
+
 \todo[inline]{Napisi konacni rezultat za eksponencijalnu stabilnost}
 
 
