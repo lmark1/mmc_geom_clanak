@@ -27,6 +27,7 @@ Attitude and velocity tracking errors are defined as follows:
 \subsection{Control terms}
 
 Force and moment control terms are chosen as follows:
+\todo[inline]{Ppozvati se na jednadzbe modela.}
 \begin{align}
 	\begin{split}
 		A = (-& k_x e_x - k_v e_v \\
@@ -54,6 +55,7 @@ $R_d = [\vec{b}_{1,c}, \vec{b}_{3,d} \times \vec{b}_{1,c}, \vec{b}_{3,d}]$ where
 	|| A || \neq 0 \label{condition1}
 \end{equation}
 and for a given trajectory tracking problem the following holds:
+\todo[inline]{Napraviti razliku na onoga sto ja radim i onoga sto citiram}
 \begin{equation}
 	|| mge_3 + m\ddot{x}_d 
 	+ mR\vec{r}_{cm}  \times \dot{\Omega} + mR\hat{\Omega}\hat{\vec{r}}_{cm}\Omega|| < B \label{condition2}
@@ -97,17 +99,18 @@ In this section linear and angular error dynamics will be presented. First of al
 	\end{split}
 \end{align}
 
-Note that in \ref{lin_dynamics_full} $A\in \mathbb{R}^3$ is regarded as a control force for the translational dynamics, mentioned in \ref{force_control}, while $X\in\mathbb{R}^3$ is a bounded term that arises when deriving this equation which equals:
+\noindent Note that in \ref{lin_dynamics_full} $A\in \mathbb{R}^3$ is regarded as a control force for the translational dynamics, mentioned in \ref{force_control}, while $X\in\mathbb{R}^3$ is a bounded term that arises when deriving this equation which equals:
 \begin{equation}
 	X = \frac{f}{(R_de_d)^TRe_3}(R_d e_3 - ((R_de_d)^TRe_3)Re_3)
 \end{equation}
 
-After substituting control force from \ref{force_control} and \ref{moment_control} in \ref{lin_dynamics_full} and \ref{ang_dynamics_full} respectively the final form of error dynamics is obtained:
+\noindent After substituting control force from \ref{force_control} and \ref{moment_control} in \ref{lin_dynamics_full} and \ref{ang_dynamics_full} respectively the final form of error dynamics is obtained:
 \begin{gather}
 	m\dot{e}_v = -k_x e_x - k_v e_v + X \\
 	J\dot{e}_\Omega = -k_R e_r - k_\Omega e_\Omega
 \end{gather}
 
-\todo[inline]{Napisi konacni rezultat za eksponencijalnu stabilnost}
+Taking in consideration such linear and angular error dynamics and previously stated assumptions \ref{condition1} and \ref{condition2} one can prove exponential asymptotic stability the attitude error function on a subset of the SO(3) group. The complete proof can be found in \cite{LeeClanak1}.
+\todo[inline]{Napisati uvjete stabilnosti ?}
 
 
