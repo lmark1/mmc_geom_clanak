@@ -3,13 +3,13 @@
 First of all, it is necessary to introduce a fixed inertial reference frame $\{ \vec{e}_1, \vec{e}_2, \vec{e}_3  \}$ and a body-fixed frame $ \{ \vec{b}_1, \vec{b}_2, \vec{b}_3 \}$. As it was previously stated, $\mu$MORUS UAV will exploit its shifting center of gravity (CoG) due to the moving masses in order to maneuver and stabilize itself. Therefore, a CoG vector from the origin of the body-fixed frame will be defined as follows:
 
 \begin{equation}
-	\vec{r}_{cm} = \frac{m_{b}\vec{r}_{0,b} + \sum_{i=1}^n m_{i}\vec{r}_{i}}{m_{b} + \sum_{i=1}^4 m_{i}} = \frac{\sum_{i=1}^4 m_{i}\vec{r}_{i}}{m_t},
+	\vec{r}_{CoG} = \frac{m_{b}\vec{r}_{0,b} + \sum_{i=1}^n m_{i}\vec{r}_{i}}{m_{b} + \sum_{i=1}^4 m_{i}} = \frac{\sum_{i=1}^4 m_{i}\vec{r}_{i}}{m_t},
 	\label{equ:cog}
 \end{equation}
 
 The following terms are defined as: 
 \begin{itemize}
-	\item $\vec{r}_{cm} \in \mathbb{R}^3$ - Center of gravity with respect to the body-fixed frame
+	\item $\vec{r}_{CoG} \in \mathbb{R}^3$ - Center of gravity with respect to the body-fixed frame
 	
 	\item $\vec{r}_{i} \in \mathbb{R}^3$ - Position of the i-th mass w.r.t. the body-fixed frame
 	
@@ -25,9 +25,9 @@ The following terms are defined as:
 The equations of motion expressed in the inertial frame while taking in consideration that the CoG is located outside the origin of the body-fixed frame are as follows\cite{LeeModel}: 
 \begin{gather}
 	\dot{x} = v \label{model1}\\
-	m_t\dot{v} + m_tge_3 - m_TR \vec{r}_{cm} \times \dot{\Omega} - m_tR\hat{\Omega}\hat{\vec{r}}_{cm}\Omega = fRe_3 \label{model2} \\
+	m_t\dot{v} + m_tge_3 - m_TR \vec{r}_{CoG} \times \dot{\Omega} - m_tR\hat{\Omega}\hat{\vec{r}}_{CoG}\Omega = fRe_3 \label{model2} \\
 	\dot{R} = R\hat{\Omega} \label{model3} \\
-	J \dot{\Omega} + \Omega \times J \Omega + m_t \vec{r}_{cm} \times R^T \dot{v} = M \label{model4}
+	J \dot{\Omega} + \Omega \times J \Omega + m_t \vec{r}_{CoG} \times R^T \dot{v} = M \label{model4}
 \end{gather}
 
 \noindent The following terms are defined as:

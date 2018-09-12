@@ -106,8 +106,8 @@ In this section linear and angular error dynamics will be presented. First of al
 
 \noindent After substituting control force from \ref{force_control} and \ref{moment_control} in \ref{lin_dynamics_full} and \ref{ang_dynamics_full} respectively the final form of error dynamics is obtained:
 \begin{gather}
-	m\dot{e}_v = -k_x e_x - k_v e_v + X \\
-	J\dot{e}_\Omega = -k_R e_r - k_\Omega e_\Omega
+	m\dot{e}_v = -k_x e_x - k_v e_v + X \label{error_dynamics_linear}\\ 
+	J\dot{e}_\Omega = -k_R e_r - k_\Omega e_\Omega \label{error_dynamics_angular}
 \end{gather}
 
 Having started with a different mathematical model of the UAV than the previous research done on this subject, applying the newly formed control terms \ref{force_control} and \ref{moment_control} and taking in consideration initial assumptions \ref{condition1} and \ref{condition2} one is able to derive identical translational and rotational error dynamics as found in \cite{LeeClanak1}, \cite{LeeClanak4}. \\
