@@ -6,33 +6,37 @@ Firstly, chosen position and orientation errors will be presented which will als
 
 \subsection{Tracking errors}
 
-Attitude error function on SO(3) is chosen as:
-\begin{equation}
-	\Psi(R, R_d) = \frac{1}{2}tr[I - R_d^TR]
-\end{equation}
+Compatible attitude error function and transport map between tangent bundles of SO(3) are chosen as suggested in \cite{bulloBook} and confirmed in research regarding geometric control with aerial vehicles \cite{LeeClanak1}, \cite{LeeClanak2}, \cite{LeeClanak3}, \cite{LeeClanak4}. Attitude error function on SO(3) along with its compatible transport map are chosen as:
+\begin{gather}
+	\Psi(R, R_d) = \frac{1}{2}tr[I - R_d^TR] \label{attErr} \\ 
+	\Ta(R, R_d) = R^T R_d \label{transportMap}
+\end{gather}
 
-Linear position and velocity tracking errors are defined as follows:
+\noindent Linear position and velocity tracking errors are defined as follows:
 \begin{gather}
 	e_x = x - x_d \\
 	e_v = v - v_d \label{linear_error}
 \end{gather}
 
-Attitude and velocity tracking errors are defined as follows:
-\begin{gather}
-	e_R = \frac{1}{2}(R_d^TR - R^TR_d)^\text{V} \\
-	e_\Omega = \Omega - R^TR_d\Omega_d \label{angular_error}
-\end{gather}
+\noindent Defining attitude and angular velocity tracking errors is not as straight-forward. It is shown in \cite{bulloBook} that the attitude tracking error should be chosen as a left-differential of the attitude error function $\Psi(R, R_d)$. It is chosen as follows:
+\begin{equation}
+	e_R = \frac{1}{2}(R_d^TR - R^TR_d)^\text{V}
+\end{equation}
 
-\todo[inline]{Napisati mozda jos nesto o pogreskama...}
+\noindent Due to the fact that angular velocities $\Omega \in T_RSO(3)$ and $\Omega_d \in T_{R_d}SO(3)$ lie in different tangential bundles, the proposed left transport map \ref{transportMap} needs to be applied when calculating the tracking error:
+\begin{equation}
+	e_\Omega = \Omega - R^TR_d\Omega_d \label{angular_error}
+\end{equation}
+
 \subsection{Control terms}
 
-Force and moment control terms are chosen as follows:
-\todo[inline]{Ppozvati se na jednadzbe modela.}
+Taking in consideration the proposed system dynamics \ref{model2} and \ref{model4}, the force and moment control terms are chosen as follows:
+
 \begin{align}
 	\begin{split}
 		A = (-& k_x e_x - k_v e_v \\
 		+& mge_3 + m\ddot{x}_d \\
-		+& mR\vec{r}_{cm}  \times \dot{\Omega} + mR\hat{\Omega}\hat{\vec{r}}_{cm}\Omega ) \\
+		-& mR\vec{r}_{cm}  \times \dot{\Omega} - mR\hat{\Omega}\hat{\vec{r}}_{cm}\Omega ) \\
 		f =& A \cdot Re_3 \label{force_control}
 	\end{split}
 \end{align}
@@ -44,28 +48,24 @@ Force and moment control terms are chosen as follows:
 			+& m\vec{r}_{cm} \times R^T \ddot{x}  \label{moment_control}
 	\end{split}
 \end{align}
+\noindent When error dynamics will be presented, it can be seen that the control terms are chosen in order to negate the undesirable system dynamics.
 
-Desired rotation matrix is constructed as 
-$R_d = [\vec{b}_{1,c}, \vec{b}_{3,d} \times \vec{b}_{1,c}, \vec{b}_{3,d}]$ where component vectors of $R_d$ are calculated in the following way:
+Desired rotation matrix is constructed in the traditional way when considering geometric control of aerial vehicles \cite{LeeClanak4}, \cite{LeeClanak3}, \cite{LeeClanak2}. The proposed desired rotation matrix is constructed as $R_d = [\vec{b}_{1,c}, \vec{b}_{3,d} \times \vec{b}_{1,c}, \vec{b}_{3,d}]$ where component vectors of $R_d$ are calculated in the following way:
 \begin{gather}
-	\vec{b}_{3,d} = \frac{A}{|| A ||}
+	\vec{b}_{3,d} = \frac{A}{|| A ||} \\
+	\vec{b}_{1,c} = -\frac{(\vec{b}_{3,d} \times (\vec{b}_{3,d} \times \vec{b}_{1,d}))}{||\vec{b}_{3,d} \times \vec{b}_{1,d}||}
 \end{gather}
-\noindent It is assumed that:
+\noindent It is also assumed that:
 \begin{equation}
 	|| A || \neq 0 \label{condition1}
 \end{equation}
-and for a given trajectory tracking problem the following holds:
-\todo[inline]{Napraviti razliku na onoga sto ja radim i onoga sto citiram}
+
+\noindent The chosen constraint for the trajectory tracking problem differs slightly from the one proposed in \cite{LeeClanak4} due to the fact that different model dynamics are considered in this paper. New trajectory constraints are presented as follows:
 \begin{equation}
 	|| mge_3 + m\ddot{x}_d 
-	+ mR\vec{r}_{cm}  \times \dot{\Omega} + mR\hat{\Omega}\hat{\vec{r}}_{cm}\Omega|| < B \label{condition2}
+	- mR\vec{r}_{cm}  \times \dot{\Omega} - mR\hat{\Omega}\hat{\vec{r}}_{cm}\Omega|| < B \label{condition2}
 \end{equation}
-for a positive constant B.
-
-Due to the fact that desired heading $\vec{b}_{1,d}$ will not always lie in the plane which has the desired thrust vector $\vec{b}_{3,d}$ as its normal, it needs to be adjusted accordingly:
-\begin{equation}
-	\vec{b}_{1,c} = -\frac{1}{||\vec{b}_{3,d} \times \vec{b}_{1,d}||}(\vec{b}_{3,d} \times (\vec{b}_{3,d} \times \vec{b}_{1,d}))
-\end{equation}
+where B is some positive constant. 
 
 Desired angular velocity and acceleration also need to be considered in this trajectory tracking problem. One is able to calculate the desired angular velocity and acceleration using $R_d$ and its derivatives in the following way:
 \begin{gather}
@@ -73,7 +73,7 @@ Desired angular velocity and acceleration also need to be considered in this tra
 	\dot{\hat{\Omega}}_d = - \hat{\Omega}_d\hat{\Omega}_d + R_d^T \ddot{R}_d
 \end{gather}
 
-Derivatives of $R_d$ are simply calculated by using the backwards differentiation method. It has to be noted that due to stability issues, computation rate of desired angular velocity and acceleration has to be lesser than the overall simulation rate. For further implementation details, please refer to \cite{gitLink}.
+Derivatives of $R_d$ are easily calculated using the backwards differentiation method. It has to be noted that due to stability issues, computation rate of desired angular velocity and acceleration has to be lesser than the overall simulation rate. For further implementation details, please refer to \cite{gitLink}.
 
 \subsection{Error dynamics and stability discussion}
 
@@ -110,7 +110,16 @@ In this section linear and angular error dynamics will be presented. First of al
 	J\dot{e}_\Omega = -k_R e_r - k_\Omega e_\Omega
 \end{gather}
 
-Taking in consideration such linear and angular error dynamics and previously stated assumptions \ref{condition1} and \ref{condition2} one can prove exponential asymptotic stability the attitude error function on a subset of the SO(3) group. The complete proof can be found in \cite{LeeClanak1}.
-\todo[inline]{Napisati uvjete stabilnosti ?}
+Having started with a different mathematical model of the UAV than the previous research done on this subject, applying the newly formed control terms \ref{force_control} and \ref{moment_control} and taking in consideration initial assumptions \ref{condition1} and \ref{condition2} one is able to derive identical translational and rotational error dynamics as found in \cite{LeeClanak1}, \cite{LeeClanak4}. \\
+Therefore, to avoid redundancy, the full stability proof will not be presented in this paper. However, the final conclusions for exponential asymptotic stability of the attitude error function and attraction to the zero-equilibrium state of tracking errors will be outlined. \\
 
-
+If the initial UAV configuration satisfies the following conditions:
+\begin{gather}
+	\Psi (R(0), R_d(0)) < 2 \\
+	||e_\Omega(0)||^2 < \frac{2}{\lambda_{min}(J)}k_R(2 - \Psi(R(0), R_d(0))
+\end{gather}
+it can be shown that tracking errors reach zero-equilibrium state and the attitude function will be exponentially bounded as:
+\begin{equation}
+	\Psi(R(t), R_d(t)) \leq \text{min}\{2, \alpha e^{-\beta t} \}
+\end{equation}
+for some positive constants $\alpha$ and $\beta$.
