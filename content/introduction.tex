@@ -1,4 +1,12 @@
 \section{introduction}
-\todo[inline]{TODO: Introduction}
-\todo[inline]{TODO: Contribution}
 
+The goal of this paper is to attempt to apply the already developed concept of geometric control on a specific type of Unmanned Aerial System (UAS). The vehicle studied in this paper is built as a classic quadrotor UAV set up in plus configuration. However, unlike a standard UAV it utilizes variations in its center of gravity in order to achieve attitude tracking. Essentially, this means that such variations, which would usually be considered a disturbance in the system, could be exploited as a means of controlling the UAS. \\
+One of the ways these variations will be achieved is by implementing the moving mass concept on the standard quadrotor UAV. This includes mounting moving blocks on the arms of the UAV, which offset will act as the control input of the system along with rotor speed variation. \\
+\todo[inline]{Napisati nesto i o manipulatoru}
+The proposed nonlinear geometric control concept for the described UAS will primarily be used for trajectory tracking, given smooth control inputs for position $x_d(t)$ and heading $\vec{b}_{1,d}$. Before presenting the control terms, the UAS dynamic model needs to be stated. \\
+Since the geometric controller is used in this paper, the dynamics need to be expressed on SE(3) configuration manifold. Similar quadrotor dynamics have already been considered in other research papers e.g. \cite{LeeClanak4}, \cite{LeeClanak2}, \cite{LeeClanak1}. Within the classic quadrotor dynamic model, the center of gravity lies in the origin of the body-fixed frame. However, in this paper this is not the case. Due to the variations in the center of gravity a different dynamic model will be taken in consideration. \\
+Having chosen the dynamic model on SE(3) configuration manifold, control terms for total thrust and moments in the body fixed-frame can be selected. These control terms are assumed to have instantaneous effect on the system and will be treated as such when considering the stability of error dynamics. \\ 
+The controller behavior will be tested on a prescribed trajectory tracking problem. Simulation is going to be conducted in the Gazebo simulator within ROS environment. It is important to note that in such realistic environment effects actuator dynamics, rotor velocity change etc. will be included.
+The paper is organized as follows...
+\todo[inline]{Dovršiti introduction}
+\todo[inline]{Contributions...}
