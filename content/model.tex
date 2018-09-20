@@ -1,11 +1,13 @@
 \section{Mathematical model}
-
-First of all, it is necessary to introduce a fixed inertial reference frame $\{ \vec{e}_1, \vec{e}_2, \vec{e}_3  \}$ and a body-fixed frame $ \{ \vec{b}_1, \vec{b}_2, \vec{b}_3 \}$. As it was previously stated, $\mu$MORUS UAV will exploit its shifting center of gravity (CoG) due to the moving masses in order to maneuver and stabilize itself. Therefore, a CoG vector from the origin of the body-fixed frame will be defined as follows:
+\todo[inline]{Promijeniti jednadzbe na nacin - vektori podebljano, Matrice text}
+First of all, it is necessary to introduce a fixed inertial reference frame $\{ \vec{e}_1, \vec{e}_2, \vec{e}_3  \}$ and a body-fixed frame $ \{ \vec{b}_1, \vec{b}_2, \vec{b}_3 \}$. As it was previously stated, one of the ways $\mu$MORUS UAV will exploit its shifting center of gravity (CoG) due to the moving masses in order to maneuver and stabilize itself. Therefore, a CoG vector from the origin of the body-fixed frame will be defined as follows:
 
 \begin{equation}
 	\vec{r}_{CoG} = \frac{m_{b}\vec{r}_{0,b} + \sum_{i=1}^n m_{i}\vec{r}_{i}}{m_{b} + \sum_{i=1}^4 m_{i}} = \frac{\sum_{i=1}^4 m_{i}\vec{r}_{i}}{m_t},
 	\label{equ:cog}
 \end{equation}
+
+\todo[inline]{Dodati r cog jednadzbu za manipulator / payload, reći da se linkovi manipulatora poništavaju}.
 
 The following terms are defined as: 
 \begin{itemize}
@@ -23,7 +25,7 @@ The following terms are defined as:
 \end{itemize}
 
 The equations of motion expressed in the inertial frame while taking in consideration that the CoG is located outside the origin of the body-fixed frame are as follows\cite{LeeModel}: 
-\todo[inline]{dodati i prosireni model, ali se vratiti na ovaj}
+\todo[inline]{Referenecirati se na prošireni model iz dodatka, ali ostati pri ovome.}
 \begin{gather}
 	\dot{x} = v \label{model1}\\
 	m_t\dot{v} + m_tge_3 - m_TR \vec{r}_{CoG} \times \dot{\Omega} - m_tR\hat{\Omega}\hat{\vec{r}}_{CoG}\Omega = fRe_3 \label{model2} \\
@@ -32,6 +34,8 @@ The equations of motion expressed in the inertial frame while taking in consider
 \end{gather}
 
 \noindent The following terms are defined as:
+
+\noindent The \textit{hat map} is an operator equivalent to the expression $\hat{x}y = x \times y$. It maps elements of $\mathbb{R}^3$ to the so(3) Lie algebra. \\
 
 \begin{itemize}
 	\item $J \in \mathbb{R}^{3x3}$ - Moment of inertia matrix w.r.t. the body-fixed frame
@@ -49,7 +53,6 @@ The equations of motion expressed in the inertial frame while taking in consider
 	\item $M \in \mathbb{R}^3$ - Total moments acting in the body-fixed frame
 \end{itemize}
 
-\noindent The \textit{hat map} is an operator equivalent to the expression $\hat{x}y = x \times y$. It maps elements of $\mathbb{R}^3$ to the so(3) Lie algebra. \\
 Moment of inertia matrix expressed in the body-fixed frame is defined as follows:
 \begin{equation}
 	J = J_b + \sum_{i=1}^{4}J_i

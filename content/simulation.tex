@@ -1,5 +1,6 @@
 \section{Simulation}
-
+\todo[inline]{Reći da se provode 2 seta experimenate.}
+\todo[inline]{Dodati još i parametre za slucaj sa manipulatorima}
 In this section simulation results will be presented and analysed. Simulations are conducted in the Gazebo simulator within the ROS environment. UAV used in experiments is the $\mu$Morus with moving-masses which can be found in the \textit{mmuav\_gazebo} repository \cite{gitLink}, along with its parameters. 
 Control parameters are chosen as follows:
 \begin{equation*}
@@ -41,32 +42,65 @@ The chosen trajectory tracking problem is formulated as a 20 second rotating spi
 	\vec{b}_{1,d}(t) = [\text{cos}\left(\frac{\pi}{5}\text{t}\right); \, \text{sin}\left(\frac{\pi}{5}\text{t}\right); \, 0]
 \end{gather*}
 
-\noindent Initial position and orientation is chosen at the start of the trajectory.
+\noindent Initial position and orientation is chosen at the start of the trajectory. \\
 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=\columnwidth]{./pictures/mmc_traj_pos.png}
-	\caption{Comparison of the desired $\vec{x}_d$ and measured position values $\vec{x}_{mv}$.}
+	\caption{Comparison of the desired $\vec{x}_d$ and measured position values $\vec{x}_{mv}$. (Using the moving mass control concept.)}
 	\label{fig:traj_pos}
 \end{figure}
 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=\columnwidth]{./pictures/mmc_traj_omega.png}
-	\caption{Comparison of desired $\Omega_d$ and measured $\Omega_{mv}$ angular velocity values.}
+	\caption{Comparison of desired $\Omega_d$ and measured $\Omega_{mv}$ angular velocity values. (Using the moving mass control concept.)}
 	\label{fig:traj_omega}
 \end{figure}
 
-\begin{figure}[h!]
+\begin{figure}
 	\centering
-	\includegraphics[width=\columnwidth]{./pictures/mmc_traj_rotorVel_massOff.png}
-	\caption{Display of all control inputs: rotor velocities $\omega_i$ and mass offsets $r_i$ along $\vec{b}_{1,d}$ and $\vec{b}_{2,d}$ body-fixed frame axis.}
-	\label{fig:rotorVel_massOff}
+	\begin{minipage}{0.5\columnwidth}
+		\centering
+		\includegraphics[width=\columnwidth]{./pictures/mmc_traj_rotorVel_massOff.png}
+		\caption*{a)}
+		\label{fig:rotorVel_massOff}
+	\end{minipage}%
+	\begin{minipage}{0.5\columnwidth}
+		\centering
+		\includegraphics[width=\columnwidth]{./pictures/mmc_traj_rCm_attErr.png}
+		\caption*{b)}
+		\label{fig:rCm_attErr}
+	\end{minipage}
+	\caption{Control inputs are shown in figure a) in the following order: rotor velocities $\omega_i$ and mass offsets $r_i$. Figure b) shows first two components of CoG vector $\vec{r}_{CoG}$ (third component is always zero since masses only move in x-y plane of the body-fixed frame) and attitude error function $\Psi$. (Using the moving mass control concept.)}
 \end{figure}
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=\columnwidth]{./pictures/mmc_traj_rCm_attErr.png}
-	\caption{First two components of CoG vector $\vec{r}_{CoG}$ (third component is always zero since masses only move in x-y plane of the body-fixed frame) and attitude error function $\Psi$. }
-	\label{fig:rCm_attErr}
+	\includegraphics[width=\columnwidth]{./pictures/manip_traj_pos.png}
+	\caption{Comparison of the desired $\vec{x}_d$ and measured position values $\vec{x}_{mv}$. (Using the manipulator control control.)}
+	\label{fig:manip_pos}
+\end{figure}
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=\columnwidth]{./pictures/manip_traj_omega.png}
+	\caption{Comparison of desired $\Omega_d$ and measured $\Omega_{mv}$ angular velocity values. (Using the manipulator control concept)}
+	\label{fig:manip_omega}
+\end{figure}
+\begin{figure}[h!]
+	\centering
+	\begin{minipage}{0.5\columnwidth}
+		\centering
+		\includegraphics[width=\columnwidth]{./pictures/manip_traj_control.png}
+		\caption*{a)}
+		\label{fig:manip_control}
+	\end{minipage}%
+	\begin{minipage}{0.5\columnwidth}
+		\centering
+		\includegraphics[width=\columnwidth]{./pictures/manip_traj_rcmPsi.png}
+		\caption*{b)}
+		\label{fig:manip_rcm}
+	\end{minipage}
+	\caption{Control inputs: rotor velocities $\omega_i$ and payload position; are shown in in figure a). Figure b) shows first two components of CoG vector $\vec{r}_{CoG}$ and attitude error function $\Psi$.}
 \end{figure}
