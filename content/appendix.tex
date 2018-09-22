@@ -2,68 +2,69 @@
 
 General form of Euler-Lagrange dynamics for a rotating rigid body in SE(3) configuration manifold in the body-fixed frame:
 \begin{gather}
-	\frac{d}{dt} \left( \frac{\partial \La}{\partial \omega} \right)
-	+ \omega \times \frac{\partial \La}{\partial \omega} 
-	+ v \times \frac{\partial \La}{\partial v} 
-	+ \sum_{i=1}^{3} r_i \times \frac{\partial \La}{\partial r_i} = 0 \label{general1}\\
-	\frac{d}{dt} \left( \frac{\partial \La}{\partial v} \right)
-	+ \omega \times \frac{\partial \La}{\partial v} 
-	- R^T \frac{\partial \La}{\partial x} = 0 \label{general2}
+	\frac{d}{dt} \left( \frac{\partial \La}{\partial \mb{\Omega}} \right)
+	+ \mb{\Omega} \times \frac{\partial \La}{\partial \mb{\Omega}} 
+	+ \textbf{v} \times \frac{\partial \La}{\partial \textbf{v}} 
+	+ \sum_{i=1}^{3} \textbf{r}_i \times \frac{\partial \La}{\partial \textbf{r}_i} = 0 \label{general1}\\
+	\frac{d}{dt} \left( \frac{\partial \La}{\partial \textbf{v}} \right)
+	+ \mb{\Omega} \times \frac{\partial \La}{\partial \textbf{v}} 
+	- \text{R}^T \frac{\partial \La}{\partial x} = 0 \label{general2}
 \end{gather}
 
 For the the proposed UAS with variations in center of mass the Lagrangian is:
 \begin{equation}
-	\La(R,x,\Omega,v) = \frac{1}{2}\omega^TJ\omega + m \omega^T S(r_{cm})v + \frac{1}{2}mv^Tv - U(R,x)
+	\La(\text{R},x,\mb{\Omega},\textbf{v}) = \frac{1}{2}\mb{\Omega}^TJ\mb{\Omega} + m \mb{\Omega}^T \hat{\textbf{r}}_{cm}\textbf{v} + \frac{1}{2}m\textbf{v}^T\textbf{v} - U(\text{R},x)
 \end{equation}
 
-\noindent where $U(R,x)$ is the potential energy of the system. It is important to note that $J$ and $r_{cm}$ are changing over time. \\
+\noindent where $U(\text{R},x)$ is the potential energy of the system. It is important to note that $J$ and $\textbf{r}_{cm}$ are changing over time. \\
 Lagrangian derivatives needed for the general form equation are:
 
 \begin{gather}
-	\frac{\partial \La}{\partial \omega} = J\omega + m S(r_{cm})v \label{d1}\\ 
-	\frac{d}{dt} \left( \frac{\partial \La}{\partial \omega} \right) = \dot{J} \omega + J \dot{\omega} + m \dot{r}_{cm} \times v + m r_{cm} \times \dot{v} \label{d2}\\ 
-	\frac{\partial \La}{\partial v} = mv - mr_{cm} \times \omega \label{d3}\\ 
-	\frac{d}{dt} \left( \frac{\partial \La}{\partial v} \right) = m\dot{v} - m\dot{r}_{cm} \times \omega - m r_{cm} \times \dot{\omega} \label{d4}
+	\frac{\partial \La}{\partial \mb{\Omega}} = J\mb{\Omega} + m \hat{\textbf{r}}_{cm})\textbf{v} \label{d1}\\ 
+	\frac{d}{dt} \left( \frac{\partial \La}{\partial \mb{\Omega}} \right) = \dot{J} \mb{\Omega} + J \dot{\mb{\Omega}} + m \dot{\textbf{r}}_{cm} \times \textbf{v} + m \textbf{r}_{cm} \times \dot{\textbf{v}} \label{d2}\\ 
+	\frac{\partial \La}{\partial \textbf{v}} = m\textbf{v} - m\textbf{r}_{cm} \times \mb{\Omega} \label{d3}\\ 
+	\frac{d}{dt} \left( \frac{\partial \La}{\partial \textbf{v}} \right) = m\dot{\textbf{v}} - m\dot{\textbf{r}}_{cm} \times \mb{\Omega} - m \textbf{r}_{cm} \times \dot{\mb{\Omega}} \label{d4}
 \end{gather}
 
 It is of interest to transfer rotation and translation dynamics in the inertial frame. This can be done using the following relations:
 
 \begin{gather}
-	v = R^T \dot{x} \label{inertial1}\\
-	\dot{v} = R^T \ddot{x} - \omega \times (R^T \dot{x} ) \label{inertial2} \\
-	r_{cm} = R^T(x_{cm} - x) \label{inertial3} \\
-	\dot{r}_{cm} = R^T(\dot{x}_{cm} - \dot{x}) + R^TS(\omega)x_{cm} - S(\omega)R^T(x_{cm} - x) \label{inertial4}
+	\textbf{v} = \text{R}^T \dot{x} \label{inertial1}\\
+	\dot{\textbf{v}} = \text{R}^T \ddot{\textbf{x}} - \mb{\Omega} \times (\text{R}^T \dot{\textbf{x}} ) \label{inertial2} \\
+	\textbf{r}_{cm} = \text{R}^T(\textbf{x}_{cm} - \textbf{x}) \label{inertial3} \\
+	\dot{\textbf{r}}_{cm} = \text{R}^T(\dot{\textbf{x}}_{cm} - \dot{\textbf{x}}) + \text{R}^T\hat{\mb{\Omega}}\textbf{x}_{cm} - \hat{\mb{\Omega}}\text{R}^T(\textbf{x}_{cm} - \textbf{x}) \label{inertial4}
 \end{gather}
+
 
 After plugging in \ref{d1}, \ref{d2}, \ref{d3}, \ref{d4} in \ref{general1}, \ref{general2} and using \ref{inertial1}, \ref{inertial2} as transformations of velocity and acceleration to inertial frame the following equations are obtained:
 \begin{align}
 	\begin{split}
-		& J\dot{\omega} + m r_{cm} \times R^T \ddot{x} \\
-		&+ \dot{J} \omega + m\dot{r}_{cm} \times R^T \dot{x} \\
-		&+ \omega \times J\omega + \sum_{i=1}^{3} r_i \times \frac{\partial \La}{\partial r_i} = 0
+		& J\dot{\mb{\Omega}} + m \textbf{r}_{cm} \times \text{R}^T \ddot{\textbf{x}} \\
+		&+ \dot{J} \mb{\Omega} + m\dot{\textbf{r}}_{cm} \times \text{R}^T \dot{\textbf{x}} \\
+		&+ \mb{\Omega} \times J\mb{\Omega} + \sum_{i=1}^{3} \textbf{r}_i \times \frac{\partial \La}{\partial \textbf{r}_i} = 0
 	\end{split}
 \end{align}
 \begin{align}
 	\begin{split}
-		& m\ddot{x} - mRS(r_{cm}) \dot{\omega} - mRS(\dot{r}_{cm})\omega\\
-		&-mRS(\omega)S(r_{cm})\omega + \frac{\partial U}{\partial x} = 0
+		& m\ddot{\textbf{x}} - m\text{R}\hat{\textbf{r}}_{cm} \dot{\mb{\Omega}} - m\text{R}\hat{\dot{\textbf{r}}}_{cm}\mb{\Omega}\\
+		&-m\text{R}\hat{\mb{\Omega}}\hat{\textbf{r}}_{cm}\mb{\Omega} + \frac{\partial U}{\partial \textbf{x}} = 0
 	\end{split}
 \end{align}
 
 After plugging in the center of mass transform \ref{inertial3}, \ref{inertial4} the final form of dynamics is obtained:
 \begin{align}
 	\begin{split}
-		 & J\dot{\omega} + mR^T(x_{cm} - x) \times R^T\ddot{x} + \dot{J}\omega \\
-		 & + mS(R^T\dot{x}_{cm})R^T\dot{x} - R^T\dot{x} \times (R^TS(\omega)x_{cm}) \\
-		 & - mS(\omega)R^T(x_{cm} - x) \times R^T \dot{x} \\
-		 & + \omega \times J\omega  + \sum_{i=1}^{3} r_i \times \frac{\partial \La}{\partial r_i} = 0
+		 & J\dot{\mb{\Omega}} + m\text{R}^T(\textbf{x}_{cm} - \textbf{x}) \times \text{R}^T\ddot{\textbf{x}} + \dot{J}\mb{\Omega} \\
+		 & + m\reallywidehat{\text{R}^T\dot{\textbf{x}}_{cm}}\text{R}^T\dot{\textbf{x}} - \text{R}^T\dot{\textbf{x}} \times (\text{R}^T\hat{\mb{\Omega}}\textbf{x}_{cm}) \\
+		 & - m\hat{\mb{\Omega}}\text{R}^T(\textbf{x}_{cm} - \textbf{x}) \times \text{R}^T \dot{\textbf{x}} \\
+		 & + \mb{\Omega} \times J\mb{\Omega}  + \sum_{i=1}^{3} \textbf{r}_i \times \frac{\partial \La}{\partial \textbf{r}_i} = 0
 	\end{split}
 \end{align}
 \begin{align}
 	\begin{split}
-		m \ddot{x} &- mRS(R^T(x_{cm} - x))\dot{\omega} \\
-		& - mRS(R^T(\dot{x}_{cm} - \dot{x})) \omega \\
-		& - mR[(R^TS(\omega)x_{cm}) \times \omega] \\
-		& + \frac{\partial U}{\partial x} = 0
+		m \ddot{\textbf{x}} &- m\text{R}\reallywidehat{\text{R}^T(\textbf{x}_{cm} - x)}\dot{\mb{\Omega}} \\
+		& - m\text{R}\reallywidehat{\text{R}^T(\dot{\textbf{x}}_{cm} - \dot{\textbf{x}})} \mb{\Omega} \\
+		& - m\text{R}\reallywidehat{\text{R}^T\hat{\mb{\Omega}}\textbf{x}_{cm}}\mb{\Omega} \\
+		& + \frac{\partial U}{\partial \textbf{x}} = 0
 	\end{split}
 \end{align}
