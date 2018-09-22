@@ -1,6 +1,7 @@
-\subsection{Extended UAV dynamics}
+\subsection{UAS dynamics}
 
-General form of Euler-Lagrange dynamics for a rotating rigid body in SE(3) configuration manifold in the body-fixed frame:
+In this section rotating body dynamics with variations in center of gravity will be derived.
+General form of Euler-Lagrange dynamics for a rotating rigid body in SE(3) configuration manifold in the body-fixed frame as presented in \cite{LeeModel}:
 \begin{gather}
 	\frac{d}{dt} \left( \frac{\partial \La}{\partial \mb{\Omega}} \right)
 	+ \mb{\Omega} \times \frac{\partial \La}{\partial \mb{\Omega}} 
@@ -13,11 +14,11 @@ General form of Euler-Lagrange dynamics for a rotating rigid body in SE(3) confi
 
 For the the proposed UAS with variations in center of mass the Lagrangian is:
 \begin{equation}
-	\La(\text{R},x,\mb{\Omega},\textbf{v}) = \frac{1}{2}\mb{\Omega}^TJ\mb{\Omega} + m \mb{\Omega}^T \hat{\textbf{r}}_{cm}\textbf{v} + \frac{1}{2}m\textbf{v}^T\textbf{v} - U(\text{R},x)
+	\La(\text{R},x,\mb{\Omega},\textbf{v}) = \frac{1}{2}\mb{\Omega}^TJ\mb{\Omega} + m \mb{\Omega}^T \hat{\textbf{r}}_{cm}\textbf{v} + \frac{1}{2}m\textbf{v}^T\textbf{v} - U(\text{R},\textbf{x})
 \end{equation}
 
-\noindent where $U(\text{R},x)$ is the potential energy of the system. It is important to note that $J$ and $\textbf{r}_{cm}$ are changing over time. \\
-Lagrangian derivatives needed for the general form equation are:
+\noindent where $U(\text{R}, \textbf{x})$ is the potential energy of the system. It is important to note that $J$ and $\textbf{r}_{cm}$ are variable over time. \\
+Lagrangian derivatives needed for the general form equations \ref{general1} and \ref{general2} are:
 
 \begin{gather}
 	\frac{\partial \La}{\partial \mb{\Omega}} = J\mb{\Omega} + m \hat{\textbf{r}}_{cm})\textbf{v} \label{d1}\\ 
@@ -62,7 +63,7 @@ After plugging in the center of mass transform \ref{inertial3}, \ref{inertial4} 
 \end{align}
 \begin{align}
 	\begin{split}
-		m \ddot{\textbf{x}} &- m\text{R}\reallywidehat{\text{R}^T(\textbf{x}_{cm} - x)}\dot{\mb{\Omega}} \\
+		m \ddot{\textbf{x}} &- m\text{R}\reallywidehat{\text{R}^T(\textbf{x}_{cm} - \textbf{x})}\dot{\mb{\Omega}} \\
 		& - m\text{R}\reallywidehat{\text{R}^T(\dot{\textbf{x}}_{cm} - \dot{\textbf{x}})} \mb{\Omega} \\
 		& - m\text{R}\reallywidehat{\text{R}^T\hat{\mb{\Omega}}\textbf{x}_{cm}}\mb{\Omega} \\
 		& + \frac{\partial U}{\partial \textbf{x}} = 0

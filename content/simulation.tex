@@ -54,7 +54,7 @@ In this section simulation results will be presented and analysed. Simulations a
 		0 & 0 & 20
 	\end{bmatrix}
 \end{equation*}
-For both cases, parameters are obtained by considering the error dynamics \ref{error_dynamics_linear} and \ref{error_dynamics_angular} in the equilibrium state and comparing it to the standard second-order transfer with natural frequency and dampening included. \\
+For both cases, initial parameters are obtained by considering the error dynamics \ref{error_dynamics_linear} and \ref{error_dynamics_angular} in the equilibrium state. However, they are further tuned for better performance.\\
 It is important to note that the actuator dynamics of the moving masses is taken in consideration within the Gazebo simulation environment. Furthermore there is a slight transient delay when increasing or decreasing rotor velocity which results in a non-instantaneous control force change. These phenomena were not taken in consideration while modeling the system and choosing control terms. \\
 
 The chosen trajectory tracking problem is formulated as a rotating spiral:
