@@ -29,11 +29,11 @@ where $\textbf{r}_l \in \mathbb{R}^3$ and $\textbf{r}_r \in \mathbb{R}^3$ are le
 
 Moment of inertia matrix expressed in the body-fixed frame is defined as follows:
 \begin{equation}
-J = J_b + \sum_{i=1}^{n}J_i
+\text{J} = \text{J}_b + \sum_{i=1}^{n}\text{J}_i
 \end{equation}
-where $J_b$ is body and $J_i$ is moment of inertia of some mass element outside the origin of the body-fixed frame. Using the parallel axis theorem, one is able to calculate $J_i$ while knowing moment of inertia around its CoG:
+where $\text{J}_b$ is body and $\text{J}_i$ is moment of inertia of some mass element outside the origin of the body-fixed frame. Using the parallel axis theorem, one is able to calculate $\text{J}_i$ while knowing moment of inertia around its CoG:
 \begin{equation}
-J_i = J_{i,CoG} + m_i( \textbf{r}_i^T \cdot  \textbf{r}_i \text{I}_{3 \times 3} -  \textbf{r}_i \cdot  \textbf{r}_i^T)
+\text{J}_i = \text{J}_{i,CoG} + m_i( \textbf{r}_i^T \cdot  \textbf{r}_i \text{I}_{3 \times 3} -  \textbf{r}_i \cdot  \textbf{r}_i^T)
 \end{equation}
 Either four moving masses or the manipulator payload will be taken in consideration when calculating each moment of inertia.
 
@@ -42,7 +42,7 @@ The equations of motion expressed in the inertial frame while taking in consider
 	\dot{\textbf{x}} = \textbf{v} \label{model1}\\
 	m_t\dot{\textbf{v}} + m_tg\textbf{e}_3 - m_T\text{R}  \textbf{r}_{CoG} \times \dot{\mb{\Omega}} - m_t\text{R}\hat{\mb{\Omega}}\hat{ \textbf{r}}_{CoG}\mb{\Omega} = f\text{R}\textbf{e}_3 \label{model2} \\
 	\dot{\text{R}} = \text{R}\hat{\mb{\Omega}} \label{model3} \\
-	J \dot{\mb{\Omega}} + \mb{\Omega} \times J \mb{\Omega} + m_t  \textbf{r}_{CoG} \times \text{R}^T \dot{\textbf{v}} = \textbf{M} \label{model4}
+	\text{J} \dot{\mb{\Omega}} + \mb{\Omega} \times \text{J} \mb{\Omega} + m_t  \textbf{r}_{CoG} \times \text{R}^T \dot{\textbf{v}} = \textbf{M} \label{model4}
 \end{gather}
 
 \noindent The \textit{hat map} is an operator equivalent to the expression $\hat{x}y = \textbf{x} \times y$. It maps elements of $\mathbb{R}^3$ to the so(3) Lie algebra. \\
@@ -50,7 +50,7 @@ The equations of motion expressed in the inertial frame while taking in consider
 \noindent The following terms are defined as:
 
 \begin{itemize}
-	\item $J \in \mathbb{R}^{3 \times 3}$ - Moment of inertia matrix w.r.t. the body-fixed frame
+	\item $\text{J} \in \mathbb{R}^{3 \times 3}$ - Moment of inertia matrix w.r.t. the body-fixed frame
 	
 	\item $\text{R} \in SO(3)$ - Rotation matrix from the body fixed frame to the inertial frame
 	
@@ -91,8 +91,44 @@ Total thrust can be expressed as:
 	f = \sum_{1}^{4}f_i
 \end{equation}
 and total moment acting in the body-fixed frame as:
+\begin{align}
+	\begin{split}
+	M = [&m_{p}gd_x  \textbf{e}_1 \cdot \textbf{b}_{3,d} , \\
+	&m_{p}gd_y \textbf{e}_2 \cdot \textbf{b}_{3,d}, \\
+	&b_m(-f_1 + f_2 - f_3 + f_4)]
+	\end{split}
+\end{align}
+Using f and M as control inputs of the system one is able to obtain the desired force of each rotor and the control offset $d_x$ and $d_y$ for either moving masses or the carried payload. While the control offsets are able to be directly applied as moving mass control inputs, in the manipulator case they will be converted to $\Delta q_1, \Delta q_2, \Delta q_3$. Such conversion will be done using the inverse Jacobian of the manipulator end effector.\\
+Direct Jacobian matrix is presented as follows:
 \begin{equation}
-	M = [m_{1}gd_x \cdot b_{3,dx} ,m_{2}gd_y \cdot b_{3,dy},b_m(-f_1 + f_2 - f_3 + f_4)]
+	\begin{bmatrix}
+		d_x \\
+		d_y
+	\end{bmatrix}
+	\, = \, 
+	\begin{bmatrix}
+		l_1\text{cos}(q_1) & l_2 \text{cos}(q_1 + q_2) & l_3 \text{cos}(q_1 + q_2 + q_3) \\
+		l_1\text{sin}(q_1) & l_2 \text{sin}(q_1 + q_2) & l_3 \text{sin}(q_1 + q_2 + q_3) 
+	\end{bmatrix}
+	\cdot 
+	\begin{bmatrix}
+		\Delta q_1 \\
+		\Delta q_2 \\
+		\Delta q_3
+	\end{bmatrix}
 \end{equation}
-Using f and M as control inputs of the system one is able to obtain the desired force of each rotor and the control offset $d_x$ and $d_y$ for either moving masses or the carried payload. While the control offsets are able to be directly applied as moving mass control inputs, in the manipulator case they will be converted to $dq_1, dq_2, dq_3$. Such conversion will be done using the inverse Jacobian of the manipulator end effector.\\
+where $l_1$, $l_2$ and $l_3$ are the manipulator link lengths, while $q_1$, $q_2$ and $q_3$ are current actuator angles. Using Jacobian pseudinverse, incremental update rule for actuator angles can be obtained as follows:
+\begin{equation}
+	\begin{bmatrix}
+	\Delta q_1 \\
+	\Delta q_2 \\
+	\Delta q_3
+	\end{bmatrix} 
+	\, = \, \Ja^{-1} (q_1, q_2, q_3) \cdot
+	\begin{bmatrix}
+	d_x \\
+	d_y
+	\end{bmatrix}
+\end{equation}
+ \\
 Manipulator and moving mass actuator dynamics along with the change in desired rotor force will be regarded as instantaneous while presenting the controller synthesis and stability conditions. They will, however, be included within the Gazebo simulation environment.
