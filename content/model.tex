@@ -21,7 +21,7 @@ The following terms are defined as:
 	\item $m_t \in \mathbb{R}$ - Mass of the whole UAV
 \end{itemize}
 
-When considering center of gravity in the case of UAV with the manipulator, due to the antisymmetric configuration of the links its effect on center of gravity gets mutually cancelled out. The remaining formula follows:
+When considering center of gravity in the case of UAV with the manipulator, due to the antisymmetric configuration of the links its effect on center of gravity gets mutually canceled out. The remaining formula follows:
 \begin{equation}
 	\textbf{r}_{CoG} = \frac{m_p\textbf{r}_l + m_p\textbf{r}_r}{m_t}
 \end{equation}
@@ -66,7 +66,6 @@ The equations of motion expressed in the inertial frame while taking in consider
 \end{itemize}
 \indent Equations \ref{model1}, \ref{model2}, \ref{model3} and \ref{model4} describe the dynamical flow of a rotating and translating rigid body in terms of evolution of $(\text{R},\textbf{x},\mb{\Omega},\dot{\textbf{x}})\in \text{TSE}(3)$ on the tangent bundle of SE(3). \\
 It is important to note that the changes in moment of inertia and center of gravity have been omitted in favor of simplicity in equations \ref{model2} and \ref{model4}. The complete model dynamics in the inertial frame are presented in the appendix.\\
-
 \indent Height and yaw of the UAV is controlled by variations in rotor velocity, whereas roll and pitch by variations in center of gravity. It is assumed that first and third propeller rotate clockwise, while second and fourth rotate counter-clockwise. The relation between moments, thrust and rotor velocity is the following:
 \begin{gather}
 	f_i = b_f \omega_{i}^2 \label{force}\\
@@ -95,5 +94,5 @@ and total moment acting in the body-fixed frame as:
 \begin{equation}
 	M = [m_{1}gd_x \cdot b_{3,dx} ,m_{2}gd_y \cdot b_{3,dy},b_m(-f_1 + f_2 - f_3 + f_4)]
 \end{equation}
-Using f and M as control inputs of the system one is able to obtain the desired force of each rotor and the control offset $d_x$ and $d_y$ for either moving masses or the carried payload. While the control offsets are able to be directly applied as moving mass control inputs, in the manipulator case they will be converted to $dq_1, dq_2, dq_3$. Such conversion will be done using the inverse Jacobian of the manipulator end effector.5\\
+Using f and M as control inputs of the system one is able to obtain the desired force of each rotor and the control offset $d_x$ and $d_y$ for either moving masses or the carried payload. While the control offsets are able to be directly applied as moving mass control inputs, in the manipulator case they will be converted to $dq_1, dq_2, dq_3$. Such conversion will be done using the inverse Jacobian of the manipulator end effector.\\
 Manipulator and moving mass actuator dynamics along with the change in desired rotor force will be regarded as instantaneous while presenting the controller synthesis and stability conditions. They will, however, be included within the Gazebo simulation environment.
