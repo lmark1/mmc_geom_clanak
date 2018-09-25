@@ -44,7 +44,7 @@ Taking in consideration the proposed system dynamics \ref{model2} and \ref{model
 \begin{align}
 	\begin{split}
 		\textbf{M} = -& \text{k}_\text{R} \textbf{e}_\text{R} - \text{k}_\Omega \textbf{e}_\Omega \\
-			+& \mb{\Omega} \times J\mb{\Omega} - J(\hat{\mb{\Omega}}\text{R}^T\text{R}_d\mb{\Omega}_d - \text{R}^T\text{R}_d\dot{\mb{\Omega}}_d) \\
+			+& \mb{\Omega} \times \text{J}\mb{\Omega} - \text{J}(\hat{\mb{\Omega}}\text{R}^T\text{R}_d\mb{\Omega}_d - \text{R}^T\text{R}_d\dot{\mb{\Omega}}_d) \\
 			+& m\textbf{r}_{CoG} \times \text{R}^T \ddot{\textbf{x}}  \label{moment_control}
 	\end{split}
 \end{align}
@@ -93,8 +93,8 @@ In this section linear and angular error dynamics will be presented. First of al
 	\end{split} \\
 	\label{ang_dynamics_full}
 	\begin{split}
-		J\textbf{e}_\Omega = &\textbf{M} - \mb{\Omega} \times J\mb{\Omega} \\
-			&+ J(\hat{\mb{\Omega}}\text{R}^T\text{R}_d\mb{\Omega}_d - \text{R}^T\text{R}_d\dot{\mb{\Omega}}_d) \\
+		\text{J}\textbf{e}_\Omega = &\textbf{M} - \mb{\Omega} \times \text{J}\mb{\Omega} \\
+			&+ \text{J}(\hat{\mb{\Omega}}\text{R}^T\text{R}_d\mb{\Omega}_d - \text{R}^T\text{R}_d\dot{\mb{\Omega}}_d) \\
 			&+ m\textbf{r}_{CoG} \times \text{R}^T \ddot{\textbf{x}}
 	\end{split}
 \end{align}
@@ -107,7 +107,7 @@ In this section linear and angular error dynamics will be presented. First of al
 \noindent After substituting control force from \ref{force_control} and \ref{moment_control} in \ref{lin_dynamics_full} and \ref{ang_dynamics_full} respectively the final form of error dynamics is obtained:
 \begin{gather}
 	m\textbf{e}_v = -k_x \textbf{e}_x - k_v \textbf{e}_v + \textbf{X} \label{error_dynamics_linear}\\ 
-	J\textbf{e}_\Omega = -k_\text{R} \textbf{e}_\text{R} - \text{k}_\Omega \textbf{e}_\Omega \label{error_dynamics_angular}
+	\text{J}\textbf{e}_\Omega = -k_\text{R} \textbf{e}_\text{R} - \text{k}_\Omega \textbf{e}_\Omega \label{error_dynamics_angular}
 \end{gather}
 
 Having started with a different mathematical model of the UAV than the previous research done on this subject, applying the newly formed control terms \ref{force_control} and \ref{moment_control} and taking in consideration initial assumptions \ref{condition1} and \ref{condition2} one is able to derive identical translational and rotational error dynamics as found in \cite{LeeClanak1}, \cite{LeeClanak4}. \\
@@ -116,7 +116,7 @@ Therefore, to avoid redundancy, the full stability proof will not be presented i
 If the initial UAV configuration satisfies the following conditions:
 \begin{gather}
 	\Psi (\text{R}(0), \text{R}_d(0)) < 2 \\
-	||\textbf{e}_\Omega(0)||^2 < \frac{2}{\lambda_{min}(J)}k_\text{R}(2 - \Psi(\text{R}(0), \text{R}_d(0))
+	||\textbf{e}_\Omega(0)||^2 < \frac{2}{\lambda_{min}(\text{J})}k_\text{R}(2 - \Psi(\text{R}(0), \text{R}_d(0))
 \end{gather}
 it can be shown that tracking errors of the whole system will reach zero-equilibrium state and the attitude function will be exponentially bounded as:
 \begin{equation}
