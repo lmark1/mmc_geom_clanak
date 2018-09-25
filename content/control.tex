@@ -79,7 +79,7 @@ Derivatives of $\text{R}_d$ are easily calculated using the backwards differenti
 
 In this section linear and angular error dynamics will be presented. First of all, derivatives over time need to be calculated for linear \ref{linear_error} and angular \ref{angular_error} tracking errors:
 \begin{gather}
-	\textbf{e}_v = \ddot{\textbf{x}} - \ddot{\textbf{x}}_d \label{linear_error_dynamics}\\
+	\textbf{e}_v = \dot{\textbf{x}} - \dot{\textbf{x}}_d \label{linear_error_dynamics}\\
 	\textbf{e}_\Omega = \dot{\mb{\Omega}} + \hat{\mb{\Omega}}\text{R}^T\text{R}_d\mb{\Omega}_d - \text{R}^T\text{R}_d\dot{\mb{\Omega}}_d \label{angular_error_dynamics}
 \end{gather}
 
@@ -123,3 +123,10 @@ it can be shown that tracking errors of the whole system will reach zero-equilib
 	\Psi(\text{R}(t), \text{R}_d(t)) \leq \text{min}\{2, \alpha e^{-\beta t} \}
 \end{equation}
 for some positive constants $\alpha$ and $\beta$.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\columnwidth]{./pictures/ControlScheme.png}	
+	\label{fig:control_scheme}
+	\caption{Control scheme for the case of UAV carrying the payload. It is important to note that for the case of UAV with moving masses, \textit{Inverse Jacobian} block will be omitted and control inputs $d_x$ and $d_y$ will be directly sent to the moving mass actuators.}
+\end{figure}
