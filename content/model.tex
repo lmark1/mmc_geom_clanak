@@ -45,6 +45,7 @@ The equations of motion expressed in the inertial frame while taking in consider
 	\text{J} \dot{\mb{\Omega}} + \mb{\Omega} \times \text{J} \mb{\Omega} + m_t  \textbf{r}_{CoG} \times \text{R}^T \dot{\textbf{v}} = \textbf{M} \label{model4}
 \end{gather}
 
+\todo[inline]{boldati ovo ispod}
 \noindent The \textit{hat map} is an operator equivalent to the expression $\hat{x}y = \textbf{x} \times y$. It maps elements of $\mathbb{R}^3$ to the so(3) Lie algebra. \\
 
 \noindent The following terms are defined as:
@@ -72,7 +73,8 @@ The equations of motion expressed in the inertial frame while taking in consider
 	\caption{UAV models with moving masses (left) and manipulators (right) along with their respective coordinate systems.}
 \end{figure}
 
-\indent Equations \ref{model1}, \ref{model2}, \ref{model3} and \ref{model4} describe the dynamical flow of a rotating and translating rigid body in terms of evolution of $(\text{R},\textbf{x},\mb{\Omega},\dot{\textbf{x}})\in \text{TSE}(3)$ on the tangent bundle of SE(3). \\
+\todo[inline]{ ref u eqref, dodati zarez iza jednadžbe ako se nastavlja u iducem redu}
+\indent Equations \eqref{model1}, \ref{model2}, \ref{model3} and \ref{model4} describe the dynamical flow of a rotating and translating rigid body in terms of evolution of $(\text{R},\textbf{x},\mb{\Omega},\dot{\textbf{x}})\in \text{TSE}(3)$ on the tangent bundle of SE(3). \\
 It is important to note that the changes in moment of inertia and center of gravity have been omitted in favor of simplicity in equations \ref{model2} and \ref{model4}. The complete model dynamics in the inertial frame are presented in the appendix.\\
 \indent Height and yaw of the UAV is controlled by variations in rotor velocity, whereas roll and pitch by variations in center of gravity. It is assumed that first and third propeller rotate clockwise, while second and fourth rotate counter-clockwise. The relation between moments, thrust and rotor velocity is the following:
 \begin{gather}
@@ -99,6 +101,7 @@ Total thrust can be expressed as:
 	f = \sum_{1}^{4}f_i
 \end{equation}
 and total moment acting in the body-fixed frame as:
+\todo[inline]{boldati ovdje}
 \begin{align}
 	\begin{split}
 	M = [&m_{p}gd_x  \textbf{e}_1 \cdot \textbf{b}_{3,d} , \\
