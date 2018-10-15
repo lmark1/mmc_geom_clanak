@@ -101,13 +101,13 @@ After substituting control force from \ref{force_control} and \ref{moment_contro
 
 \subsection{Stability discussion}
 
-Having started with a different mathematical model of the UAV than the previous research done on this subject, applying the newly formed control terms \ref{force_control} and \ref{moment_control} and taking in consideration initial assumptions \ref{condition1} and \ref{condition2} one is able to derive identical translational and rotational error dynamics as found in \cite{LeeClanak1}, \cite{LeeClanak4}. \\
-Therefore, to avoid redundancy, the full stability proof will not be presented in this paper. However, the final conclusions for exponential asymptotic stability of the attitude error function and attraction to the zero-equilibrium state of tracking errors will be outlined. \\
+Having started with a different mathematical model than previous research done on this subject, applying the newly formed control terms \ref{force_control} and \ref{moment_control} and taking in consideration initial assumption \ref{condition2} identical translational and rotational error dynamics as found in \cite{LeeClanak1}, \cite{LeeClanak4}. are derived.\\
+Therefore, to avoid redundancy, the complete stability proof is omitted for brevity. Instead, only final conclusions for exponential asymptotic stability of the attitude error function and attraction to the zero-equilibrium state of tracking errors will be outlined as found in \cite{LeeClanak1}.
 
-If the initial UAV configuration satisfies the following conditions:
+Granted the initial UAV configuration satisfies the following conditions:
 \begin{gather}
 	\Psi (\text{R}(0), \text{R}_d(0)) < 2 \\
-	||\textbf{e}_\Omega(0)||^2 < \frac{2}{\lambda_{min}(\text{J})}k_\text{R}(2 - \Psi(\text{R}(0), \text{R}_d(0))
+	||\textbf{e}_\Omega(0)||^2 < \frac{2}{\lambda_{min}(\text{J})}k_\text{R}(2 - \Psi(\text{R}(0), \text{R}_d(0)) \, ,
 \end{gather}
 it can be shown that tracking errors of the whole system will reach zero-equilibrium state and the attitude function will be exponentially bounded as:
 \begin{equation}
