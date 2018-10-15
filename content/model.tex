@@ -33,14 +33,14 @@ where $\text{J}_b \in \mathbb{R}^3$ is body and $\text{J}_i \in \mathbb{R}^3$ is
 \end{equation}
 
 Now we can express the equations of motion in the inertial frame while taking in consideration CoG vector which is located outside the origin of the body-fixed frame\cite{LeeModel}. \\
-It is important to note that the changes in moment of inertia and CoG have been omitted in favor of simplicity in equations \eqref{model2} and \eqref{model4}. The complete model dynamics{\tiny } expressed in the inertial frame are presented in the appendix.
+It is important to note that the changes in moment of inertia and CoG have been omitted in favor of simplicity in equations \eqref{model2} and \eqref{model4}. The complete model dynamics{\tiny } expressed in the inertial frame are presented in \ref{sec:appendix}.
 \begin{gather}
 	\dot{\textbf{x}} = \textbf{v} \label{model1}\\
 	m_t\dot{\textbf{v}} + m_tg\textbf{e}_3 - m_t\text{R}  \textbf{r}_{CoG} \times \dot{\mb{\Omega}} - m_t\text{R}\hat{\mb{\Omega}}\hat{ \textbf{r}}_{CoG}\mb{\Omega} = f\text{R}\textbf{e}_3 \label{model2} \\
 	\dot{\text{R}} = \text{R}\hat{\mb{\Omega}} \label{model3} \\
 	\text{J} \dot{\mb{\Omega}} + \mb{\Omega} \times \text{J} \mb{\Omega} + m_t  \textbf{r}_{CoG} \times \text{R}^T \dot{\textbf{v}} = \textbf{M} \label{model4}
 \end{gather}
-\noindent The \textit{hat map} is an operator equivalent to the expression $\hat{\textbf{x}}\textbf{y} = \textbf{x} \times \textbf{y}$. It maps elements of $\mathbb{R}^3$ to the so(3) Lie algebra. \\
+The \textit{hat map} is an operator equivalent to the expression $\hat{\textbf{x}}\textbf{y} = \textbf{x} \times \textbf{y}$. It maps elements of $\mathbb{R}^3$ to the so(3) Lie algebra. \\
 \noindent The following terms are defined as:
 
 \begin{itemize}
@@ -132,5 +132,5 @@ where $l_1$, $l_2$ and $l_3$ are the manipulator link lengths, while $q_1$, $q_2
 	d_y
 	\end{bmatrix}
 \end{equation}
- \\
+\\
 Manipulator and moving mass actuator dynamics along with the change in desired rotor force will be regarded as instantaneous while presenting the controller synthesis and stability conditions. However, within the Gazebo simulation environment, a certain transfer dynamic is taken in account.
