@@ -1,12 +1,10 @@
 \section{Simulation}
-In this section simulation results will be presented and analysed. Simulations are conducted in the Gazebo simulator within the ROS environment. UAV used in experiments is the $\mu$Morus which can be found in the \textit{mmuav\_gazebo} repository \cite{gitLink}, along with its parameters. Two experiments will be conducted with different methods of CoG variation: 
-
+Simulations are conducted in the Gazebo simulator within the ROS environment. UAV used in experiments is the $\mu$Morus which can be found in the \textit{mmuav\_gazebo} repository \cite{gitLink}, along with its model parameters. Two experiments will be conducted with different methods of CoG variation: 
 \begin{itemize}
 	\item UAV control based on moving masses
 	\item UAV control based on payload carried by manipulator arms
 \end{itemize}
-
-\noindent Control parameters for the first case are chosen as follows:
+Control parameters for the first case are chosen as follows:
 \begin{equation*}
 	\text{k}_x = 
 	\begin{bmatrix}
@@ -55,15 +53,14 @@ In this section simulation results will be presented and analysed. Simulations a
 	\end{bmatrix}
 \end{equation*}
 For both cases, initial parameters are obtained by considering the error dynamics \ref{error_dynamics_linear} and \ref{error_dynamics_angular} in the equilibrium state. However, they are further tuned for better performance.\\
-It is important to note that the actuator dynamics of the moving masses is taken in consideration within the Gazebo simulation environment. Furthermore there is a slight transient delay when increasing or decreasing rotor velocity which results in a non-instantaneous control force change. These phenomena were not taken in consideration while modeling the system and choosing control terms. \\
-
-The chosen trajectory tracking problem is formulated as a rotating spiral:
+It is important to note that the actuator dynamics of moving masses and manipulators is taken in consideration within the Gazebo simulation environment. Furthermore there is a slight transient delay when increasing or decreasing rotor velocity which results in a non-instantaneous control force change. \\
+\indent The chosen trajectory tracking problem is formulated as a rotating spiral:
 \begin{gather*}
 	\textbf{x}_d(t) = [0.4\text{t}; \, 0.5\text{sin}(\pi\text{t}); \, 0.6\text{cos}(\pi\text{t}) + 2] \\
 	\textbf{b}_{1,d}(t) = [\text{cos}\left(\frac{\pi}{5}\text{t}\right); \, \text{sin}\left(\frac{\pi}{5}\text{t}\right); \, 0]
 \end{gather*}
 \noindent In the first case the total trajectory time is 20s while in the second case it will last 30s. Initial position and orientation is chosen at the start of the trajectory. \\
-
+\todo[inline]{Simulirati sa masama.}
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=\columnwidth]{./pictures/mmc_traj_pos.png}
