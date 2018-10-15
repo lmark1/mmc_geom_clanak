@@ -1,4 +1,4 @@
-In this section rotating body dynamics with variations in center of gravity will be derived.
+In this section rotating body dynamics with variations in center of gravity is derived.
 General form of Euler-Lagrange dynamics for a rotating rigid body in SE(3) configuration manifold in the body-fixed frame as presented in \cite{LeeModel}:
 \begin{gather}
 	\frac{d}{dt} \left( \frac{\partial \La}{\partial \mb{\Omega}} \right)
@@ -9,54 +9,46 @@ General form of Euler-Lagrange dynamics for a rotating rigid body in SE(3) confi
 	+ \mb{\Omega} \times \frac{\partial \La}{\partial \textbf{v}} 
 	- \text{R}^T \frac{\partial \La}{\partial x} = 0 \label{general2}
 \end{gather}
-
-For the the proposed UAS with variations in center of mass the Lagrangian is:
+For the the proposed UAV with variations in CoG the Lagrangian is:
 \begin{equation}
-	\La(\text{R},x,\mb{\Omega},\textbf{v}) = \frac{1}{2}\mb{\Omega}^TJ\mb{\Omega} + m \mb{\Omega}^T \hat{\textbf{r}}_{cm}\textbf{v} + \frac{1}{2}m\textbf{v}^T\textbf{v} - U(\text{R},\textbf{x})
+	\La(\text{R},x,\mb{\Omega},\textbf{v}) = \frac{1}{2}\mb{\Omega}^TJ\mb{\Omega} + m \mb{\Omega}^T \hat{\textbf{r}}_{cm}\textbf{v} + \frac{1}{2}m\textbf{v}^T\textbf{v} - U(\text{R},\textbf{x}) \, ,
 \end{equation}
-
-\noindent where $U(\text{R}, \textbf{x})$ is the potential energy of the system. It is important to note that $J$ and $\textbf{r}_{cm}$ are variable over time. \\
+where $U(\text{R}, \textbf{x})$ is the potential energy of the system. It is important to note that \text{J} and $\textbf{r}_{cm}$ are variable over time. \\
 Lagrangian derivatives needed for the general form equations \ref{general1} and \ref{general2} are:
-
 \begin{gather}
 	\frac{\partial \La}{\partial \mb{\Omega}} = J\mb{\Omega} + m \hat{\textbf{r}}_{cm})\textbf{v} \label{d1}\\ 
 	\frac{d}{dt} \left( \frac{\partial \La}{\partial \mb{\Omega}} \right) = \dot{J} \mb{\Omega} + J \dot{\mb{\Omega}} + m \dot{\textbf{r}}_{cm} \times \textbf{v} + m \textbf{r}_{cm} \times \dot{\textbf{v}} \label{d2}\\ 
 	\frac{\partial \La}{\partial \textbf{v}} = m\textbf{v} - m\textbf{r}_{cm} \times \mb{\Omega} \label{d3}\\ 
 	\frac{d}{dt} \left( \frac{\partial \La}{\partial \textbf{v}} \right) = m\dot{\textbf{v}} - m\dot{\textbf{r}}_{cm} \times \mb{\Omega} - m \textbf{r}_{cm} \times \dot{\mb{\Omega}} \label{d4}
 \end{gather}
-
 It is of interest to transfer rotation and translation dynamics in the inertial frame. This can be done using the following relations:
-
 \begin{gather}
 	\textbf{v} = \text{R}^T \dot{x} \label{inertial1}\\
 	\dot{\textbf{v}} = \text{R}^T \ddot{\textbf{x}} - \mb{\Omega} \times (\text{R}^T \dot{\textbf{x}} ) \label{inertial2} \\
 	\textbf{r}_{cm} = \text{R}^T(\textbf{x}_{cm} - \textbf{x}) \label{inertial3} \\
 	\dot{\textbf{r}}_{cm} = \text{R}^T(\dot{\textbf{x}}_{cm} - \dot{\textbf{x}}) + \text{R}^T\hat{\mb{\Omega}}\textbf{x}_{cm} - \hat{\mb{\Omega}}\text{R}^T(\textbf{x}_{cm} - \textbf{x}) \label{inertial4}
 \end{gather}
-
-
 After plugging in \ref{d1}, \ref{d2}, \ref{d3}, \ref{d4} in \ref{general1}, \ref{general2} and using \ref{inertial1}, \ref{inertial2} as transformations of velocity and acceleration to inertial frame the following equations are obtained:
 \begin{align}
 	\begin{split}
-		& J\dot{\mb{\Omega}} + m \textbf{r}_{cm} \times \text{R}^T \ddot{\textbf{x}} \\
+		J\dot{\mb{\Omega}} &+ m \textbf{r}_{cm} \times \text{R}^T \ddot{\textbf{x}} \\
 		&+ \dot{J} \mb{\Omega} + m\dot{\textbf{r}}_{cm} \times \text{R}^T \dot{\textbf{x}} \\
 		&+ \mb{\Omega} \times J\mb{\Omega} + \sum_{i=1}^{3} \textbf{r}_i \times \frac{\partial \La}{\partial \textbf{r}_i} = 0
 	\end{split}
 \end{align}
 \begin{align}
 	\begin{split}
-		& m\ddot{\textbf{x}} - m\text{R}\hat{\textbf{r}}_{cm} \dot{\mb{\Omega}} - m\text{R}\hat{\dot{\textbf{r}}}_{cm}\mb{\Omega}\\
+		m\ddot{\textbf{x}} &- m\text{R}\hat{\textbf{r}}_{cm} \dot{\mb{\Omega}} - m\text{R}\hat{\dot{\textbf{r}}}_{cm}\mb{\Omega}\\
 		&-m\text{R}\hat{\mb{\Omega}}\hat{\textbf{r}}_{cm}\mb{\Omega} + \frac{\partial U(\text{R},\textbf{x})}{\partial \textbf{x}} = 0
 	\end{split}
 \end{align}
-
-After plugging in the center of mass transform \ref{inertial3}, \ref{inertial4} the final form of dynamics is obtained:
+Finally, CoG transform \ref{inertial3}, \ref{inertial4} is included along with forces and moments acting in the body-fixed frame and potential energy of the system which gives the following model dynamics:
 \begin{align}
 	\begin{split}
-		 & J\dot{\mb{\Omega}} + m\text{R}^T(\textbf{x}_{cm} - \textbf{x}) \times \text{R}^T\ddot{\textbf{x}} + \dot{J}\mb{\Omega} \\
+		 J\dot{\mb{\Omega}} & + m\text{R}^T(\textbf{x}_{cm} - \textbf{x}) \times \text{R}^T\ddot{\textbf{x}} + \dot{J}\mb{\Omega} \\
 		 & + m\reallywidehat{\text{R}^T\dot{\textbf{x}}_{cm}}\text{R}^T\dot{\textbf{x}} - \text{R}^T\dot{\textbf{x}} \times (\text{R}^T\hat{\mb{\Omega}}\textbf{x}_{cm}) \\
 		 & - m\hat{\mb{\Omega}}\text{R}^T(\textbf{x}_{cm} - \textbf{x}) \times \text{R}^T \dot{\textbf{x}} \\
-		 & + \mb{\Omega} \times J\mb{\Omega}  + \sum_{i=1}^{3} \textbf{r}_i \times \frac{\partial \La}{\partial \textbf{r}_i} = 0
+		 & + \mb{\Omega} \times J\mb{\Omega} = \textbf{M}
 	\end{split}
 \end{align}
 \begin{align}
@@ -64,6 +56,6 @@ After plugging in the center of mass transform \ref{inertial3}, \ref{inertial4} 
 		m \ddot{\textbf{x}} &- m\text{R}\reallywidehat{\text{R}^T(\textbf{x}_{cm} - \textbf{x})}\dot{\mb{\Omega}} \\
 		& - m\text{R}\reallywidehat{\text{R}^T(\dot{\textbf{x}}_{cm} - \dot{\textbf{x}})} \mb{\Omega} \\
 		& - m\text{R}\reallywidehat{\text{R}^T\hat{\mb{\Omega}}\textbf{x}_{cm}}\mb{\Omega} \\
-		& + \frac{\partial U(\text{R},\textbf{x})}{\partial \textbf{x}} = 0
+		& + mg\textbf{e}_3 = f\text{R}\textbf{e}_3
 	\end{split}
 \end{align}

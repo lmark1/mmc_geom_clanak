@@ -1,13 +1,13 @@
 \section{Geometric control on SE(3)}
 
-The main focus of the proposed controller will be put on position tracking. Therefore, the trajectory will consist of a desired position $\textbf{x}_d(t)$ and desired heading $\textbf{b}_{1,d}$ of the body-fixed frame. Since the given position is known ahead of time, one is able to calculate both desired linear velocity $\textbf{v}_d(t)$ and acceleration $\textbf{a}_d(t)$ which will also inherently be included as inputs. \\
+The main focus of the proposed controller is put on position tracking. Therefore, the trajectory consists of a desired position $\textbf{x}_d(t)$ and desired heading $\textbf{b}_{1,d}$ of the body-fixed frame. Since the given position is known ahead of time, one is able to calculate both desired linear velocity $\textbf{v}_d(t)$ and acceleration $\textbf{a}_d(t)$ which are also inherently included as inputs. \\
 The controller is developed on the nonlinear Lie group SE(3) consisting of the rotation group SO(3) and translation group T(3). It is cascade in structure, as seen in \ref{fig:control_scheme} with position tracking block following attitude tracking block. The main advantage of using the SO(3) rotation group is to avoid any singularities or ambiguities that may arise when representing rotations with Euler angles or quaternions. \\
 Controller synthesis is carried out as follows. Firstly, position and orientation tracking errors are presented as the proportional and derivative part of the controller. In addition, nonlinear control terms are chosen to compensate proposed model dynamics. Finally, exponential stability conditions for the initial UAV configuration are shown.
 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=\columnwidth]{./pictures/ControlScheme.png}	
-	\caption{Control scheme for the case of UAV carrying the payload. It is important to note that for the case of UAV with moving masses, \textit{Inverse Jacobian} block will be omitted and control inputs $d_x$ and $d_y$ will be directly sent to the moving mass actuators.}
+	\caption{Control scheme for the case of UAV carrying the payload. It is important to note that for the case of UAV with moving masses, \textit{Inverse Jacobian} block is omitted and control inputs $d_x$ and $d_y$ are directly sent to the moving mass actuators.}
 	\label{fig:control_scheme}
 \end{figure}
 
@@ -102,14 +102,14 @@ After substituting control force from \ref{force_control} and \ref{moment_contro
 \subsection{Stability discussion}
 
 Having started with a different mathematical model than previous research done on this subject, applying the newly formed control terms \ref{force_control} and \ref{moment_control} and taking in consideration initial assumption \ref{condition2} identical translational and rotational error dynamics as found in \cite{LeeClanak1}, \cite{LeeClanak4}. are derived.\\
-Therefore, to avoid redundancy, the complete stability proof is omitted for brevity. Instead, only final conclusions for exponential asymptotic stability of the attitude error function and attraction to the zero-equilibrium state of tracking errors will be outlined as found in \cite{LeeClanak1}.
+Therefore, to avoid redundancy, the complete stability proof is omitted for brevity. Instead, only final conclusions for exponential asymptotic stability of the attitude error function and attraction to the zero-equilibrium state of tracking errors are outlined as found in \cite{LeeClanak1}.
 
 Granted the initial UAV configuration satisfies the following conditions:
 \begin{gather}
 	\Psi (\text{R}(0), \text{R}_d(0)) < 2 \\
 	||\textbf{e}_\Omega(0)||^2 < \frac{2}{\lambda_{min}(\text{J})}k_\text{R}(2 - \Psi(\text{R}(0), \text{R}_d(0)) \, ,
 \end{gather}
-it can be shown that tracking errors of the whole system will reach zero-equilibrium state and the attitude function will be exponentially bounded as:
+it can be shown that tracking errors of the whole system reaches zero-equilibrium state and the attitude function is exponentially bounded as:
 \begin{equation}
 	\Psi(\text{R}(t), \text{R}_d(t)) \leq \text{min}\{2, \alpha e^{-\beta t} \}
 \end{equation}

@@ -98,7 +98,7 @@ and total moment acting in the body-fixed frame as:
 \end{align}
 where $d_x \in \mathbb{R}$ and $d_y \in \mathbb{R}$ are moving mass or payload offsets along x and y axis respectively. \\
 Using \eqref{control:f} and \eqref{control:M} as control inputs of the system one is able to obtain the desired force of each rotor and the control offsets $d_x$ and $d_y$. While the control offsets are able to be directly applied as moving mass control inputs, in the manipulator case an additional transformation needs to take place. \\
-Both manipulators are overactuated, meaning they have three actuators while operating in a 2-DOF workspace. They are placed in a diametrically opposite configuration as seen in \ref{fig:uav_model}, therefore only a single set of infinitesimal angle increments $\Delta q_1, \Delta q_2, \Delta q_3$ will suffice as control input for both manipulators. \\
+Both manipulators are overactuated, meaning they have three actuators while operating in a 2-DOF workspace. They are placed in a diametrically opposite configuration as seen in \ref{fig:uav_model}, therefore only a single set of infinitesimal angle increments $\Delta q_1, \Delta q_2, \Delta q_3$ is sufficient as control input for both manipulators. \\
 Conversion from payload offsets to angle increments is done using the inverse Jacobian of the manipulator end effector. Direct Jacobian matrix is presented as follows:
 \begin{gather}
 	\begin{bmatrix}
@@ -133,4 +133,4 @@ where $l_1$, $l_2$ and $l_3$ are the manipulator link lengths, while $q_1$, $q_2
 	\end{bmatrix}
 \end{equation}
 \\
-Manipulator and moving mass actuator dynamics along with the change in desired rotor force will be regarded as instantaneous while presenting the controller synthesis and stability conditions. However, within the Gazebo simulation environment, a certain transfer dynamic is taken in account.
+Manipulator and moving mass actuator dynamics along with the change in desired rotor force is regarded as instantaneous while presenting the controller synthesis and stability conditions. However, within the Gazebo simulation environment, a certain transfer dynamic is taken in account.
