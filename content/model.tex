@@ -1,6 +1,6 @@
 \section{Mathematical model}
 
-\subsection{UAV model}
+\subsection{UAV model}\todo{Subsection ne bi trebao poceti odmah nakon sectiona}
 First of all, it is necessary to introduce a fixed inertial reference frame $\{  \textbf{e}_1,  \textbf{e}_2,  \textbf{e}_3  \}$ and a body-fixed frame $ \{  \textbf{b}_1,  \textbf{b}_2,  \textbf{b}_3 \}$. Next, we present
 a general equation for calculating CoG vector from the origin of the body-fixed frame as follows: 
 \begin{equation}
@@ -27,13 +27,13 @@ Moment of inertia matrix expressed in the body-fixed frame is defined as follows
 \begin{equation}
 \text{J} = \text{J}_b + \sum_{i=1}^{n}\text{J}_i \, ,
 \end{equation}
-where $\text{J}_b \in \mathbb{R}^3$ is body and $\text{J}_i \in \mathbb{R}^3$ is moment of inertia of some mass element outside the origin of the body-fixed frame. Using the parallel axis theorem, one is able to calculate $\text{J}_i$ while knowing moment of inertia around its CoG:
+where $\text{J}_b \in \mathbb{R}^3$ is body and $\text{J}_i \in \mathbb{R}^3$ is \todo{the} moment of inertia of some mass element outside the origin of the body-fixed frame. Using the parallel axis theorem, one is able to calculate $\text{J}_i$ while knowing \todo{the} moment of inertia around its CoG:
 \begin{equation}
 \text{J}_i = \text{J}_{i,CoG} + m_i( \textbf{r}_i^T \cdot  \textbf{r}_i \text{I}_{3 \times 3} -  \textbf{r}_i \cdot  \textbf{r}_i^T)
 \end{equation}
 
 Now we can express the equations of motion in the inertial frame while taking in consideration CoG vector which is located outside the origin of the body-fixed frame\cite{LeeModel}. \\
-It is important to note that the changes in moment of inertia and CoG have been omitted in favor of simplicity in equations \eqref{model2} and \eqref{model4}. The complete model dynamics{\tiny } expressed in the inertial frame are presented in \ref{sec:appendix}.
+It is important to note that the changes in \todo{the} moment of inertia and CoG have been omitted in favor of simplicity in equations \eqref{model2} and \eqref{model4}. The complete model dynamics{\tiny } expressed in the inertial frame are presented in \ref{sec:appendix}.
 \begin{gather}
 	\dot{\textbf{x}} = \textbf{v} \label{model1}\\
 	m_t\dot{\textbf{v}} + m_tg\textbf{e}_3 - m_t\text{R}  \textbf{r}_{CoG} \times \dot{\mb{\Omega}} - m_t\text{R}\hat{\mb{\Omega}}\hat{ \textbf{r}}_{CoG}\mb{\Omega} = f\text{R}\textbf{e}_3 \label{model2} \\
@@ -67,7 +67,7 @@ The \textit{hat map} is an operator equivalent to the expression $\hat{\textbf{x
 \noindent Equations \eqref{model1}, \eqref{model2}, \eqref{model3} and \eqref{model4} describe the dynamical flow of a rotating and translating rigid body in terms of evolution of $(\text{R},\textbf{x},\mb{\Omega},\dot{\textbf{x}})\in \text{TSE}(3)$ on the tangent bundle of SE(3). 
 
 \subsection{Control inputs}
-\indent Height and yaw of the UAV is controlled by variations in rotor velocity, whereas roll and pitch by variations in CoG. It is assumed that first and third propeller rotate clockwise, while second and fourth rotate counter-clockwise. The relation between moments, thrust and rotor velocity is the following:
+\indent Height and yaw of the UAV is controlled by \todo{with} variations in rotor velocity, whereas roll and pitch by \todo{with} variations in CoG. It is assumed that \todo{the} first and \todo{the} third propeller rotate clockwise, while \todo{the} second and \todo{the} fourth rotate counter-clockwise. The relation between moments, thrust and rotor velocity is the following:
 \begin{gather}
 	f_i = b_f \omega_{i}^2 \label{force}\\
 	\tau_i = (-1)^i b_m f_i \, ,
@@ -133,4 +133,4 @@ where $l_1$, $l_2$ and $l_3$ are the manipulator link lengths, while $q_1$, $q_2
 	\end{bmatrix}
 \end{equation}
 \\
-Manipulator and moving mass actuator dynamics along with the change in desired rotor force is regarded as instantaneous while presenting the controller synthesis and stability conditions. However, within the Gazebo simulation environment, a certain transfer dynamic is taken in account.
+Manipulator and moving mass actuator dynamics along with the change in desired rotor force is regarded as instantaneous while presenting the controller synthesis and stability conditions. However, within the Gazebo simulation environment, a certain transfer dynamic is taken in\todo{into}  account.

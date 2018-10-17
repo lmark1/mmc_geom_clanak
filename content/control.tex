@@ -1,16 +1,16 @@
 \section{Geometric control on SE(3)}
 
-The main focus of the proposed controller is put on position tracking. Therefore, the trajectory consists of a desired position $\textbf{x}_d(t)$ and desired heading $\textbf{b}_{1,d}$ of the body-fixed frame. Since the given position is known ahead of time, one is able to calculate both desired linear velocity $\textbf{v}_d(t)$ and acceleration $\textbf{a}_d(t)$ which are also inherently included as inputs. \\
+The main focus of the proposed controller is put on position tracking. Therefore, the trajectory consists of a desired position $\textbf{x}_d(t)$ and \todo{a?}  desired heading $\textbf{b}_{1,d}$ of the body-fixed frame. Since the given position is known ahead of time, one is able to calculate both desired linear velocity $\textbf{v}_d(t)$ and acceleration $\textbf{a}_d(t)$ which are also inherently included as inputs. \\
 The controller is developed on the nonlinear Lie group SE(3) consisting of the rotation group SO(3) and translation group T(3). It is cascade in structure, as seen in \ref{fig:control_scheme} with position tracking block following attitude tracking block. The main advantage of using the SO(3) rotation group is to avoid any singularities or ambiguities that may arise when representing rotations with Euler angles or quaternions. \\
-Controller synthesis is carried out as follows. Firstly, position and orientation tracking errors are presented as the proportional and derivative part of the controller. In addition, nonlinear control terms are chosen to compensate proposed model dynamics. Finally, exponential stability conditions for the initial UAV configuration are shown.
+Controller synthesis is carried out as follows. Firstly\todo{First} , position and orientation tracking errors are presented as the proportional and derivative part of the controller. In addition, nonlinear control terms are chosen to compensate proposed model dynamics. Finally, exponential stability conditions for the initial UAV configuration are shown.
 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=\columnwidth]{./pictures/ControlScheme.png}	
-	\caption{Control scheme for the case of UAV carrying the payload. It is important to note that for the case of UAV with moving masses, \textit{Inverse Jacobian} block is omitted and control inputs $d_x$ and $d_y$ are directly sent to the moving mass actuators.}
+	\caption{Control scheme for the case of UAV carrying the payload. It is important to note that for the case of UAV with moving masses, \textit{Inverse Jacobian} block is omitted and control inputs $d_x$ and $d_y$ are directly sent to the moving mass actuators .}
 	\label{fig:control_scheme}
 \end{figure}
-
+\todo[inline]{Fig 2 caption -Ne bi ja tako reko, Jacobian je u tom slucaju jedinicna matrica, ja bi tako gledao na stvari}
 \subsection{Tracking errors}
 
 Compatible attitude error function and transport map between tangent bundles of SO(3) are chosen as suggested in \cite{bulloBook} and confirmed in research regarding geometric control with aerial vehicles \cite{LeeClanak1}, \cite{LeeClanak2}, \cite{LeeClanak3}, \cite{LeeClanak4}. Attitude error function on SO(3) $	\Psi(\text{R}, \text{R}_d)$  along with its compatible transport map $\Ta(\text{R}, \text{R}_d)$ are chosen as:
@@ -54,7 +54,7 @@ After defining all tracking errors, one can start constructing the control terms
 	\textbf{b}_{3,d} = \frac{\textbf{A}}{|| \textbf{A} ||} \\
 	\textbf{b}_{1,c} = -\frac{(\textbf{b}_{3,d} \times (\textbf{b}_{3,d} \times \textbf{b}_{1,d}))}{||\textbf{b}_{3,d} \times \textbf{b}_{1,d}||}
 \end{gather}
-The chosen constraint for the trajectory tracking problem differs slightly from the one proposed in \cite{LeeClanak4} due to the fact that different model dynamics are considered in this paper. New trajectory constraints are presented as follows:
+The chosen constraint for the trajectory tracking problem differs slightly from the one proposed in \cite{LeeClanak4} due to the fact that different  model dynamics \todo{Variable COM? specificirati} are considered in this paper. New trajectory constraints are presented as follows:
 \begin{equation}
 	|| mge_3 + m\ddot{\textbf{x}}_d 
 	- m\text{R}\textbf{r}_{CoG}  \times \dot{\mb{\Omega}} - m\text{R}\hat{\mb{\Omega}}\hat{\textbf{r}}_{CoG}\mb{\Omega}|| < B \, , \label{condition2}
@@ -65,11 +65,11 @@ where B is some positive constant. \\
 	\hat{\mb{\Omega}}_d = \text{R}_d^T \dot{\text{R}}_d \\
 	\dot{\hat{\mb{\Omega}}}_d = - \hat{\mb{\Omega}}_d\hat{\mb{\Omega}}_d + \text{R}_d^T \ddot{\text{R}}_d
 \end{gather}
-Derivatives of $\text{R}_d$ are easily calculated using the backwards differentiation method. It has to be noted that due to stability issues, computation rate of desired angular velocity and acceleration has to be lesser than the overall simulation rate. For further implementation details, please refer to \cite{gitLink}.
+Derivatives of $\text{R}_d$ are easily calculated using the backwards differentiation method. \todo{Another important note?}It has to be noted that due to stability issues, computation rate of \todo{the} desired angular velocity and acceleration has to be lesser than the overall simulation rate. For further implementation details, please refer to \cite{gitLink}.
 
 \subsection{Error dynamics} \label{ssec:error_dynamics}
 
-In order to express error dynamics, one needs to calculate time derivatives of linear \ref{linear_error} and angular \ref{angular_error} tracking errors:
+In order to express error dynamics, one needs to calculate \todo{the} time derivatives of linear \ref{linear_error} and angular \ref{angular_error} tracking errors:
 \begin{gather}
 	\textbf{e}_v = \dot{\textbf{x}} - \dot{\textbf{x}}_d \label{linear_error_dynamics}\\
 	\textbf{e}_\Omega = \dot{\mb{\Omega}} + \hat{\mb{\Omega}}\text{R}^T\text{R}_d\mb{\Omega}_d - \text{R}^T\text{R}_d\dot{\mb{\Omega}}_d \label{angular_error_dynamics}
@@ -101,7 +101,7 @@ After substituting control force from \ref{force_control} and \ref{moment_contro
 
 \subsection{Stability discussion}
 
-Having started with a different mathematical model than previous research done on this subject, applying the newly formed control terms \ref{force_control} and \ref{moment_control} and taking in consideration initial assumption \ref{condition2} identical translational and rotational error dynamics as found in \cite{LeeClanak1}, \cite{LeeClanak4}. are derived.\\
+Having started with a different mathematical model than previous research done on this subject, applying the newly formed control terms \ref{force_control} and \ref{moment_control} and taking in consideration initial assumption \ref{condition2} identical translational and rotational error dynamics as found in \cite{LeeClanak1}, \cite{LeeClanak4}. are derived.\todo{dugacko i lose sroceno (tocaka prije kraja?)}\\
 Therefore, to avoid redundancy, the complete stability proof is omitted for brevity. Instead, only final conclusions for exponential asymptotic stability of the attitude error function and attraction to the zero-equilibrium state of tracking errors are outlined as found in \cite{LeeClanak1}.
 
 Granted the initial UAV configuration satisfies the following conditions:

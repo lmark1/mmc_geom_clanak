@@ -2,7 +2,7 @@
 Simulations are conducted in the Gazebo simulator within the ROS environment. UAV used in experiments is the $\mu$Morus which can be found in the \textit{mmuav\_gazebo} repository \cite{gitLink}, along with its model parameters. Two experiments will be conducted with different methods of CoG variation: 
 \begin{itemize}
 	\item UAV control based on moving masses
-	\item UAV control based on payload carried by manipulator arms
+	\item UAV control based on payload carried by manipulator arms\todo{zar ih nismo vec gore predstavili?}
 \end{itemize}
 Control parameters for the first case are chosen as follows:
 \begin{equation*}
@@ -52,7 +52,7 @@ Control parameters for the first case are chosen as follows:
 		0 & 0 & 20
 	\end{bmatrix}
 \end{equation*}
-For both cases, initial parameters are obtained by considering the error dynamics \ref{error_dynamics_linear} and \ref{error_dynamics_angular} in the equilibrium state. However, they are further tuned for better performance.\\
+For both cases, initial parameters are obtained by considering the error dynamics \ref{error_dynamics_linear} and \ref{error_dynamics_angular} in the equilibrium state. However, they are further tuned for better performance.\todo{how tuned?}\\
 It is important to note that the actuator dynamics of moving masses and manipulators is taken in consideration within the Gazebo simulation environment. Furthermore there is a slight transient delay when increasing or decreasing rotor velocity which results in a non-instantaneous control force change. \\
 \indent The chosen trajectory tracking problem is formulated as a rotating spiral:
 \begin{gather*}
@@ -98,7 +98,7 @@ It is important to note that the actuator dynamics of moving masses and manipula
 	\caption{Comparison of the desired $\textbf{x}_d$ and measured position values $\textbf{x}_{mv}$. (Using the manipulator control control.)}
 	\label{fig:manip_pos}
 \end{figure}
-
+\todo[inline]{nismo to rekli staviti na jednu sliku?}
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=\columnwidth]{./pictures/manip_traj_omega.png}
