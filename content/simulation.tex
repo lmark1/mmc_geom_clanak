@@ -36,15 +36,15 @@ Control parameters for the first case are chosen as follows:
 \begin{equation*}
 	\text{k}_x = 
 	\begin{bmatrix}
-		6 &  0  &  0 \\
-		0 & 6  &	0 \\ 
+		7.2 &  0  &  0 \\
+		0 & 7.2  &	0 \\ 
 		0 &  0  & 50 	
 	\end{bmatrix}
 	\, , \,	
 	\text{k}_v =
 	\begin{bmatrix}
-		2.5 & 0 & 0 \\
-		0 & 2.5 & 0 \\
+		2.6 & 0 & 0 \\
+		0 & 2.6 & 0 \\
 		0 & 0 & 20
 	\end{bmatrix}
 \end{equation*}
@@ -56,69 +56,56 @@ It is important to note that the actuator dynamics of moving masses and manipula
 	\textbf{x}_d(t) = [0.4\text{t}; \, 0.5\text{sin}(\pi\text{t}); \, 0.6\text{cos}(\pi\text{t}) + 2] \\
 	\textbf{b}_{1,d}(t) = [\text{cos}\left(\frac{\pi}{5}\text{t}\right); \, \text{sin}\left(\frac{\pi}{5}\text{t}\right); \, 0]
 \end{gather*}
-\noindent In the first case the total trajectory time is 20s while in the second case it will last 30s. Initial position and orientation is chosen at the start of the trajectory. \\
-\todo[inline]{TODO: Napraviti simulaciju manipulatora iste trajektorije kao sa masama (20s).}
-\todo[inline]{TODO: Plotati starije i nove rezultate sa manipulatorom i masama na istom grafu!}
-\begin{figure}[h!]
-	\centering
-	\includegraphics[width=\columnwidth]{./pictures/mmc_traj_pos.png}
-	\caption{Comparison of the desired $\textbf{x}_d$ and measured position values $\textbf{x}_{mv}$. (Using the moving mass control concept.)}
-	\label{fig:traj_pos}
-\end{figure}
+\noindent In both experiments trajectory lasts for 20s. Initial position and orientation is chosen at the start of the trajectory. \\
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=\columnwidth]{./pictures/mmc_traj_omega.png}
-	\caption{Comparison of desired $\mb{\Omega}_d$ and measured $\mb{\Omega}_{mv}$ angular velocity values. (Using the moving mass control concept.)}
-	\label{fig:traj_omega}
+	\includegraphics[width=\columnwidth]{./pictures/both_pos.pdf}
+	\caption{\todo[inline]{Add text...}}
+	\label{fig:traj_pos}
 \end{figure}
 
 \begin{figure}
 	\centering
 	\begin{minipage}{0.5\columnwidth}
 		\centering
-		\includegraphics[width=\columnwidth]{./pictures/mmc_traj_rotorVel_massOff.png}
+		\includegraphics[width=\columnwidth]{./pictures/mmcuav_omega.pdf}
 		\caption*{a)}
-		\label{fig:rotorVel_massOff}
+		\label{fig:mmcuav_omega}
 	\end{minipage}%
 	\begin{minipage}{0.5\columnwidth}
 		\centering
-		\includegraphics[width=\columnwidth]{./pictures/mmc_traj_rCm_attErr.png}
+		\includegraphics[width=\columnwidth]{./pictures/mmuav_omega.pdf}
 		\caption*{b)}
-		\label{fig:rCm_attErr}
+		\label{fig:mmuav_omega}
 	\end{minipage}
-	\caption{Control inputs are shown in figure a) in the following order: rotor velocities $\omega_i$ and mass offsets $r_i$. Figure b) shows first two components of CoG vector $\textbf{r}_{CoG}$ (third component is always zero since masses only move in x-y plane of the body-fixed frame) and attitude error function $\Psi$. (Using the moving mass control concept.)}
+	\caption{\todo[inline]{Add text...}}
 \end{figure}
 
-\begin{figure}[h!]
-	\centering
-	\includegraphics[width=\columnwidth]{./pictures/manip_traj_pos.png}
-	\caption{Comparison of the desired $\textbf{x}_d$ and measured position values $\textbf{x}_{mv}$. (Using the manipulator control control.)}
-	\label{fig:manip_pos}
-\end{figure}
-
-\begin{figure}[h!]
-	\centering
-	\includegraphics[width=\columnwidth]{./pictures/manip_traj_omega.png}
-	\caption{Comparison of desired $\mb{\Omega}_d$ and measured $\mb{\Omega}_{mv}$ angular velocity values. (Using the manipulator control concept)}
-	\label{fig:manip_omega}
-\end{figure}
-\begin{figure}[h!]
+\begin{figure}
 	\centering
 	\begin{minipage}{0.5\columnwidth}
 		\centering
-		\includegraphics[width=\columnwidth]{./pictures/manip_traj_control.png}
+		\includegraphics[width=\columnwidth]{./pictures/mmcuav_control_inputs.pdf}
 		\caption*{a)}
-		\label{fig:manip_control}
+		\label{fig:mmcuav_control}
 	\end{minipage}%
 	\begin{minipage}{0.5\columnwidth}
 		\centering
-		\includegraphics[width=\columnwidth]{./pictures/manip_traj_rcmPsi.png}
+		\includegraphics[width=\columnwidth]{./pictures/mmuav_control_inputs.pdf}
 		\caption*{b)}
-		\label{fig:manip_rcm}
+		\label{fig:mmuav_control}
 	\end{minipage}
-	\caption{Control inputs: rotor velocities $\omega_i$ and payload position; are shown in in figure a). Figure b) shows first two components of CoG vector $\textbf{r}_{CoG}$ and attitude error function $\Psi$.}
+	\caption{\todo[inline]{Add text...	}}
+\end{figure}
+
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=\columnwidth]{./pictures/both_cog_err.pdf}
+	\caption{\todo[inline]{Add text...}}
+	\label{fig:cog_error}
 \end{figure}
 
 \todo[inline]{TODO: komentirati sve rezultate.}
-\todo[inline]{TODO: dodati RMS za trajektorije}
+\todo[inline]{TODO: dodati MSE za trajektorije}
