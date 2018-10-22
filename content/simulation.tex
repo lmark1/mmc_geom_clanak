@@ -1,5 +1,5 @@
 \section{Simulation}
-Simulations are conducted in the Gazebo simulator within the ROS environment. UAV used in experiments is the $\mu$Morus which can be found in the \textit{mmuav\_gazebo} repository \cite{gitLink}, along with its model parameters. Two experiments will be conducted with UAVs using two different methods of CoG variation.
+Simulations are conducted in the Gazebo simulator within the ROS environment. UAV used in experiments is the $\mu$Morus which can be found in the \textit{mmuav\_gazebo} repository \cite{gitLink}, along with its model parameters. Two experiments will be conducted with UAVs using two different methods of CoG variation: MMC in the first case and payload carried by manipulators in the second case. \\
 Control parameters for the first case are chosen as follows:
 \begin{equation*}
 	\text{k}_x = 
@@ -50,18 +50,16 @@ Control parameters for the first case are chosen as follows:
 \end{equation*}
 For both cases, initial parameters are obtained by considering the error dynamics \eqref{error_dynamics_linear} and \eqref{error_dynamics_angular} in the equilibrium state. However, they are further tuned with better position tracking performance in mind.\\
 \todo[inline]{how tuned?, lovro: for better position tracking}
-It is important to note that the actuator dynamics of moving masses and manipulators is taken in consideration within the Gazebo simulation environment. Furthermore there is a slight transient delay when increasing or decreasing rotor velocity which results in a non-instantaneous control force change. \\
+It is important to note that the actuator dynamics of moving masses and manipulators is taken in consideration within the Gazebo simulation environment. Furthermore there is a slight transient delay while increasing or decreasing rotor velocity which results in a non-instantaneous control force change. \\
 \indent The chosen trajectory tracking problem is formulated as a rotating spiral:
 \begin{gather*}
 	\textbf{x}_d(t) = [0.4\text{t}; \, 0.5\text{sin}(\pi\text{t}); \, 0.6\text{cos}(\pi\text{t}) + 2] \\
 	\textbf{b}_{1,d}(t) = [\text{cos}\left(\frac{\pi}{5}\text{t}\right); \, \text{sin}\left(\frac{\pi}{5}\text{t}\right); \, 0]
 \end{gather*}
-\noindent In both experiments trajectory lasts for 20s. Initial position and orientation is chosen at the start of the trajectory. \\
-
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=\columnwidth]{./pictures/both_pos.pdf}
-	\caption{\todo[inline]{Add text...}}
+	\caption{Comparison of the desired trajectory $\textbf{x}_d$ and measured position values $\textbf{x}_{mv}$ between both simulation cases. While tracking on x and z axes are reasonably similar, slower position tracking can be observed on the y axis for the second simulation case. Calculated MSE values are 0.0079 and 0.00352 for first and second case respectively.}
 	\label{fig:traj_pos}
 \end{figure}
 
@@ -70,16 +68,16 @@ It is important to note that the actuator dynamics of moving masses and manipula
 	\begin{minipage}{0.5\columnwidth}
 		\centering
 		\includegraphics[width=\columnwidth]{./pictures/mmcuav_omega.pdf}
-		\caption*{a)}
+		\caption*{a) UAV with MMC}
 		\label{fig:mmcuav_omega}
 	\end{minipage}%
 	\begin{minipage}{0.5\columnwidth}
 		\centering
 		\includegraphics[width=\columnwidth]{./pictures/mmuav_omega.pdf}
-		\caption*{b)}
+		\caption*{b) UAV carrying a payload}
 		\label{fig:mmuav_omega}
 	\end{minipage}
-	\caption{\todo[inline]{Add text...}}
+	\caption{Comparison between desired $\mb{\Omega}_d$ and measured $\mb{\Omega}_{mv}$ angular velocity of both simulation cases. Better angular velocity tracking is achieved in the first case, while in the second case a highly oscillatory measured value is observed around x axis.}
 \end{figure}
 
 \begin{figure}
@@ -87,25 +85,22 @@ It is important to note that the actuator dynamics of moving masses and manipula
 	\begin{minipage}{0.5\columnwidth}
 		\centering
 		\includegraphics[width=\columnwidth]{./pictures/mmcuav_control_inputs.pdf}
-		\caption*{a)}
+		\caption*{a) UAV with MMC}
 		\label{fig:mmcuav_control}
 	\end{minipage}%
 	\begin{minipage}{0.5\columnwidth}
 		\centering
 		\includegraphics[width=\columnwidth]{./pictures/mmuav_control_inputs.pdf}
-		\caption*{b)}
+		\caption*{b) UAV carrying a payload}
 		\label{fig:mmuav_control}
 	\end{minipage}
-	\caption{\todo[inline]{Add text...	}}
+	\caption{Figures show control inputs for both simulation cases cases: rotor velocities $\omega_i$, moving mass and payload offsets $r_i$.}
 \end{figure}
 
 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=\columnwidth]{./pictures/both_cog_err.pdf}
-	\caption{\todo[inline]{Add text...}}
+	\caption{Comparison between first two components of CoG vector $\textbf{r}_{CoG}$ and between attitude error functions $\Psi$ of both simulation cases. It can be seen that higher magnitude of CoG variation can be achieved using moving masses rather than the carried payload.}
 	\label{fig:cog_error}
 \end{figure}
-
-\todo[inline]{TODO: komentirati sve rezultate.}
-\todo[inline]{TODO: dodati MSE za trajektorije}
