@@ -117,7 +117,7 @@ Conversion from payload offsets to angle increments is done using the inverse Ja
 		l_1\text{sin}(q_1) & l_2 \text{sin}(q_1 + q_2) & l_3 \text{sin}(q_1 + q_2 + q_3) 
 	\end{bmatrix} \, ,
 \end{gather}
-where $l_1$, $l_2$ and $l_3$ are the manipulator link lengths, while $q_1$, $q_2$ and $q_3$ are current actuator angles. Using Jacobian seudinverse, incremental update rule for actuator angles can be obtained as follows:
+where $l_1$, $l_2$ and $l_3$ are the manipulator link lengths, while $q_1$, $q_2$ and $q_3$ are current actuator angles. Using Jacobian pseudoinverse, incremental update rule for actuator angles can be obtained as follows:
 \begin{equation}
 	\begin{bmatrix}
 	\Delta q_1 \\

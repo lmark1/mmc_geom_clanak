@@ -1,13 +1,13 @@
 \section{Geometric control on SE(3)}
 
-The main focus of the proposed controller is put on position tracking. Therefore, the trajectory consists of a desired position $\textbf{x}_d(t)$ and a desired heading $\textbf{b}_{1,d}$ of the body-fixed frame. Since the given position is known ahead of time, one is able to calculate both desired linear velocity $\textbf{v}_d(t)$ and acceleration $\textbf{a}_d(t)$ which are also inherently included as inputs. \\
+The main focus of the proposed controller is put on position tracking. Therefore, the trajectory consists of a desired position $\textbf{x}_d(t)$ and a desired heading $\textbf{b}_{1,d}(t)$ of the body-fixed frame. Since the given position is known ahead of time, one is able to calculate both desired linear velocity $\textbf{v}_d(t)$ and acceleration $\textbf{a}_d(t)$ which are also inherently included as inputs. \\
 The controller is developed on the nonlinear Lie group SE(3) consisting of the rotation group SO(3) and translation group T(3). It is cascade in structure, as seen in \ref{fig:control_scheme} with position tracking block following attitude tracking block. The main advantage of using the SO(3) rotation group is to avoid any singularities or ambiguities that may arise when representing rotations with Euler angles or quaternions. \\
 Controller synthesis is carried out as follows. First, position and orientation tracking errors are presented as the proportional and derivative part of the controller. In addition, nonlinear control terms are chosen to compensate proposed model dynamics. Finally, exponential stability conditions for the initial UAV configuration are shown.
 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=\columnwidth]{./pictures/ControlScheme.png}	
-	\caption{Control scheme for the case of UAV carrying the payload. It is important to note that for the case of UAV with moving masses, \textit{Inverse Jacobian} block becomes the identity matrix. This means that the control inputs $d_x$ and $d_y$ are directly sent as system inputs.}
+	\caption{Control scheme for the UAV carrying a payload. When considering UAV with MMC \textit{Inverse Jacobian} block becomes the identity matrix. This means that the control inputs $d_x$ and $d_y$ are directly sent as system inputs.}
 	\label{fig:control_scheme}
 \end{figure}
 
@@ -62,10 +62,10 @@ The chosen constraint for the trajectory tracking problem differ slightly from t
 where B is some positive constant. \\
 \indent Desired angular velocity and acceleration also need to be considered in this trajectory tracking problem. One is able to calculate the desired angular velocity and acceleration using $\text{R}_d$ and its derivatives in the following way:
 \begin{gather}
-	\hat{\mb{\Omega}}_d = \text{R}_d^T \dot{\text{R}}_d \\
-	\dot{\hat{\mb{\Omega}}}_d = - \hat{\mb{\Omega}}_d\hat{\mb{\Omega}}_d + \text{R}_d^T \ddot{\text{R}}_d
+	\hat{\mb{\Omega}}_d = \text{R}_d^T \dot{\text{R}}_d \label{eqn:omega_d}\\
+	\dot{\hat{\mb{\Omega}}}_d = - \hat{\mb{\Omega}}_d\hat{\mb{\Omega}}_d + \text{R}_d^T \ddot{\text{R}}_d \label{eqn:alpha_d}
 \end{gather}
-Derivatives of $\text{R}_d$ are easily calculated using the backwards differentiation method. \todo{lovro: Preformulirana rečenica: "Another important...".}Another important note is that the computation rate of the desired angular velocity and acceleration is lesser than the overall simulation rate. For further implementation details, please refer to \cite{gitLink}.
+Derivatives of $\text{R}_d$ are calculated using the backwards differentiation method. \todo{lovro: Preformulirana rečenica: "Another important...".}Another important note is that the computation rate of the desired angular velocity and acceleration is slower than the overall simulation rate. For further implementation details, please refer to \cite{gitLink}.
 
 \subsection{Error dynamics} \label{ssec:error_dynamics}
 
@@ -103,9 +103,8 @@ After substituting control force from \eqref{force_control} and \eqref{moment_co
 
 \todo[inline]{lovro: Ponovno napisan prvi odlomak}
 We begin by observing \eqref{error_dynamics_linear} and \eqref{error_dynamics_angular}. 
-It has to be taken in account that the derived error dynamics are identical to those presented in \cite{LeeClanak1} and \cite{LeeClanak4}, even though the proposed model and control terms in this paper differ from previous research.
-
-Therefore, to avoid redundancy, the complete stability proof is omitted for brevity. Instead, only final conclusions for exponential asymptotic stability of the attitude error function and attraction to the zero-equilibrium state of tracking errors are outlined as found in \cite{LeeClanak1}.
+It has to be taken in account that the derived error dynamics are identical to those presented in \cite{LeeClanak1} and \cite{LeeClanak4}, even though the proposed model and control terms in this paper differ from previous research. \\
+Therefore, to avoid redundancy, the complete stability proof is omitted for brevity. Instead, only final conclusions for attitude error function $\Psi (\text{R}(t), \text{R}_d(t))$ exponential asymptotic stability and tracking error attraction to the zero-equilibrium state are outlined as established in \cite{LeeClanak1}.
 
 Granted the initial UAV configuration satisfies the following conditions:
 \begin{gather}
