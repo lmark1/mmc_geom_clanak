@@ -32,12 +32,23 @@ where $\text{J}_b \in \mathbb{R}^3$ is body and $\text{J}_i \in \mathbb{R}^3$ is
 \end{equation}
 
 Now we can express the equations of motion in the inertial frame while taking in consideration CoG vector which is located outside the origin of the body-fixed frame\cite{LeeModel}. \\
-It is important to note that the changes in the moment of inertia and CoG have been omitted in favor of simplicity in equations \eqref{model2} and \eqref{model4}. The complete model dynamics{\tiny } expressed in the inertial frame are presented in \ref{sec:appendix}.
+The complete model dynamics expressed in the inertial frame are presented and derived in \ref{sec:appendix}. It is important to note that the terms containing changes of the moment of inertia and CoG have been omitted from \eqref{complete_model1} and \eqref{complete_model2}.\\
+The proposed model is presented as follows: 
 \begin{gather}
-	\dot{\textbf{x}} = \textbf{v} \label{model1}\\
-	m_t\dot{\textbf{v}} + m_tg\textbf{e}_3 - m_t\text{R}  \textbf{r}_{CoG} \times \dot{\mb{\Omega}} - m_t\text{R}\hat{\mb{\Omega}}\hat{ \textbf{r}}_{CoG}\mb{\Omega} = f\text{R}\textbf{e}_3 \label{model2} \\
+	\label{model2}
+	\begin{align}
+		\begin{split}
+			m_t \ddot{\textbf{x}} & - m_t \text{R}(\textbf{r}_{CoG} \times \dot{\mb{\Omega}}) + m_t g\textbf{e}_3  = f\text{R}\textbf{e}_3 
+		\end{split} 
+	\end{align} \\
 	\dot{\text{R}} = \text{R}\hat{\mb{\Omega}} \label{model3} \\
-	\text{J} \dot{\mb{\Omega}} + \mb{\Omega} \times \text{J} \mb{\Omega} + m_t  \textbf{r}_{CoG} \times \text{R}^T \dot{\textbf{v}} = \textbf{M} \label{model4}
+	\label{model4}
+	\begin{align}
+		\begin{split}
+			\text{J}\dot{\mb{\Omega}} & + m_t\textbf{r}_{CoG} \times \text{R}^T\ddot{\textbf{x}} + \mb{\Omega} \times \text{J}\mb{\Omega}  \\
+			& - m_t (\mb{\Omega} \times \textbf{r}_{CoG}) \times \text{R}^T \dot{\textbf{x}} = \textbf{M}
+		\end{split}
+	\end{align}
 \end{gather}
 The \textit{hat map} is an operator equivalent to the expression $\hat{\textbf{x}}\textbf{y} = \textbf{x} \times \textbf{y}$. It maps elements of $\mathbb{R}^3$ to the so(3) Lie algebra. \\
 \noindent The following terms are defined as:
@@ -63,7 +74,7 @@ The \textit{hat map} is an operator equivalent to the expression $\hat{\textbf{x
 	\caption{UAV model with MMC (left) and two 2-DOF overactuated manipulators (right) along with their respective coordinate systems. The manipulator end effectors are placed diametrically opposite from each other.}
 	\label{fig:uav_model}
 \end{figure}
-\noindent Equations \eqref{model1}, \eqref{model2}, \eqref{model3} and \eqref{model4} describe the dynamical flow of a rotating and translating rigid body in terms of evolution of $(\text{R},\textbf{x},\mb{\Omega},\dot{\textbf{x}})\in \text{TSE}(3)$ on the tangent bundle of SE(3). 
+\noindent Equations \eqref{model2}, \eqref{model3} and \eqref{model4} describe the dynamical flow of a rotating and translating rigid body in terms of evolution of $(\text{R},\textbf{x},\mb{\Omega},\dot{\textbf{x}})\in \text{TSE}(3)$ on the tangent bundle of SE(3). 
 
 \indent Height and yaw of the UAV is controlled with variations in rotor velocity, whereas roll and pitch with variations in CoG. It is assumed that the first and the third propeller rotate clockwise, while the second and the fourth rotate counter-clockwise. The relation between moments, thrust and rotor velocity is the following:
 \begin{gather}

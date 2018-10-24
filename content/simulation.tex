@@ -52,7 +52,6 @@ Control parameters for the first case are chosen as follows:
 	\, , \,
 \end{equation*}
 For both cases, initial parameters are obtained by considering the error dynamics \eqref{error_dynamics_linear} and \eqref{error_dynamics_angular} in the equilibrium state. However, they are further tuned with better position tracking performance in mind.\\
-\todo[inline]{how tuned?, lovro: for better position tracking}
 It is important to note that the actuator dynamics of moving masses and manipulators is taken in consideration within the Gazebo simulator. Furthermore there is a slight transient delay while increasing or decreasing rotor velocity which results in a non-instantaneous control force change. \\
 \indent The chosen trajectory tracking problem is formulated as a rotating spiral:
 \begin{gather*}
