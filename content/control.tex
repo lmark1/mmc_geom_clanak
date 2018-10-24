@@ -36,17 +36,19 @@ Due to the fact that angular velocities $\mb{\Omega} \in T_\text{R}SO(3)$ and $\
 After defining all tracking errors, one can start constructing the control terms. Taking in consideration the proposed system dynamics \eqref{model2} and \eqref{model4}, the force and moment control terms are chosen as follows:
 \begin{align}
 	\begin{split}
-		\textbf{A} =& (- \text{k}_x \textbf{e}_x - \text{k}_v \textbf{e}_v \\
-		& + mg\textbf{e}_3 + m\ddot{\textbf{x}}_d \\
-		& - m\text{R}\textbf{r}_{CoG}  \times \dot{\mb{\Omega}} - m\text{R}\hat{\mb{\Omega}}\hat{\textbf{r}}_{CoG}\mb{\Omega} ) \\
+		\textbf{A} =& (- \text{k}_x \textbf{e}_x - \text{k}_v \textbf{e}_v + m\ddot{\textbf{x}}_d \\
+		& + mg\textbf{e}_3 - m_t \text{R}(\textbf{r}_{CoG} \times \dot{\mb{\Omega}}) \\
+		& - m_t \text{R}[\mb{\Omega} \times (\textbf{r}_{CoG} \times \mb{\Omega})]\\
+		& + m_t \text{R}[(\mb{\Omega} \times \textbf{r}_{CoG}) \times \mb{\Omega}] \\
 		f =& \textbf{A} \cdot \text{R}\textbf{e}_3 \label{force_control}
 	\end{split}
 \end{align}
 \begin{align}
 	\begin{split}
 		\textbf{M} = -& \text{k}_\text{R} \textbf{e}_\text{R} - \text{k}_\Omega \textbf{e}_\Omega \\
-			+& \mb{\Omega} \times \text{J}\mb{\Omega} - \text{J}(\hat{\mb{\Omega}}\text{R}^T\text{R}_d\mb{\Omega}_d - \text{R}^T\text{R}_d\dot{\mb{\Omega}}_d) \\
-			+& m\textbf{r}_{CoG} \times \text{R}^T \ddot{\textbf{x}}  \label{moment_control}
+			- & \text{J}(\hat{\mb{\Omega}}\text{R}^T\text{R}_d\mb{\Omega}_d - \text{R}^T\text{R}_d\dot{\mb{\Omega}}_d) \\
+			+ & \mb{\Omega} \times \text{J}\mb{\Omega} + m\textbf{r}_{CoG} \times \text{R}^T \ddot{\textbf{x}}  \label{moment_control} \\
+			- & m (\mb{\Omega} \times \textbf{r}_{CoG}) \times \text{R}^T \dot{\textbf{x}}
 	\end{split}
 \end{align}
 \indent Desired rotation matrix is constructed in the conventional way when considering geometric control of aerial vehicles \cite{LeeClanak4}, \cite{LeeClanak3}, \cite{LeeClanak2}. The proposed desired rotation matrix is constructed as $\text{R}_d = [\textbf{b}_{1,c}, \textbf{b}_{3,d} \times \textbf{b}_{1,c}, \textbf{b}_{3,d}]$ where component vectors of $\text{R}_d$ are calculated in the following way:
@@ -65,7 +67,7 @@ where B is some positive constant. \\
 	\hat{\mb{\Omega}}_d = \text{R}_d^T \dot{\text{R}}_d \label{eqn:omega_d}\\
 	\dot{\hat{\mb{\Omega}}}_d = - \hat{\mb{\Omega}}_d\hat{\mb{\Omega}}_d + \text{R}_d^T \ddot{\text{R}}_d \label{eqn:alpha_d}
 \end{gather}
-Derivatives of $\text{R}_d$ are calculated using the backwards differentiation method. \todo{lovro: Preformulirana rečenica: "Another important...".}Another important note is that the computation rate of the desired angular velocity and acceleration is slower than the overall simulation rate. For further implementation details, please refer to \cite{gitLink}.
+Derivatives of $\text{R}_d$ are calculated using the backwards differentiation method. Another important note is that the computation rate of the desired angular velocity and acceleration is slower than the overall simulation rate. For further implementation details, please refer to \cite{gitLink}.
 
 \subsection{Error dynamics} \label{ssec:error_dynamics}
 
@@ -79,14 +81,17 @@ After including \eqref{model2} and \eqref{model4} in \eqref{linear_error_dynamic
 	\label{lin_dynamics_full}
 	\begin{split}
 		m\textbf{e}_v = & - mg\textbf{e}_3 - m\ddot{\textbf{x}}_d \\
-			&+ m\text{R}\textbf{r}_{CoG}  \times \dot{\mb{\Omega}} + m\text{R}\hat{\mb{\Omega}}\hat{\textbf{r}}_{CoG}\mb{\Omega} \\
+			& + m_t \text{R}(\textbf{r}_{CoG}  \times \dot{\mb{\Omega}}) \\
+			& + m_t \text{R}[\mb{\Omega} \times (\textbf{r}_{CoG} \times \mb{\Omega})]\\
+			& - m_t \text{R}[(\mb{\Omega} \times \textbf{r}_{CoG}) \times \mb{\Omega}] \\
 			&+ \textbf{A} + \textbf{X}	
 	\end{split} \\
 	\label{ang_dynamics_full}
 	\begin{split}
-		\text{J}\textbf{e}_\Omega = &\textbf{M} - \mb{\Omega} \times \text{J}\mb{\Omega} \\
-			&+ \text{J}(\hat{\mb{\Omega}}\text{R}^T\text{R}_d\mb{\Omega}_d - \text{R}^T\text{R}_d\dot{\mb{\Omega}}_d) \\
-			&+ m\textbf{r}_{CoG} \times \text{R}^T \ddot{\textbf{x}}
+		\text{J}\textbf{e}_\Omega =\,  &\text{J}(\hat{\mb{\Omega}}\text{R}^T\text{R}_d\mb{\Omega}_d - \text{R}^T\text{R}_d\dot{\mb{\Omega}}_d) \\
+			& - \mb{\Omega} \times \text{J}\mb{\Omega} + m_t \textbf{r}_{CoG} \times \text{R}^T \ddot{\textbf{x}} \\
+			& + m_t (\mb{\Omega} \times \textbf{r}_{CoG}) \times \text{R}^T \dot{\textbf{x}} \\
+			& + \textbf{ M}
 	\end{split}
 \end{align}
 Note that in \eqref{lin_dynamics_full} $\textbf{X}\in\mathbb{\text{R}}^3$ is a bounded term which equals:
@@ -101,7 +106,6 @@ After substituting control force from \eqref{force_control} and \eqref{moment_co
 
 \subsection{Stability discussion}
 
-\todo[inline]{lovro: Ponovno napisan prvi odlomak}
 We begin by observing \eqref{error_dynamics_linear} and \eqref{error_dynamics_angular}. 
 It has to be taken in account that the derived error dynamics are identical to those presented in \cite{LeeClanak1} and \cite{LeeClanak4}, even though the proposed model and control terms in this paper differ from previous research. \\
 Therefore, to avoid redundancy, the complete stability proof is omitted for brevity. Instead, only final conclusions for attitude error function $\Psi (\text{R}(t), \text{R}_d(t))$ exponential asymptotic stability and tracking error attraction to the zero-equilibrium state are outlined as established in \cite{LeeClanak1}.
