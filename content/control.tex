@@ -38,8 +38,6 @@ After defining all tracking errors, one can start constructing the control terms
 	\begin{split}
 		\textbf{A} =& (- \text{k}_x \textbf{e}_x - \text{k}_v \textbf{e}_v + m\ddot{\textbf{x}}_d \\
 		& + mg\textbf{e}_3 - m_t \text{R}(\textbf{r}_{CoG} \times \dot{\mb{\Omega}}) \\
-		& - m_t \text{R}[\mb{\Omega} \times (\textbf{r}_{CoG} \times \mb{\Omega})]\\
-		& + m_t \text{R}[(\mb{\Omega} \times \textbf{r}_{CoG}) \times \mb{\Omega}] \\
 		f =& \textbf{A} \cdot \text{R}\textbf{e}_3 \label{force_control}
 	\end{split}
 \end{align}
@@ -82,8 +80,6 @@ After including \eqref{model2} and \eqref{model4} in \eqref{linear_error_dynamic
 	\begin{split}
 		m\textbf{e}_v = & - mg\textbf{e}_3 - m\ddot{\textbf{x}}_d \\
 			& + m_t \text{R}(\textbf{r}_{CoG}  \times \dot{\mb{\Omega}}) \\
-			& + m_t \text{R}[\mb{\Omega} \times (\textbf{r}_{CoG} \times \mb{\Omega})]\\
-			& - m_t \text{R}[(\mb{\Omega} \times \textbf{r}_{CoG}) \times \mb{\Omega}] \\
 			&+ \textbf{A} + \textbf{X}	
 	\end{split} \\
 	\label{ang_dynamics_full}
