@@ -38,6 +38,7 @@ After defining all tracking errors, one can start constructing the control terms
 	\begin{split}
 		\textbf{A} =& (- \text{k}_x \textbf{e}_x - \text{k}_v \textbf{e}_v + m\ddot{\textbf{x}}_d \\
 		& + mg\textbf{e}_3 - m_t \text{R}(\textbf{r}_{CoG} \times \dot{\mb{\Omega}}) \\
+		& - m_t \text{R}[\mb{\Omega} \times (\textbf{r}_{CoG} \times \mb{\Omega})]) \\
 		f =& \textbf{A} \cdot \text{R}\textbf{e}_3 \label{force_control}
 	\end{split}
 \end{align}
@@ -45,8 +46,7 @@ After defining all tracking errors, one can start constructing the control terms
 	\begin{split}
 		\textbf{M} = -& \text{k}_\text{R} \textbf{e}_\text{R} - \text{k}_\Omega \textbf{e}_\Omega \\
 			- & \text{J}(\hat{\mb{\Omega}}\text{R}^T\text{R}_d\mb{\Omega}_d - \text{R}^T\text{R}_d\dot{\mb{\Omega}}_d) \\
-			+ & \mb{\Omega} \times \text{J}\mb{\Omega} + m\textbf{r}_{CoG} \times \text{R}^T \ddot{\textbf{x}}  \label{moment_control} \\
-			- & m (\mb{\Omega} \times \textbf{r}_{CoG}) \times \text{R}^T \dot{\textbf{x}}
+			+ & \mb{\Omega} \times \text{J}\mb{\Omega} + m\textbf{r}_{CoG} \times \text{R}^T \ddot{\textbf{x}}  \label{moment_control}
 	\end{split}
 \end{align}
 \indent Desired rotation matrix is constructed in the conventional way when considering geometric control of aerial vehicles \cite{LeeClanak4}, \cite{LeeClanak3}, \cite{LeeClanak2}. The proposed desired rotation matrix is constructed as $\text{R}_d = [\textbf{b}_{1,c}, \textbf{b}_{3,d} \times \textbf{b}_{1,c}, \textbf{b}_{3,d}]$ where component vectors of $\text{R}_d$ are calculated in the following way:
@@ -56,8 +56,8 @@ After defining all tracking errors, one can start constructing the control terms
 \end{gather}
 The chosen constraint for the trajectory tracking problem differ slightly from the one proposed in \cite{LeeClanak4}. Due to the fact that model dynamics which include variable CoG are considered in this paper, new trajectory constraints are presented as follows:
 \begin{equation}
-	|| mge_3 + m\ddot{\textbf{x}}_d 
-	- m\text{R}\textbf{r}_{CoG}  \times \dot{\mb{\Omega}} - m\text{R}\hat{\mb{\Omega}}\hat{\textbf{r}}_{CoG}\mb{\Omega}|| < B \, , \label{condition2}
+	|| m_tge_3 + m\ddot{\textbf{x}}_d 
+	- m_t\text{R}(\textbf{r}_{CoG}  \times \dot{\mb{\Omega}}) - m_t \text{R}[\mb{\Omega} \times (\textbf{r}_{CoG} \times \mb{\Omega})]|| < B \, , \label{condition2}
 \end{equation}
 where B is some positive constant. \\
 \indent Desired angular velocity and acceleration also need to be considered in this trajectory tracking problem. One is able to calculate the desired angular velocity and acceleration using $\text{R}_d$ and its derivatives in the following way:
@@ -80,13 +80,13 @@ After including \eqref{model2} and \eqref{model4} in \eqref{linear_error_dynamic
 	\begin{split}
 		m\textbf{e}_v = & - mg\textbf{e}_3 - m\ddot{\textbf{x}}_d \\
 			& + m_t \text{R}(\textbf{r}_{CoG}  \times \dot{\mb{\Omega}}) \\
+			& + m_t \text{R}[\mb{\Omega} \times (\textbf{r}_{CoG} \times \mb{\Omega})] \\
 			&+ \textbf{A} + \textbf{X}	
 	\end{split} \\
 	\label{ang_dynamics_full}
 	\begin{split}
 		\text{J}\textbf{e}_\Omega =\,  &\text{J}(\hat{\mb{\Omega}}\text{R}^T\text{R}_d\mb{\Omega}_d - \text{R}^T\text{R}_d\dot{\mb{\Omega}}_d) \\
 			& - \mb{\Omega} \times \text{J}\mb{\Omega} + m_t \textbf{r}_{CoG} \times \text{R}^T \ddot{\textbf{x}} \\
-			& + m_t (\mb{\Omega} \times \textbf{r}_{CoG}) \times \text{R}^T \dot{\textbf{x}} \\
 			& + \textbf{ M}
 	\end{split}
 \end{align}

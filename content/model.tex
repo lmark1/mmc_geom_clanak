@@ -32,21 +32,20 @@ where $\text{J}_b \in \mathbb{R}^3$ is body and $\text{J}_i \in \mathbb{R}^3$ is
 \end{equation}
 
 Now we can express the equations of motion in the inertial frame while taking in consideration CoG vector which is located outside the origin of the body-fixed frame\cite{LeeModel}. \\
-The complete model dynamics expressed in the inertial frame are presented and derived in \ref{sec:appendix}. It is important to note that the terms containing changes of the moment of inertia and CoG have been omitted from \eqref{complete_model1} and \eqref{complete_model2}.\\
-The proposed model is presented as follows: 
+The complete model dynamics expressed in the inertial frame are presented and derived in \ref{sec:appendix}. It is important to note that the terms containing changes of the moment of inertia and CoG have been omitted when considering controller synthesis. Taking this in consideration, the proposed model obtained from \eqref{complete_model1} and \eqref{complete_model2} is: 
 \begin{gather}
 	\label{model2}
 	\begin{align}
 		\begin{split}
-			m_t \ddot{\textbf{x}} & - m_t \text{R}(\textbf{r}_{CoG} \times \dot{\mb{\Omega}}) + m_t g\textbf{e}_3  = f\text{R}\textbf{e}_3 
+			m_t \ddot{\textbf{x}} & - m_t \text{R}(\textbf{r}_{CoG} \times \dot{\mb{\Omega}}) + m_t g\textbf{e}_3 \\
+			& - m_t \text{R}[\mb{\Omega} \times (\textbf{r}_{CoG} \times \mb{\Omega})] = f\text{R}\textbf{e}_3 
 		\end{split} 
 	\end{align} \\
 	\dot{\text{R}} = \text{R}\hat{\mb{\Omega}} \label{model3} \\
 	\label{model4}
 	\begin{align}
 		\begin{split}
-			\text{J}\dot{\mb{\Omega}} & + m_t\textbf{r}_{CoG} \times \text{R}^T\ddot{\textbf{x}} + \mb{\Omega} \times \text{J}\mb{\Omega}  \\
-			& - m_t (\mb{\Omega} \times \textbf{r}_{CoG}) \times \text{R}^T \dot{\textbf{x}} = \textbf{M}
+			\text{J}\dot{\mb{\Omega}} & + m_t\textbf{r}_{CoG} \times \text{R}^T\ddot{\textbf{x}} + \mb{\Omega} \times \text{J}\mb{\Omega} = \textbf{M}
 		\end{split}
 	\end{align}
 \end{gather}
