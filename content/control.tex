@@ -4,7 +4,7 @@ The main focus of the proposed controller is put on position tracking. Therefore
 The controller is developed on the nonlinear Lie group SE(3) consisting of the rotation group SO(3) and translation group T(3). It is cascade in structure, as seen in \ref{fig:control_scheme} with position tracking block following attitude tracking block. The main advantage of using the SO(3) rotation group is to avoid any singularities or ambiguities that may arise when representing rotations with Euler angles or quaternions. \\
 Controller synthesis is carried out as follows. First, position and orientation tracking errors are presented as the proportional and derivative part of the controller. In addition, nonlinear control terms are chosen to compensate proposed model dynamics. Finally, exponential stability conditions for the initial UAV configuration are shown.
 
-\begin{figure}[h!]
+\begin{figure}
 	\centering
 	\includegraphics[width=\columnwidth]{./pictures/ControlScheme.png}	
 	\caption{Control scheme for the UAV carrying a payload. When considering UAV with MMC \textit{Inverse Jacobian} block becomes the identity matrix. This means that the control inputs $d_x$ and $d_y$ are directly sent as system inputs.}
