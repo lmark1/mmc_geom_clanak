@@ -32,7 +32,7 @@ where $\text{J}_b \in \mathbb{R}^3$ is body and $\text{J}_i \in \mathbb{R}^3$ is
 \end{equation}
 
 Now we can express the equations of motion in the inertial frame while taking in consideration CoG vector which is located outside the origin of the body-fixed frame\cite{LeeModel}. \\
-The complete model dynamics expressed in the inertial frame are presented and derived in \ref{sec:appendix}. It is important to note that the terms containing changes of the moment of inertia and CoG have been omitted when considering controller synthesis. Taking this in consideration, the proposed model obtained from \eqref{complete_model1} and \eqref{complete_model2} is: 
+The complete model dynamics expressed in the inertial frame are presented and derived in Section \ref{sec:appendix}. It is important to note that the terms containing changes of the moment of inertia and CoG have been omitted when considering controller synthesis. Taking this in consideration, the proposed model is: \todo{1.3}
 \begin{gather}
 	\label{model2}
 	\begin{align}
@@ -115,11 +115,11 @@ where the following terms are defined as: \todo{1.1 c)}
 \begin{itemize}
 	\item $d_x,\, d_y \in \mathbb{R}$ - moving mass or payload offsets along x and y axis respectively
 	\item $m_p \in \mathbb{R}$ - total payload mass 
-	\item $\textbf{b}_{3,d} \in \mathbb{R}^3$ - desired thrust vector, derived in section \ref{sec:control} 
+	\item $\textbf{b}_{3,d} \in \mathbb{R}^3$ - desired thrust vector, derived in Section \ref{sec:control} 
 \end{itemize}
 % where $d_x \in \mathbb{R}$ and $d_y \in \mathbb{R}$ are moving mass or payload offsets along x and y axis respectively. \\
 Using \eqref{control:f} and \eqref{control:M} as control inputs of the system one is able to obtain the desired force of each rotor and the control offsets $d_x$ and $d_y$. While the control offsets are able to be directly applied as moving mass control inputs, in the manipulator case an additional transformation needs to take place. \\
-Both manipulators are overactuated, meaning they have three actuators while operating in a 2-DOF workspace. They are placed in a diametrically opposite configuration as seen in \ref{fig:uav_model}, therefore only a single set of infinitesimal angle increments $\Delta q_1, \Delta q_2, \Delta q_3$ is sufficient as control input for both manipulators. \\
+Both manipulators are overactuated, meaning they have three actuators while operating in a 2-DOF workspace. They are placed in a diametrically opposite configuration as seen in Figure \ref{fig:uav_model}, therefore only a single set of infinitesimal angle increments $\Delta q_1, \Delta q_2, \Delta q_3$ is sufficient as control input for both manipulators. \\
 Conversion from payload offsets to angle increments is done using the inverse Jacobian of the manipulator end effector. Direct Jacobian matrix is presented as follows:
 \begin{gather}
 	\begin{bmatrix}
