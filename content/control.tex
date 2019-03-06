@@ -25,7 +25,7 @@ Linear position and velocity tracking errors are defined as follows:
 \end{gather}
 It is shown in \cite{bulloBook} that the attitude tracking error should be chosen as a left-differential of the attitude error function $\Psi(\text{R}, \text{R}_d)$ as follows:
 \begin{equation}
-	\textbf{e}_\text{R} = \frac{1}{2}(\text{R}_d^T\text{R} - \text{R}^T\text{R}_d)^\text{V}
+	\textbf{e}_\text{R} = \frac{1}{2}(\text{R}_d^T\text{R} - \text{R}^T\text{R}_d)^\vee
 \end{equation}
 Due to the fact that angular velocities $\mb{\Omega} \in T_\text{R}SO(3)$ and $\mb{\Omega}_d \in T_{\text{R}_d}SO(3)$ evolve in different tangential bundles, the proposed left transport map \eqref{transportMap} needs to be applied when calculating the angular velocity tracking error:
 \begin{equation}
