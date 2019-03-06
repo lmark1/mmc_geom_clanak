@@ -28,7 +28,7 @@ Moment of inertia matrix expressed in the body-fixed frame is defined as follows
 \end{equation}
 where $\text{J}_b \in \mathbb{R}^3$ is body and $\text{J}_i \in \mathbb{R}^3$ is the moment of inertia of some mass element outside the origin of the body-fixed frame. Using the parallel axis theorem, one is able to calculate $\text{J}_i$ while knowing the moment of inertia around its CoG:
 \begin{equation}
-\text{J}_i = \text{J}_{i,CoG} + m_i( \textbf{r}_i^T \cdot  \textbf{r}_i \text{I}_{3 \times 3} -  \textbf{r}_i \cdot  \textbf{r}_i^T)
+\text{J}_i = \text{J}_{i,CoG} + m_i(\, \textbf{r}_i^T \cdot  \textbf{r}_i \text{I}_{3 \times 3} -  \textbf{r}_i \cdot  \textbf{r}_i^T \,)
 \end{equation}
 
 Now we can express the equations of motion in the inertial frame while taking in consideration CoG vector which is located outside the origin of the body-fixed frame\cite{LeeModel}. \\
@@ -37,8 +37,8 @@ The complete model dynamics expressed in the inertial frame are presented and de
 	\label{model2}
 	\begin{align}
 		\begin{split}
-			m_t \ddot{\textbf{x}} & - m_t \text{R}(\textbf{r}_{CoG} \times \dot{\mb{\Omega}}) + m_t g\textbf{e}_3 \\
-			& - m_t \text{R}[\mb{\Omega} \times (\textbf{r}_{CoG} \times \mb{\Omega})] = f\text{R}\textbf{e}_3 
+			m_t \ddot{\textbf{x}} & - m_t \text{R} \,(\, \textbf{r}_{CoG} \times \dot{\mb{\Omega}} \,) + m_t g\textbf{e}_3 \\
+			& - m_t \text{R} \,[\, \mb{\Omega} \times (\, \textbf{r}_{CoG} \times \mb{\Omega} \,)\, ] = f\text{R}\textbf{e}_3 
 		\end{split} 
 	\end{align} \\
 	\dot{\text{R}} = \text{R}\reallywidehat{\mb{\Omega}} \label{model3} \\
@@ -51,8 +51,8 @@ The complete model dynamics expressed in the inertial frame are presented and de
 \end{gather}\todo{1.1 e)}
 \noindent \textit{Hat map} and \textit{vee map} operators are defined as:
 \begin{gather}
-	\reallywidehat{ (\, \bullet \,) }: \; \mathbb{R}^3 \mapsto \mathfrak{so}(3), \\
-	(\, \bullet \,)^\vee:  \; \mathfrak{so}(3) \mapsto \mathbb{R}^3
+	\reallywidehat{ \boldsymbol{\cdot} }: \; \mathbb{R}^3 \mapsto \mathfrak{so}(3), \\
+	{ \boldsymbol{\cdot} }^\vee: \; \mathfrak{so}(3) \mapsto \mathbb{R}^3
 \end{gather}
 respectively. \todo{1.1 b)} \\
 \noindent It should be pointed out that the notation used for the Special Orthogonal Lie group is SO(3), while its Lie algebra corresponds to $\mathfrak{so}$(3).
@@ -111,7 +111,11 @@ and total moment acting in the body-fixed frame as:
 	&b_m(-f_1 + f_2 - f_3 + f_4)] \, ,
 	\end{split}
 \end{align}
-where $d_x \in \mathbb{R}$ and $d_y \in \mathbb{R}$ are moving mass or payload offsets along x and y axis respectively. \\
+where the following terms are defined as:
+\begin{itemize}
+	\item bla
+\end{itemize}
+% where $d_x \in \mathbb{R}$ and $d_y \in \mathbb{R}$ are moving mass or payload offsets along x and y axis respectively. \\
 Using \eqref{control:f} and \eqref{control:M} as control inputs of the system one is able to obtain the desired force of each rotor and the control offsets $d_x$ and $d_y$. While the control offsets are able to be directly applied as moving mass control inputs, in the manipulator case an additional transformation needs to take place. \\
 Both manipulators are overactuated, meaning they have three actuators while operating in a 2-DOF workspace. They are placed in a diametrically opposite configuration as seen in \ref{fig:uav_model}, therefore only a single set of infinitesimal angle increments $\Delta q_1, \Delta q_2, \Delta q_3$ is sufficient as control input for both manipulators. \\
 Conversion from payload offsets to angle increments is done using the inverse Jacobian of the manipulator end effector. Direct Jacobian matrix is presented as follows:

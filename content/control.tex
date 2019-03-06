@@ -15,7 +15,7 @@ Controller synthesis is carried out as follows. First, position and orientation 
 
 Compatible attitude error function and transport map between tangent bundles of SO(3) are chosen as suggested in \cite{bulloBook} and confirmed in research regarding geometric control with aerial vehicles \cite{LeeClanak1}, \cite{LeeClanak2}, \cite{LeeClanak3}, \cite{LeeClanak4}. Attitude error function on SO(3) $	\Psi(\text{R}, \text{R}_d)$  along with its compatible transport map $\Ta(\text{R}, \text{R}_d)$ are chosen as:
 \begin{gather}
-	\Psi(\text{R}, \text{R}_d) = \frac{1}{2}tr[\text{I} - \text{R}_d^T\text{R}] \label{attErr} \\ 
+	\Psi(\text{R}, \text{R}_d) = \frac{1}{2} \, \text{tr} [\, \text{I} - \text{R}_d^T\text{R} \,] \label{attErr} \\ 
 	\Ta(\text{R}, \text{R}_d) = \text{R}^T \text{R}_d \label{transportMap}
 \end{gather}
 Linear position and velocity tracking errors are defined as follows:
@@ -25,7 +25,7 @@ Linear position and velocity tracking errors are defined as follows:
 \end{gather}
 It is shown in \cite{bulloBook} that the attitude tracking error should be chosen as a left-differential of the attitude error function $\Psi(\text{R}, \text{R}_d)$ as follows:
 \begin{equation}
-	\textbf{e}_\text{R} = \frac{1}{2}(\text{R}_d^T\text{R} - \text{R}^T\text{R}_d)^\vee
+	\textbf{e}_\text{R} = \frac{1}{2} (\, \text{R}_d^T\text{R} - \text{R}^T\text{R}_d \,)^\vee
 \end{equation}
 Due to the fact that angular velocities $\mb{\Omega} \in T_\text{R}SO(3)$ and $\mb{\Omega}_d \in T_{\text{R}_d}SO(3)$ evolve in different tangential bundles, the proposed left transport map \eqref{transportMap} needs to be applied when calculating the angular velocity tracking error:
 \begin{equation}
@@ -37,27 +37,27 @@ After defining all tracking errors, one can start constructing the control terms
 \begin{align}
 	\begin{split}
 		\textbf{A} =& (- \text{k}_x \textbf{e}_x - \text{k}_v \textbf{e}_v + m\ddot{\textbf{x}}_d \\
-		& + mg\textbf{e}_3 - m_t \text{R}(\textbf{r}_{CoG} \times \dot{\mb{\Omega}}) \\
-		& - m_t \text{R}[\mb{\Omega} \times (\textbf{r}_{CoG} \times \mb{\Omega})]) \\
+		& + mg\textbf{e}_3 - m_t \text{R} \,(\, \textbf{r}_{CoG} \times \dot{\mb{\Omega}} \,) \\
+		& - m_t \text{R} \,[\, \mb{\Omega} \times (\textbf{r}_{CoG} \times \mb{\Omega}) \,]\, ) \\
 		f =& \textbf{A} \cdot \text{R}\textbf{e}_3 \label{force_control}
 	\end{split}
 \end{align}
 \begin{align}
 	\begin{split}
 		\textbf{M} = -& \text{k}_\text{R} \textbf{e}_\text{R} - \text{k}_\Omega \textbf{e}_\Omega \\
-			- & \text{J}(\reallywidehat{\mb{\Omega}}\text{R}^T\text{R}_d\mb{\Omega}_d - \text{R}^T\text{R}_d\dot{\mb{\Omega}}_d) \\
-			+ & \mb{\Omega} \times \text{J}\mb{\Omega} + m\textbf{r}_{CoG} \times \text{R}^T \ddot{\textbf{x}}  \label{moment_control}
+			- & \text{J} \,(\, \reallywidehat{\mb{\Omega}}\text{R}^T\text{R}_d\mb{\Omega}_d - \text{R}^T\text{R}_d\dot{\mb{\Omega}}_d \,) \\
+			+ & \mb{\Omega} \times \text{J}\mb{\Omega} + m\textbf{r}_{CoG} \times \text{R}^T \ddot{\textbf{x}}  \label{moment_control} 
 	\end{split}
 \end{align}
 \indent Desired rotation matrix is constructed in the conventional way when considering geometric control of aerial vehicles \cite{LeeClanak4}, \cite{LeeClanak3}, \cite{LeeClanak2}. The proposed desired rotation matrix is constructed as $\text{R}_d = [\textbf{b}_{1,c}, \textbf{b}_{3,d} \times \textbf{b}_{1,c}, \textbf{b}_{3,d}]$ where component vectors of $\text{R}_d$ are calculated in the following way:
 \begin{gather}
 	\textbf{b}_{3,d} = \frac{\textbf{A}}{|| \textbf{A} ||} \\
-	\textbf{b}_{1,c} = -\frac{(\textbf{b}_{3,d} \times (\textbf{b}_{3,d} \times \textbf{b}_{1,d}))}{||\textbf{b}_{3,d} \times \textbf{b}_{1,d}||}
+	\textbf{b}_{1,c} = -\frac{(\, \textbf{b}_{3,d} \times (\, \textbf{b}_{3,d} \times \textbf{b}_{1,d} \,)\, )}{||\textbf{b}_{3,d} \times \textbf{b}_{1,d}||}
 \end{gather}
 The chosen constraint for the trajectory tracking problem differ slightly from the one proposed in \cite{LeeClanak4}. Due to the fact that model dynamics which include variable CoG are considered in this paper, new trajectory constraints are presented as follows:
 \begin{equation}
 	|| m_tge_3 + m\ddot{\textbf{x}}_d 
-	- m_t\text{R}(\textbf{r}_{CoG}  \times \dot{\mb{\Omega}}) - m_t \text{R}[\mb{\Omega} \times (\textbf{r}_{CoG} \times \mb{\Omega})]|| < B \, , \label{condition2}
+	- m_t\text{R} (\textbf{r}_{CoG}  \times \dot{\mb{\Omega}}) - m_t \text{R}[\mb{\Omega} \times (\textbf{r}_{CoG} \times \mb{\Omega})]|| < B \, , \label{condition2}
 \end{equation}
 where B is some positive constant. \\
 \indent Desired angular velocity and acceleration also need to be considered in this trajectory tracking problem. One is able to calculate the desired angular velocity and acceleration using $\text{R}_d$ and its derivatives in the following way:
@@ -79,20 +79,20 @@ After including \eqref{model2} and \eqref{model4} in \eqref{linear_error_dynamic
 	\label{lin_dynamics_full}
 	\begin{split}
 		m\textbf{e}_v = & - mg\textbf{e}_3 - m\ddot{\textbf{x}}_d \\
-			& + m_t \text{R}(\textbf{r}_{CoG}  \times \dot{\mb{\Omega}}) \\
-			& + m_t \text{R}[\mb{\Omega} \times (\textbf{r}_{CoG} \times \mb{\Omega})] \\
+			& + m_t \text{R} \,(\, \textbf{r}_{CoG}  \times \dot{\mb{\Omega}} \,) \\
+			& + m_t \text{R} \,[\, \mb{\Omega} \times (\, \textbf{r}_{CoG} \times \mb{\Omega} \,)\, ] \\
 			&+ \textbf{A} + \textbf{X}	
 	\end{split} \\
 	\label{ang_dynamics_full}
 	\begin{split}
-		\text{J}\textbf{e}_\Omega =\,  &\text{J}(\reallywidehat{\mb{\Omega}}\text{R}^T\text{R}_d\mb{\Omega}_d - \text{R}^T\text{R}_d\dot{\mb{\Omega}}_d) \\
+		\text{J}\textbf{e}_\Omega =\,  &\text{J} \,(\, \reallywidehat{\mb{\Omega}}\text{R}^T\text{R}_d\mb{\Omega}_d - \text{R}^T\text{R}_d\dot{\mb{\Omega}}_d \,) \\
 			& - \mb{\Omega} \times \text{J}\mb{\Omega} + m_t \textbf{r}_{CoG} \times \text{R}^T \ddot{\textbf{x}} \\
 			& + \textbf{ M}
 	\end{split}
 \end{align}
 Note that in \eqref{lin_dynamics_full} $\textbf{X}\in\mathbb{\text{R}}^3$ is a bounded term which equals:
 \begin{equation}
-	\textbf{X} = \frac{f}{(\text{R}_d\textbf{e}_3)^T\text{R}\textbf{e}_3}(\text{R}_d \textbf{e}_3 - ((\text{R}_d\textbf{e}_3)^T\text{R}\textbf{e}_3)\text{R}\textbf{e}_3)
+	\textbf{X} = \frac{f}{(\text{R}_d\textbf{e}_3)^T\text{R}\textbf{e}_3} \,(\, \text{R}_d \textbf{e}_3 - (\, (\text{R}_d\textbf{e}_3)^T\text{R}\textbf{e}_3 \,)\, \text{R}\textbf{e}_3 \,)
 \end{equation}
 After substituting control force from \eqref{force_control} and \eqref{moment_control} in \eqref{lin_dynamics_full} and \eqref{ang_dynamics_full} respectively the final form of error dynamics is obtained:
 \begin{gather}
