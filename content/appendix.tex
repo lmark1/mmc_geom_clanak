@@ -11,12 +11,12 @@ General form of Euler-Lagrange dynamics for a rotating rigid body in SE(3) confi
 \end{gather}
 For the the proposed UAV with variations in CoG the Lagrangian is:
 \begin{equation}
-	\La(\text{R},x,\mb{\Omega},\textbf{v}) = \frac{1}{2}\mb{\Omega}^T\text{J}\mb{\Omega} + m_t \mb{\Omega}^T \hat{\textbf{r}}_{CoG}\textbf{v} + \frac{1}{2}m_t\textbf{v}^T\textbf{v} - U(\text{R},\textbf{x}) \, ,
+	\La(\text{R},x,\mb{\Omega},\textbf{v}) = \frac{1}{2}\mb{\Omega}^T\text{J}\mb{\Omega} + m_t \mb{\Omega}^T \reallywidehat{\textbf{r}}_{CoG}\textbf{v} + \frac{1}{2}m_t\textbf{v}^T\textbf{v} - U(\text{R},\textbf{x}) \, ,
 \end{equation}
 where $U(\text{R}, \textbf{x})$ is the potential energy of the system. It is important to note that \text{J} and $\textbf{r}_{CoG}$ are variable over time. \\
 Lagrangian derivatives needed for the general form equations \ref{general1} and \ref{general2} are:
 \begin{gather}
-	\frac{\partial \La}{\partial \mb{\Omega}} = \text{J}\mb{\Omega} + m_t \hat{\textbf{r}}_{CoG}\textbf{v} \label{d1}\\ 
+	\frac{\partial \La}{\partial \mb{\Omega}} = \text{J}\mb{\Omega} + m_t \reallywidehat{\textbf{r}}_{CoG}\textbf{v} \label{d1}\\ 
 	\frac{d}{dt} \left( \frac{\partial \La}{\partial \mb{\Omega}} \right) = \dot{\text{J}} \mb{\Omega} + \text{J} \dot{\mb{\Omega}} + m_t \dot{\textbf{r}}_{CoG} \times \textbf{v} + m_t \textbf{r}_{CoG} \times \dot{\textbf{v}} \label{d2}\\ 
 	\frac{\partial \La}{\partial \textbf{v}} = m_t\textbf{v} - m_t\textbf{r}_{CoG} \times \mb{\Omega} \label{d3}\\ 
 	\frac{d}{dt} \left( \frac{\partial \La}{\partial \textbf{v}} \right) = m_t\dot{\textbf{v}} - m_t\dot{\textbf{r}}_{CoG} \times \mb{\Omega} - m_t \textbf{r}_{CoG} \times \dot{\mb{\Omega}} \label{d4}
@@ -26,7 +26,7 @@ It is of interest to transfer rotation and translation dynamics in the inertial 
 	\textbf{v} = \text{R}^T \dot{x} \label{inertial1}\\
 	\dot{\textbf{v}} = \text{R}^T \ddot{\textbf{x}} - \mb{\Omega} \times (\text{R}^T \dot{\textbf{x}} ) \label{inertial2} \\
 	\textbf{r}_{CoG} = \text{R}^T(\textbf{x}_{CoG} - \textbf{x}) \label{inertial3} \\
-	\dot{\textbf{r}}_{CoG} = \text{R}^T(\dot{\textbf{x}}_{CoG} - \dot{\textbf{x}}) - \hat{\mb{\Omega}}\text{R}^T(\textbf{x}_{CoG} - \textbf{x}) \label{inertial4}
+	\dot{\textbf{r}}_{CoG} = \text{R}^T(\dot{\textbf{x}}_{CoG} - \dot{\textbf{x}}) - \reallywidehat{\mb{\Omega}}\text{R}^T(\textbf{x}_{CoG} - \textbf{x}) \label{inertial4}
 \end{gather}
 After plugging in \ref{d1}, \ref{d2}, \ref{d3}, \ref{d4} in \ref{general1}, \ref{general2} and using \ref{inertial1}, \ref{inertial2} as transformations of velocity and acceleration to inertial frame the following equations are obtained:
 \begin{gather}
