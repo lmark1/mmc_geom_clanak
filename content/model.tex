@@ -106,14 +106,16 @@ Total thrust can be expressed as:
 and total moment acting in the body-fixed frame as:
 \begin{align}
 	\begin{split} \label{control:M}
-	\textbf{M} = [&m_{p}gd_x  \textbf{e}_1 \cdot \textbf{b}_{3,d} , \\
-	&m_{p}gd_y \textbf{e}_2 \cdot \textbf{b}_{3,d}, \\
-	&b_m(-f_1 + f_2 - f_3 + f_4)] \, ,
+	\textbf{M} = [\, &m_{p}g \, d_x \, \textbf{e}_1 \cdot \textbf{b}_{3,d} \,, \\
+	&m_{p}g \, d_y \, \textbf{e}_2 \cdot \textbf{b}_{3,d} \,, \\
+	&b_m \,(\, -f_1 + f_2 - f_3 + f_4 \,)\, ] \, ,
 	\end{split}
 \end{align}
-where the following terms are defined as:
+where the following terms are defined as: \todo{1.1 c)}
 \begin{itemize}
-	\item bla
+	\item $d_x,\, d_y \in \mathbb{R}$ - moving mass or payload offsets along x and y axis respectively
+	\item $m_p \in \mathbb{R}$ - total payload mass 
+	\item $\textbf{b}_{3,d} \in \mathbb{R}^3$ - desired thrust vector, derived in section \ref{sec:control} 
 \end{itemize}
 % where $d_x \in \mathbb{R}$ and $d_y \in \mathbb{R}$ are moving mass or payload offsets along x and y axis respectively. \\
 Using \eqref{control:f} and \eqref{control:M} as control inputs of the system one is able to obtain the desired force of each rotor and the control offsets $d_x$ and $d_y$. While the control offsets are able to be directly applied as moving mass control inputs, in the manipulator case an additional transformation needs to take place. \\

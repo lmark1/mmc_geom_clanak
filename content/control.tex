@@ -51,7 +51,7 @@ After defining all tracking errors, one can start constructing the control terms
 \end{align}
 \indent Desired rotation matrix is constructed in the conventional way when considering geometric control of aerial vehicles \cite{LeeClanak4}, \cite{LeeClanak3}, \cite{LeeClanak2}. The proposed desired rotation matrix is constructed as $\text{R}_d = [\textbf{b}_{1,c}, \textbf{b}_{3,d} \times \textbf{b}_{1,c}, \textbf{b}_{3,d}]$ where component vectors of $\text{R}_d$ are calculated in the following way:
 \begin{gather}
-	\textbf{b}_{3,d} = \frac{\textbf{A}}{|| \textbf{A} ||} \\
+	\textbf{b}_{3,d} = \frac{\textbf{A}}{|| \textbf{A} ||} \label{eqn:desired_thrust}\\
 	\textbf{b}_{1,c} = -\frac{(\, \textbf{b}_{3,d} \times (\, \textbf{b}_{3,d} \times \textbf{b}_{1,d} \,)\, )}{||\textbf{b}_{3,d} \times \textbf{b}_{1,d}||}
 \end{gather}
 The chosen constraint for the trajectory tracking problem differ slightly from the one proposed in \cite{LeeClanak4}. Due to the fact that model dynamics which include variable CoG are considered in this paper, new trajectory constraints are presented as follows:
