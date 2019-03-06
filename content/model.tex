@@ -7,7 +7,7 @@ a general equation for calculating CoG vector from the origin of the body-fixed 
 	\label{equ:cog}
 \end{equation}
 
-The following terms are defined as: 
+The following terms are defined as: \todo{1.1 a)}
 \begin{itemize}
 	\item $ \textbf{r}_{CoG} \in \mathbb{R}^3$ - CoG with respect to the body-fixed frame
 	
@@ -48,8 +48,15 @@ The complete model dynamics expressed in the inertial frame are presented and de
 			\text{J}\dot{\mb{\Omega}} & + m_t\textbf{r}_{CoG} \times \text{R}^T\ddot{\textbf{x}} + \mb{\Omega} \times \text{J}\mb{\Omega} = \textbf{M}
 		\end{split}
 	\end{align}
+\end{gather}\todo{1.1 e)}
+\noindent \textit{Hat map} and \textit{Vee map} operators are defined as:
+\begin{gather}
+	\reallywidehat{ (\, \bullet \,) }: \; \mathbb{R}^3 \mapsto \mathfrak{so}(3), \\
+	(\, \bullet \,)^\vee:  \; \mathfrak{so}(3) \mapsto \mathbb{R}^3
 \end{gather}
-The \textit{hat map} is an operator equivalent to the expression $\hat{\textbf{x}}\textbf{y} = \textbf{x} \times \textbf{y}$. It maps elements of $\mathbb{R}^3$ to the so(3) Lie algebra. \\
+respectively. \todo{1.1 b)} \\
+\noindent It should be pointed out that the notation used for the Special Orthogonal Lie group is SO(3), while its Lie algebra corresponds to $\mathfrak{so}$(3).
+
 \noindent The following terms are defined as:
 
 \begin{itemize}
