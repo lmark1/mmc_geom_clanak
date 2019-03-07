@@ -1,5 +1,5 @@
 \section{Mathematical model} \label{sec:model}
-
+\todo[inline]{Change m to $m_t$}
 First of all, it is necessary to introduce a fixed inertial reference frame $\{  \textbf{e}_1,  \textbf{e}_2,  \textbf{e}_3  \}$ and a body-fixed frame $ \{  \textbf{b}_1,  \textbf{b}_2,  \textbf{b}_3 \}$. Next, we present
 a general equation for calculating CoG vector from the origin of the body-fixed frame as follows: 
 \begin{equation}
@@ -87,7 +87,7 @@ respectively. \todo{1.1 b)} \\
 	f_i = b_f \omega_{i}^2 \label{force}\\
 	\tau_i = (-1)^i b_m f_i \, ,
 \end{gather}
-where the following terms are defined as:
+\noindent where the following terms are defined as:	
 \begin{itemize}
 	\item $f_i \in \mathbb{R}$ - Thrust of the i-th motor
 	
@@ -106,8 +106,8 @@ Total thrust can be expressed as:
 and total moment acting in the body-fixed frame as:
 \begin{align}
 	\begin{split} \label{control:M}
-	\textbf{M} = [\, &m_{p}g \, d_x \, \textbf{e}_1 \cdot \textbf{b}_{3,d} \,, \\
-	&m_{p}g \, d_y \, \textbf{e}_2 \cdot \textbf{b}_{3,d} \,, \\
+	\textbf{M} = [\, &m_{p}g \, d_x \, \textbf{e}_1 \cdot \textbf{b}_{3,d} \,, \;
+	m_{p}g \, d_y \, \textbf{e}_2 \cdot \textbf{b}_{3,d} \,, \\
 	&b_m \,(\, -f_1 + f_2 - f_3 + f_4 \,)\, ] \, ,
 	\end{split}
 \end{align}
