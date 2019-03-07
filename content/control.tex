@@ -28,7 +28,7 @@ It is shown in \cite{bulloBook} that the attitude tracking error should be chose
 \begin{equation}
 	\textbf{e}_\text{R} = \frac{1}{2} (\, \text{R}_d^T\text{R} - \text{R}^T\text{R}_d \,)^\vee
 \end{equation}
-Due to the fact that angular velocities $\mb{\Omega} \in T_\text{R}SO(3)$ and $\mb{\Omega}_d \in T_{\text{R}_d}SO(3)$ evolve in different tangential bundles, the proposed left transport map \eqref{transportMap} needs to be applied when calculating the angular velocity tracking error:
+Due to the fact that angular velocities $\mb{\Omega} \in \text{T}_\text{R} \text{SO}(3)$ and $\mb{\Omega}_d \in \text{T}_{\text{R}_d}\text{SO}(3)$ evolve in different tangential bundles, the proposed left transport map \eqref{transportMap} needs to be applied when calculating the angular velocity tracking error:
 \begin{equation}
 	\textbf{e}_\Omega = \mb{\Omega} - \text{R}^T\text{R}_d\mb{\Omega}_d \label{angular_error}
 \end{equation}
@@ -38,8 +38,8 @@ After defining all tracking errors, one can start constructing the control terms
 \begin{align}
 	\begin{split}
 		\textbf{A} =& (- \text{k}_x \textbf{e}_x - \text{k}_v \textbf{e}_v + m\ddot{\textbf{x}}_d \\
-		& + mg\textbf{e}_3 - m_t \text{R} \,(\, \textbf{r}_{CoG} \times \dot{\mb{\Omega}} \,) \\
-		& - m_t \text{R} \,[\, \mb{\Omega} \times (\textbf{r}_{CoG} \times \mb{\Omega}) \,]\, ) \\
+		& + m g\textbf{e}_3 - m \text{R} \,(\, \textbf{r}_{CoG} \times \dot{\mb{\Omega}} \,) \\
+		& - m \text{R} \,[\, \mb{\Omega} \times (\textbf{r}_{CoG} \times \mb{\Omega}) \,]\, ) \\
 		f =& \textbf{A} \cdot \text{R}\textbf{e}_3 \label{force_control}
 	\end{split}
 \end{align}
@@ -58,8 +58,8 @@ After defining all tracking errors, one can start constructing the control terms
 The chosen constraint for the trajectory tracking problem differ slightly from the one proposed in \cite{LeeClanak4}. Due to the fact that model dynamics which include variable CoG are considered in this paper, new trajectory constraints are presented as follows:
 \begin{equation}
 	\begin{split}
-		& \lVert \, m_tge_3 + m\ddot{\textbf{x}}_d - m_t\text{R} \,(\, \textbf{r}_{CoG}  \times \dot{\mb{\Omega}} \,) \\
-		& - m_t \text{R} \,[\, \mb{\Omega} \times (\, \textbf{r}_{CoG} \times \mb{\Omega} \,)\, ] \, \rVert < B \, , \label{condition2}
+		& \lVert \, mge_3 + m\ddot{\textbf{x}}_d - m\text{R} \,(\, \textbf{r}_{CoG}  \times \dot{\mb{\Omega}} \,) \\
+		& - m \text{R} \,[\, \mb{\Omega} \times (\, \textbf{r}_{CoG} \times \mb{\Omega} \,)\, ] \, \rVert < B \, , \label{condition2}
 	\end{split}
 \end{equation}
 where B is some positive constant. \\
@@ -82,14 +82,14 @@ After including \eqref{model2} and \eqref{model4} in \eqref{linear_error_dynamic
 	\label{lin_dynamics_full}
 	\begin{split}
 		m\textbf{e}_v = & - mg\textbf{e}_3 - m\ddot{\textbf{x}}_d \\
-			& + m_t \text{R} \,(\, \textbf{r}_{CoG}  \times \dot{\mb{\Omega}} \,) \\
-			& + m_t \text{R} \,[\, \mb{\Omega} \times (\, \textbf{r}_{CoG} \times \mb{\Omega} \,)\, ] \\
+			& + m \text{R} \,(\, \textbf{r}_{CoG}  \times \dot{\mb{\Omega}} \,) \\
+			& + m \text{R} \,[\, \mb{\Omega} \times (\, \textbf{r}_{CoG} \times \mb{\Omega} \,)\, ] \\
 			&+ \textbf{A} + \textbf{X}	
 	\end{split} \\
 	\label{ang_dynamics_full}
 	\begin{split}
 		\text{J}\textbf{e}_\Omega =\,  &\text{J} \,(\, \reallywidehat{\mb{\Omega}}\text{R}^T\text{R}_d\mb{\Omega}_d - \text{R}^T\text{R}_d\dot{\mb{\Omega}}_d \,) \\
-			& - \mb{\Omega} \times \text{J}\mb{\Omega} + m_t \textbf{r}_{CoG} \times \text{R}^T \ddot{\textbf{x}} \\
+			& - \mb{\Omega} \times \text{J}\mb{\Omega} + m \textbf{r}_{CoG} \times \text{R}^T \ddot{\textbf{x}} \\
 			& + \textbf{ M}
 	\end{split}
 \end{align}
