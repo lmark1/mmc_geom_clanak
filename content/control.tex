@@ -95,8 +95,13 @@ After including \eqref{model2} and \eqref{model4} in \eqref{linear_error_dynamic
 \end{align}
 Note that in \eqref{lin_dynamics_full} $\textbf{X}\in\mathbb{\text{R}}^3$ is a bounded term which equals:
 \begin{equation}
-	\textbf{X} = \frac{f}{(\text{R}_d\textbf{e}_3)^T\text{R}\textbf{e}_3} \,(\, \text{R}_d \textbf{e}_3 - (\, (\text{R}_d\textbf{e}_3)^T\text{R}\textbf{e}_3 \,)\, \text{R}\textbf{e}_3 \,)
+	\textbf{X} = \frac{f}{(\, \text{R}_d\textbf{e}_3 \,)^T\text{R}\textbf{e}_3} \,[\, \text{R}_d \textbf{e}_3 - (\, \textbf{e}_3^T \text{R}_d^T   \text{R}\textbf{e}_3 \,)\, \text{R}\textbf{e}_3 \,]
 \end{equation}
+Taking \eqref{condition2} in consideration, upper bound for $\textbf{X}$ is:
+\begin{equation}
+	\textbf{X} \leq (\, \text{k}_x \norm{\textbf{e}_x} + \text{k}_v \norm{\textbf{e}_v} + \text{B} \,)\, \sin(\Theta) \,
+\end{equation}
+\noindent where $\Theta$ is the angle between $\textbf{b}_{3,d}$ and $\textbf{b}_{3}$. \\
 After substituting control force from \eqref{force_control} and \eqref{moment_control} in \eqref{lin_dynamics_full} and \eqref{ang_dynamics_full} respectively the final form of error dynamics is obtained:
 \begin{gather}
 	m\textbf{e}_v = -k_x \textbf{e}_x - k_v \textbf{e}_v + \textbf{X} \label{error_dynamics_linear}\\ 
