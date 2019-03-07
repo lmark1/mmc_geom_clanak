@@ -13,11 +13,12 @@ Controller synthesis is carried out as follows. First, position and orientation 
 
 \subsection{Tracking errors}
 
-Compatible attitude error function and transport map between tangent bundles of SO(3) are chosen as suggested in \cite{bulloBook} and confirmed in research regarding geometric control with aerial vehicles \cite{LeeClanak1}, \cite{LeeClanak2}, \cite{LeeClanak3}, \cite{LeeClanak4}. Attitude error function on SO(3) $	\Psi(\text{R}, \text{R}_d)$  along with its compatible transport map $\Ta(\text{R}, \text{R}_d)$ are chosen as:
+Compatible attitude error function and transport map between tangent bundles of SO(3) are chosen as suggested in \cite{bulloBook} and confirmed in research regarding geometric control with aerial vehicles \cite{LeeClanak4}, \cite{LeeClanak3}, \cite{LeeClanak1}, \cite{LeeClanak2}. \todo{1.6} Attitude error function on SO(3) $	\Psi(\text{R}, \text{R}_d)$  along with its compatible transport map $\Ta(\text{R}, \text{R}_d)$ are chosen as:
 \begin{gather}
 	\Psi(\text{R}, \text{R}_d) = \frac{1}{2} \, \text{tr} [\, \text{I} - \text{R}_d^T\text{R} \,] \label{attErr} \\ 
-	\Ta(\text{R}, \text{R}_d) = \text{R}^T \text{R}_d \label{transportMap}
+	\Ta(\text{R}, \text{R}_d) = \text{R}^T \text{R}_d \label{transportMap} \;,
 \end{gather}
+where R and $\text{R}_d$ are considered as the current and desired UAV rotation matrices respectively w.r.t. the base frame. Construction of $\text{R}_d$ is shown in the following Subsection \ref{ssec:control_terms}. \\
 Linear position and velocity tracking errors are defined as follows:
 \begin{gather}
 	\textbf{e}_x = \textbf{x} - \textbf{x}_d \\
@@ -32,7 +33,7 @@ Due to the fact that angular velocities $\mb{\Omega} \in T_\text{R}SO(3)$ and $\
 	\textbf{e}_\Omega = \mb{\Omega} - \text{R}^T\text{R}_d\mb{\Omega}_d \label{angular_error}
 \end{equation}
 
-\subsection{Control terms}
+\subsection{Control terms} \label{ssec:control_terms}
 After defining all tracking errors, one can start constructing the control terms. Taking in consideration the proposed system dynamics \eqref{model2} and \eqref{model4}, the force and moment control terms are chosen as follows:
 \begin{align}
 	\begin{split}
