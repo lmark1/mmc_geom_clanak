@@ -1,7 +1,7 @@
 \section{Geometric control on SE(3)} \label{sec:control}
 
 The main focus of the proposed controller is put on position tracking. Therefore, the trajectory consists of a desired position $\textbf{x}_d(t)$ and a desired heading $\textbf{b}_{1,d}(t)$ of the body-fixed frame. Since the given position is known ahead of time, one is able to calculate both desired linear velocity $\textbf{v}_d(t)$ and acceleration $\textbf{a}_d(t)$ which are also inherently included as inputs. \\
-The controller is developed on the nonlinear Lie group SE(3) consisting of the rotation group SO(3) and translation group T(3). It is cascade in structure, as seen in Figure \ref{fig:control_scheme} with position tracking block following attitude tracking block. The main advantage of using the SO(3) rotation group is to avoid any singularities or ambiguities that may arise when representing rotations with Euler angles or quaternions. \\
+The controller is developed on the nonlinear Lie group SE(3) consisting of the rotation group SO(3) and translation group T(3). It is cascade in structure, as seen in Figure \ref{fig:control_scheme} with attitude tracking block following the position tracking block. The main advantage of using the SO(3) rotation group is to avoid any singularities or ambiguities that may arise when representing rotations with Euler angles or quaternions. \\
 Controller synthesis is carried out as follows. First, position and orientation tracking errors are presented as the proportional and derivative part of the controller. In addition, nonlinear control terms are chosen to compensate proposed model dynamics. Finally, exponential stability conditions for the initial UAV configuration are shown.
 
 \begin{figure}
