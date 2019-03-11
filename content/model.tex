@@ -37,15 +37,15 @@ The complete model dynamics expressed in the inertial frame are presented and de
 	\label{model2}
 	\begin{align}
 		\begin{split}
-			m_t \ddot{\textbf{x}} & - m_t \text{R} \,(\, \textbf{r}_{CoG} \times \dot{\mb{\Omega}} \,) + m_t g\textbf{e}_3 \\
-			& - m_t \text{R} \,[\, \mb{\Omega} \times (\, \textbf{r}_{CoG} \times \mb{\Omega} \,)\, ] = f\text{R}\textbf{e}_3 
+			m \ddot{\textbf{x}} & - m \text{R} \,(\, \textbf{r}_{CoG} \times \dot{\mb{\Omega}} \,) + m g\textbf{e}_3 \\
+			& - m \text{R} \,[\, \mb{\Omega} \times (\, \textbf{r}_{CoG} \times \mb{\Omega} \,)\, ] = f\text{R}\textbf{e}_3 
 		\end{split} 
 	\end{align} \\
 	\dot{\text{R}} = \text{R}\reallywidehat{\mb{\Omega}} \label{model3} \\
 	\label{model4}
 	\begin{align}
 		\begin{split}
-			\text{J}\dot{\mb{\Omega}} & + m_t\textbf{r}_{CoG} \times \text{R}^T\ddot{\textbf{x}} + \mb{\Omega} \times \text{J}\mb{\Omega} = \textbf{M}
+			\text{J}\dot{\mb{\Omega}} & + m\textbf{r}_{CoG} \times \text{R}^T\ddot{\textbf{x}} + \mb{\Omega} \times \text{J}\mb{\Omega} = \textbf{M}
 		\end{split}
 	\end{align}
 \end{gather}\todo{1.1 e)}
