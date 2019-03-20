@@ -1,5 +1,6 @@
 In this section rotating body dynamics with variations in center of gravity is derived.
 General form of Euler-Lagrange dynamics for a rotating rigid body on SE(3) configuration manifold in the body-fixed frame as presented in \cite{LeeModel}:
+
 \begin{gather}
 	\frac{d}{dt} \left( \frac{\partial \La}{\partial \mb{\Omega}} \right)
 	+ \mb{\Omega} \times \frac{\partial \La}{\partial \mb{\Omega}} 
@@ -10,10 +11,16 @@ General form of Euler-Lagrange dynamics for a rotating rigid body on SE(3) confi
 	- \text{R}^T \frac{\partial \La}{\partial x} = 0 \label{general2}
 \end{gather}
 For the proposed UAV with variations in CoG the Lagrangian is:
-\begin{equation}
-	\La(\text{R},x,\mb{\Omega},\textbf{v}) = \frac{1}{2}\mb{\Omega}^T\text{J}\mb{\Omega} + m \mb{\Omega}^T \reallywidehat{\textbf{r}}_{CoG}\textbf{v} + \frac{1}{2}m\textbf{v}^T\textbf{v} - U(\text{R},\textbf{x}) \, ,
-\end{equation}
-where $U(\text{R}, \textbf{x})$ is the potential energy of the system. It is important to note that \text{J} and $\textbf{r}_{CoG}$ are variable over time. \\
+
+\begin{gather}
+\begin{align}
+\begin{split}
+	\La(\text{R},x,\mb{\Omega},\textbf{v}) &= \frac{1}{2}\mb{\Omega}^T\text{J}\mb{\Omega} \,+\, m \mb{\Omega}^T \reallywidehat{\textbf{r}}_{CoG}\textbf{v} \\
+	\, &+\, \frac{1}{2}m\textbf{v}^T\textbf{v} \,-\, U(\text{R},\textbf{x}) \, ,
+\end{split}
+\end{align}
+\end{gather}
+where $U(\text{R}, \textbf{x})$ is the potential energy. It is important to note that \text{J} and $\textbf{r}_{CoG}$ are variable over time. \\
 %Lagrangian derivatives needed for the general form equations \ref{general1} and \ref{general2} are:
 %\begin{gather}
 %	\frac{\partial \La}{\partial \mb{\Omega}} = \text{J}\mb{\Omega} + m \reallywidehat{\textbf{r}}_{CoG}\textbf{v} \label{d1}\\ 
