@@ -75,13 +75,13 @@ respectively. \\
 	\item $\textbf{M} \in \mathbb{R}^3$ - Total moments acting in the body-fixed frame
 \end{itemize}
 \begin{figure}
-	\includegraphics[width=\columnwidth]{pictures/uav.png}	
+	\includegraphics[width=0.7\columnwidth]{pictures/uav.png}	
 	\centering
 	\caption{UAV model set in plus configuration with MMC (left) and two 2-DOF overactuated manipulators (right) along with their respective coordinate systems. The manipulator end effectors are placed diametrically opposite from each other.}
 	\label{fig:uav_model}
 \end{figure}
-\noindent Equations \eqref{model2}, \eqref{model3} and \eqref{model4} describe the dynamical flow of a rotating and translating rigid body in terms of evolution of $(\text{R},\textbf{x},\mb{\Omega},\dot{\textbf{x}})\in \text{TSE}(3)$ on the tangent bundle of SE(3) \cite{LeeModel}.
-\indent Height and yaw of the UAV is controlled with variations in rotor velocity, whereas roll and pitch with variations in CoG. It is assumed that the first and the third propeller rotate clockwise, while the second and the fourth rotate counter-clockwise. The relation between moments, thrust and rotor velocity is the following:
+\noindent Equations \eqref{model2}, \eqref{model3} and \eqref{model4} describe the dynamical flow of a rotating and translating rigid body in terms of evolution of $(\text{R},\textbf{x},\mb{\Omega},\dot{\textbf{x}})\in \text{TSE}(3)$ on the tangent bundle of SE(3) \cite{LeeModel}. \\
+\noindent Height and yaw of the UAV is controlled with variations in rotor velocity, whereas roll and pitch with variations in CoG. It is assumed that the first and the third propeller rotate clockwise, while the second and the fourth rotate counter-clockwise. The relation between moments, thrust and rotor velocity is the following:
 \begin{gather}
 	f_i = b_f \omega_{i}^2 \label{force}\\
 	\tau_i = (-1)^i b_m f_i \, ,
@@ -139,19 +139,19 @@ Conversion from payload offsets to angle increments is done using the inverse Ja
 		l_1\text{sin}(q_1) & l_2 \text{sin}(q_1 + q_2) & l_3 \text{sin}(q_1 + q_2 + q_3) 
 	\end{bmatrix} \, ,
 \end{gather}
-where $l_1$, $l_2$ and $l_3$ are the manipulator link lengths, while $q_1$, $q_2$ and $q_3$ are current actuator angles. Using Jacobian pseudoinverse, incremental update rule for actuator angles can be obtained as follows:
-\begin{equation}
-	\begin{bmatrix}
-	\Delta q_1 \\
-	\Delta q_2 \\
-	\Delta q_3
-	\end{bmatrix} 
-	\, = \, \Ja^{-1} (q_1, q_2, q_3) \cdot
-	\begin{bmatrix}
-	d_x \\
-	d_y
-	\end{bmatrix}
-\end{equation}
+where $l_1$, $l_2$ and $l_3$ are the manipulator link lengths, while $q_1$, $q_2$ and $q_3$ are current actuator angles. Using Jacobian pseudoinverse, incremental update rule for actuator angles can be obtained.
+%\begin{equation}
+%	\begin{bmatrix}
+%	\Delta q_1 \\
+%	\Delta q_2 \\
+%	\Delta q_3
+%	\end{bmatrix} 
+%	\, = \, \Ja^{-1} (q_1, q_2, q_3) \cdot
+%	\begin{bmatrix}
+%	d_x \\
+%	d_y
+%	\end{bmatrix}
+%\end{equation}
 \noindent For explicit pseudoinverse terms please refer to \cite{gitLink}. 
 \\
-Manipulator and moving mass actuator dynamics along with the change in desired rotor force is regarded as instantaneous while presenting the controller synthesis and stability conditions. However, within the Gazebo simulation environment, a certain transfer dynamic is taken into  account.
+%Manipulator and moving mass actuator dynamics along with the change in desired rotor force is regarded as instantaneous while presenting the controller synthesis and stability conditions. However, within the Gazebo simulation environment, a certain transfer dynamic is taken into  account.
