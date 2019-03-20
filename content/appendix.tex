@@ -1,5 +1,5 @@
 In this section rotating body dynamics with variations in center of gravity is derived.
-General form of Euler-Lagrange dynamics for a rotating rigid body in SE(3) configuration manifold in the body-fixed frame as presented in \cite{LeeModel}:
+General form of Euler-Lagrange dynamics for a rotating rigid body on SE(3) configuration manifold in the body-fixed frame as presented in \cite{LeeModel}:
 \begin{gather}
 	\frac{d}{dt} \left( \frac{\partial \La}{\partial \mb{\Omega}} \right)
 	+ \mb{\Omega} \times \frac{\partial \La}{\partial \mb{\Omega}} 
@@ -9,18 +9,18 @@ General form of Euler-Lagrange dynamics for a rotating rigid body in SE(3) confi
 	+ \mb{\Omega} \times \frac{\partial \La}{\partial \textbf{v}} 
 	- \text{R}^T \frac{\partial \La}{\partial x} = 0 \label{general2}
 \end{gather}
-For the the proposed UAV with variations in CoG the Lagrangian is:
+For the proposed UAV with variations in CoG the Lagrangian is:
 \begin{equation}
 	\La(\text{R},x,\mb{\Omega},\textbf{v}) = \frac{1}{2}\mb{\Omega}^T\text{J}\mb{\Omega} + m \mb{\Omega}^T \reallywidehat{\textbf{r}}_{CoG}\textbf{v} + \frac{1}{2}m\textbf{v}^T\textbf{v} - U(\text{R},\textbf{x}) \, ,
 \end{equation}
 where $U(\text{R}, \textbf{x})$ is the potential energy of the system. It is important to note that \text{J} and $\textbf{r}_{CoG}$ are variable over time. \\
-Lagrangian derivatives needed for the general form equations \ref{general1} and \ref{general2} are:
-\begin{gather}
-	\frac{\partial \La}{\partial \mb{\Omega}} = \text{J}\mb{\Omega} + m \reallywidehat{\textbf{r}}_{CoG}\textbf{v} \label{d1}\\ 
-	\frac{d}{dt} \left( \frac{\partial \La}{\partial \mb{\Omega}} \right) = \dot{\text{J}} \mb{\Omega} + \text{J} \dot{\mb{\Omega}} + m \dot{\textbf{r}}_{CoG} \times \textbf{v} + m \textbf{r}_{CoG} \times \dot{\textbf{v}} \label{d2}\\ 
-	\frac{\partial \La}{\partial \textbf{v}} = m\textbf{v} - m\textbf{r}_{CoG} \times \mb{\Omega} \label{d3}\\ 
-	\frac{d}{dt} \left( \frac{\partial \La}{\partial \textbf{v}} \right) = m\dot{\textbf{v}} - m\dot{\textbf{r}}_{CoG} \times \mb{\Omega} - m \textbf{r}_{CoG} \times \dot{\mb{\Omega}} \label{d4}
-\end{gather}
+%Lagrangian derivatives needed for the general form equations \ref{general1} and \ref{general2} are:
+%\begin{gather}
+%	\frac{\partial \La}{\partial \mb{\Omega}} = \text{J}\mb{\Omega} + m \reallywidehat{\textbf{r}}_{CoG}\textbf{v} \label{d1}\\ 
+%	\frac{d}{dt} \left( \frac{\partial \La}{\partial \mb{\Omega}} \right) = \dot{\text{J}} \mb{\Omega} + \text{J} \dot{\mb{\Omega}} + m \dot{\textbf{r}}_{CoG} \times \textbf{v} + m \textbf{r}_{CoG} \times \dot{\textbf{v}} \label{d2}\\ 
+%	\frac{\partial \La}{\partial \textbf{v}} = m\textbf{v} - m\textbf{r}_{CoG} \times \mb{\Omega} \label{d3}\\ 
+%	\frac{d}{dt} \left( \frac{\partial \La}{\partial \textbf{v}} \right) = m\dot{\textbf{v}} - m\dot{\textbf{r}}_{CoG} \times \mb{\Omega} - m \textbf{r}_{CoG} \times \dot{\mb{\Omega}} \label{d4}
+%\end{gather}
 It is of interest to transfer rotation and translation dynamics in the inertial frame. This can be done using the following relations:
 \begin{gather}
 	\textbf{v} = \text{R}^T \dot{x} \label{inertial1}\\
@@ -28,7 +28,7 @@ It is of interest to transfer rotation and translation dynamics in the inertial 
 	\textbf{r}_{CoG} = \text{R}^T(\, \textbf{x}_{CoG} - \textbf{x} \,) \label{inertial3} \\
 	\dot{\textbf{r}}_{CoG} = \text{R}^T(\, \dot{\textbf{x}}_{CoG} - \dot{\textbf{x}} \,) - \reallywidehat{\mb{\Omega}}\text{R}^T(\, \textbf{x}_{CoG} - \textbf{x} \,) \label{inertial4}
 \end{gather}
-After plugging in \ref{d1}, \ref{d2}, \ref{d3}, \ref{d4} in \ref{general1}, \ref{general2} and using \ref{inertial1}, \ref{inertial2} as transformations of velocity and acceleration to inertial frame the following equations are obtained:
+After computing Lagrangian derivatives, plugging them in \ref{general1}, \ref{general2} and using \ref{inertial1}, \ref{inertial2} as velocity and acceleration transformations to the inertial frame the following equations are obtained:
 \begin{gather}
 \label{complete_model1}
 \begin{align}
