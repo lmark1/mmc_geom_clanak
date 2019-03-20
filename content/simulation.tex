@@ -58,7 +58,7 @@ Control parameters for the first case are chosen as follows:
 %	\, , \,
 %\end{equation*}
 For both cases, initial parameters are obtained by considering the error dynamics \eqref{error_dynamics_linear} and \eqref{error_dynamics_angular} in the equilibrium state. However, they are further tuned with better position tracking performance in mind.\\
-It is important to note that the actuator dynamics of moving masses and manipulators is taken in consideration within the Gazebo simulator. Furthermore there is a slight transient delay while increasing or decreasing rotor velocity which results in a non-instantaneous control force change, just like one would expect in real world conditions. \\
+% It is important to note that the actuator dynamics of moving masses and manipulators is taken in consideration within the Gazebo simulator. Furthermore there is a slight transient delay while increasing or decreasing rotor velocity which results in a non-instantaneous control force change, just like one would expect in real world conditions. \\
 \noindent The chosen trajectory tracking problem is formulated as a rotating spiral:
 \begin{gather*}
 	\textbf{x}_d(t) = [0.4\text{t}; \, 0.5\text{sin}(\pi\text{t}); \, 0.6\text{cos}(\pi\text{t}) + 2] \\
@@ -69,7 +69,7 @@ For the discussion on the results, the reader is invited to see figure captions.
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.8\columnwidth]{./pictures/both_pos_crop.pdf}
+	\includegraphics[width=0.7\columnwidth]{./pictures/both_pos_crop.pdf}
 	\caption{Comparison between desired $\textbf{x}_d$ and measured position values $\textbf{x}_{mv}$ for both simulation cases. While tracking on x and z axes are reasonably similar, slower position tracking can be observed on the y axis for the second simulation case. Calculated MSE values are 0.0079 and 0.0352 for first and second case respectively.}
 	\label{fig:traj_pos}
 \end{figure}
@@ -94,7 +94,7 @@ For the discussion on the results, the reader is invited to see figure captions.
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=0.9\columnwidth]{./pictures/cog_psi_crop.pdf}
+	\includegraphics[width=0.8\columnwidth]{./pictures/cog_psi_crop.pdf}
 	\caption{Comparison between first two components of CoG vector $\textbf{r}_{CoG}$ and between attitude error functions $\Psi$ for both simulation cases. It can be seen that higher magnitude of CoG variation can be achieved using moving masses rather than the carried payload.}
 	\label{fig:cog_error}
 \end{figure}
